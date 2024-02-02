@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>testing!</code> and save to reload.
+          Welcome to myhomefinder App!
         </p>
         <a
           className="App-link"
