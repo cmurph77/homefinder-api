@@ -7,59 +7,43 @@ import './header.css';
 export default function Header() {
         
     const username = "username"; // Will be an imported prop later ToDo
-    const isLoggedIn = true; //Will update later when login is implemented ToDo
-    const hasNewChat = true; //ToDo add logic
+    const hasNewContact = true; //ToDo add logic
 
     //Logged out users do not see the chat button on the header bar
     //Logged in users can and will be able to see if they have unread chat notifications
     const chatButton =useMemo(() => {
-        if (isLoggedIn && hasNewChat) {
+        if (hasNewContact) {
             return(
                 <PrimaryButton
                     className={"ChatButton"}
                     onClick={() => null} //ToDo add functionality
                 >
-                    Chat (New)
-                </PrimaryButton>
-            );
-        }
-        else if(isLoggedIn) {
-            return(
-                <PrimaryButton
-                    className={"ChatButton"}
-                    onClick={() => null} //ToDo add functionality
-                >
-                    Chat
+                    Notfications (New)
                 </PrimaryButton>
             );
         }
         else {
-            return(null);
+            return(
+                <PrimaryButton
+                    className={"ChatButton"}
+                    onClick={() => null} //ToDo add functionality
+                >
+                    Notfications
+                </PrimaryButton>
+            );
         }
-    }, [isLoggedIn, hasNewChat]);
+    }, [hasNewContact]);
 
     //ToDo change click handlers to move between links
     const profileButton =useMemo(() => {
-        if (isLoggedIn) {
-            return(
-                <Dropdown className={"ProfileButton"} label={username} dismissOnClick={false}>
-                    <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
-                    <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
-                    <Dropdown.Item onClick={() => alert('Sign Out')}> Sign out </Dropdown.Item>
-                </Dropdown>
-            );
-        }
-        else {
-            return(
-                <PrimaryButton
-                    className={"SignInButton"}
-                    onClick={() => null} //ToDo add functionality
-                >
-                    Sign In
-                </PrimaryButton>
-            );
-        }
-    }, [isLoggedIn]);
+        return(
+            <Dropdown className={"ProfileButton"} label={username} dismissOnClick={false}>
+                <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
+                <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
+                <Dropdown.Item onClick={() => alert('Sign Out')}> Sign out </Dropdown.Item>
+            </Dropdown>
+        );
+    }, []);
 
     return (
         <section className="Header">
