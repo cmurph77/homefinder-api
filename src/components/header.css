@@ -1,0 +1,40 @@
+.Header {
+    max-height: 40px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.HF-Logo {
+    max-height: inherit;
+    img {
+        max-height: 100%;
+        width: auto;
+        object-fit: contain;
+    };
+}
+
+.ChatContainer {
+    max-height: 36px;
+    padding: 4px 10px
+}
+
+.ProfileContainer {
+    max-height: 36px;
+    padding: 4px 10px
+}
+
+.ChatButton {
+    background-color:rgb(25, 72, 114);
+    border-color: rgb(62, 131, 158);
+}
+
+.SignInButton {
+    background-color:rgb(66, 25, 114);
+    border-color: rgb(107, 62, 158);
+}
+
+.ProfileButton {
+
+}
