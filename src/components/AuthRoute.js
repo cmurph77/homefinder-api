@@ -1,6 +1,4 @@
 // Ensure that no access to other pages if there's no token
-
-
 import { getToken } from "@/utils";
 import { Navigate } from "react-router-dom";
 
