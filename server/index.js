@@ -16,13 +16,16 @@ app.post('/authorization', (req, res)=>{
     console.log("request sucess", req.body)
     res.send({
         userInfo: req.body,
-        message: 'sucess, server got the data',
+        message: 'success, server got the data',
         token: "a-fake-token" 
     })
 })
 
 app.get('/authorization', (req,res) => {
     console.log("GET request")
+    res.send({
+        message: 'success'
+    })
 })
 
 app.listen(80,() => {

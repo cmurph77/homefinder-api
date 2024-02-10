@@ -14,7 +14,7 @@ const request = axios.create({
 
 
 // Add a request interceptor
-request.interceptors.request.use(function (config) {
+request.interceptors.request.use( (config) => {
     // put token in the request Header
     const token = getToken()
     if (token) {
@@ -24,7 +24,7 @@ request.interceptors.request.use(function (config) {
   }, function (error) {
     // Do something with request error
     return Promise.reject(error);
-  });
+});
 
 // Add a response interceptor
 request.interceptors.response.use(function (response) {
