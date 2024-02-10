@@ -7,7 +7,7 @@ This is the backend code for the homefinder application as part of the group des
 1. Download and install *Docker Desktop*: https://www.docker.com/products/docker-desktop/
 2. Ensure docker desktop is running before continuing.
 
-Run the batch file titled *elastic-setup.bat* and skip to *step 4*, to manually set up the database continue to *step 1*.
+Run the batch file titled *elastic-setup.bat* and skip to *step 3*, to manually set up the database continue to *step 1*.
 1. Open a terminal in the same folder as the 'docker-compose.yaml' file.
 2. In the terminal type the following line: *docker compose up*
 3. Wait for the following line to display: *setup-1 exited with code 0*.
