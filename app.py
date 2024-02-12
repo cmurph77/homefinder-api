@@ -7,6 +7,7 @@ import os
 def hello_world():
     return 'Hello, World!'
 
+
 @app.route('/dummydata-properties', methods=['GET'])
 def get_properties():
     print("RECIEVED REQUEST FOR PROPERTY DATA")

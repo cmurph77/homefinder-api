@@ -21,5 +21,6 @@ Then to run the server ru the command -> 'gunicorn app:app'
 
 # Endpoints
 
+/dummydata-properties = this returns the property.json file which is filled with dummy data properties
 
 
