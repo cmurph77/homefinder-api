@@ -1,16 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import listingData from "./server/data.json";
-import Header from "./components/header.js";
-import ListingGrid from "./components/listingGrid.js";
+import MarketplaceListPage from './pages/marketplaceListPage';
 
 function App() {
-  const listings = listingData.properties;
-
   return (
     <div classname="temp">
-      <Header />
-      <ListingGrid properties={listings}/>
+      <MarketplaceListPage />
     </div>
   );
 }
