@@ -7,7 +7,7 @@ import os
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/properties', methods=['GET'])
+@app.route('/dummydata-properties', methods=['GET'])
 def get_properties():
     print("RECIEVED REQUEST FOR PROPERTY DATA")
     # Define the path to the properties.json file
