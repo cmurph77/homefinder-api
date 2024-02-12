@@ -3,9 +3,9 @@
         {
             "id": 1,
             "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
-            "postal code": "D09 PN1K",
-            "rent per month": 2250,
-            "property-type": {
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 2250,
+            "propertytype": {
                 "type": "Apartment",
                 "bed": 1,
                 "bath": 1
@@ -19,9 +19,9 @@
         {
             "id": 2,
             "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
-            "postal code": "D09 PN1K",
-            "rent per month": 3092,
-            "property-type": {
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 3092,
+            "propertytype": {
                 "type": "Apartment",
                 "bed": 2,
                 "bath": 2
@@ -35,9 +35,9 @@
         {
             "id": 3,
             "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
-            "postal code": "D09 PN1K",
-            "rent per month": 4250,
-            "property-type": {
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 4250,
+            "propertytype": {
                 "type": "Apartment",
                 "bed": 3,
                 "bath": 3
@@ -51,9 +51,9 @@
         {
             "id": 4,
             "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
-            "postal code": "D09 PN1K",
-            "rent per month": 4900,
-            "property-type": {
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 4900,
+            "propertytype": {
                 "type": "House",
                 "bed": 4,
                 "bath": 3
@@ -67,9 +67,9 @@
         {
             "id": 5,
             "address": "Niche Living , Eblana Avenue, Dun Laoghaire, Co. Dublin",
-            "postal code": "A96 W8XT",
-            "rent per month": 1880,
-            "property-type": {
+            "postalcode": "A96 W8XT",
+            "rentpermonth": 1880,
+            "propertytype": {
                 "type": "Studio",
                 "bed": 1,
                 "bath": 1
@@ -83,9 +83,9 @@
         {
             "id": 6,
             "address": "Rathmines House, Rathmines High Street, Rathmines, Dublin 6",
-            "postal code": "D06 Y3C3",
-            "rent per month": 1850,
-            "property-type": {
+            "postalcode": "D06 Y3C3",
+            "rentpermonth": 1850,
+            "propertytype": {
                 "type": "Studio",
                 "bed": 1,
                 "bath": 1
@@ -99,9 +99,9 @@
         {
             "id": 7,
             "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
-            "postal code": "D18 HX8Y",
-            "rent per month": 2150,
-            "type": {
+            "postalcode": "D18 HX8Y",
+            "rentpermonth": 2150,
+            "propertytype": {
                 "type": "Apartment",
                 "bed": 1,
                 "bath": 1
@@ -115,9 +115,9 @@
         {
             "id": 8,
             "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
-            "postal code": "D18 HX8Y",
-            "rent per month": 2450,
-            "type": {
+            "postalcode": "D18 HX8Y",
+            "rentpermonth": 2450,
+            "propertytype": {
                 "type": "Apartment",
                 "bed": 2,
                 "bath": 2
@@ -131,9 +131,9 @@
         {
             "id": 9,
             "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
-            "postal code": "D18 HX8Y",
-            "rent per month": 3275,
-            "type": {
+            "postalcode": "D18 HX8Y",
+            "rentpermonth": 3275,
+            "propertytype": {
                 "type": "Apartment",
                 "bed": 3,
                 "bath": 3
@@ -147,9 +147,9 @@
         {
             "id": 10,
             "address": "The Lookout , Harbour Road, Dalkey, Co. Dublin",
-            "postal code": "A96 RX4N",
-            "rent per month": 2150,
-            "type": {
+            "postalcode": "A96 RX4N",
+            "rentpermonth": 2150,
+            "propertytype": {
                 "type": "Apartment",
                 "bed": 1,
                 "bath": 1
