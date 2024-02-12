@@ -4,5 +4,11 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('flowbite/plugin')],
+ plugins: [
+    require('postcss-import'),
+    require('tailwindcss/nesting')(require('postcss-nesting')),
+    require('flowbite/plugin'),
+    require('autoprefixer'),
+    require('tailwindcss'),
+  ]
 };

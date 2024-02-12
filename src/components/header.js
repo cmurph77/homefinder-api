@@ -37,7 +37,7 @@ export default function Header() {
     //ToDo change click handlers to move between links
     const profileButton =useMemo(() => {
         return(
-            <Dropdown className={"ProfileButton"} label={username} dismissOnClick={false}>
+            <Dropdown className={"ProfileButton"} color="dark" size="xs" label={username} dismissOnClick={false}>
                 <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
                 <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
                 <Dropdown.Item onClick={() => alert('Sign Out')}> Sign out </Dropdown.Item>
