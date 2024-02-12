@@ -1,0 +1,40 @@
+.Card{
+    max-height: 310x;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 5px 5px;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: blueviolet;
+    background-color: rgb(234, 229, 237);
+}
+
+.Card-Image{
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+    border-radius: 10px;
+    img {
+        object-fit: fill;
+    };
+}
+
+a{
+    font-weight: bolder;
+    font-family:Arial;
+    text-decoration: underline;
+}
+
+h1{
+    font-size: medium;
+    font-family:Arial;
+    font-weight: bold;
+}
+
+h2{
+    font-size: small;
+    font-family:Arial;
+    color: rgb(15, 15, 15);
+}
