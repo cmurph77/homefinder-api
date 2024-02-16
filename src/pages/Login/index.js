@@ -1,21 +1,41 @@
 import './index.scss'
-import { Card, Form, Input, Button, Checkbox,message } from 'antd'
+import { Card, Form, Input, Button, Checkbox, message } from 'antd'
 import logo from '@/assets/logo.png'
-import { useDispatch } from 'react-redux'
-import { fetchLogin } from '@/store/modules/user'
+import {  useDispatch  } from 'react-redux'
+import { fetchLogin, setRemember } from '@/store/modules/user'
 import { useNavigate } from 'react-router-dom'
-// import { Navigate } from "react-router-dom";
+import { useEffect } from 'react'
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '@/firebase'
 
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
+    useEffect(()=>{
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navigate('/')
+                message.success('------------Login---------');
+            }
+        });
+    },[])
+    
     const onFinish = async (values) => {
-        // console.log('Success:', values);
-        // Trigger asynchronous action fetchLogin()
-        await dispatch(fetchLogin(values))
-        navigate('/')
-        message.success('------------Login---------')
+        console.log(values)
+        const resultAction = await dispatch(fetchLogin(values))
+        if (fetchLogin.fulfilled.match(resultAction)) {
+            console.log("Login successful");
+            await navigate('/');
+            await message.success('------------Login---------');
+        } else if (fetchLogin.rejected.match(resultAction)) {
+            console.error("Login failed:", resultAction.payload);
+            await message.error("Login failed: " + resultAction.payload);
+        }
+    }
+
+    const onChange = (e) =>{
+        dispatch(setRemember(e.target.checked))
     }
 
     const formItemsLayout = {
@@ -31,21 +51,21 @@ const Login = () => {
 
                     <Form.Item
                         className='login-username'
-                        name="username"
-                        label="Username"
+                        name="email"
+                        label="E-mail"
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your usename!"
+                                message: "Please input your email!"
                             },
-                            // {
-                            //     pattern: `/^[a-zA-Z0-9_-!?]+$/`,
-                            //     message: "Please only enter alphabet, numbers and -_!?"
-                            // }
+                            {
+                                type: 'email',
+                                message: 'The input is not a valid E-mail!',
+                            }
                         ]}
                         {...formItemsLayout}
                     >
-                        <Input size='large' placeholder='enter username'></Input>
+                        <Input size='large' placeholder='enter email'></Input>
                     </Form.Item>
 
                     <Form.Item
@@ -66,8 +86,8 @@ const Login = () => {
                     <Form.Item
                         wrapperCol={{offset:2 }}
                     >
-                        <Checkbox>Remember me</Checkbox>
-                        <a className="login-forgot" href="">
+                        <Checkbox onChange={onChange}>Remember me</Checkbox>
+                        <a className="login-forgot" href="http://localhost:3000/login">
                             Forgot password
                         </a>
                     </Form.Item>

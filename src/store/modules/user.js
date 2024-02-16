@@ -1,34 +1,62 @@
 // State Management - user related
 import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
-import { request } from '@/utils'
-import { setToken, getToken } from '@/utils'
+
+import { signInWithEmailAndPassword,setPersistence,browserLocalPersistence,browserSessionPersistence } from "firebase/auth";
+import { auth } from '@/firebase'
 
 const userStore = createSlice({
     name: "user",
     initialState:{
-        // get token from the local storage first.
-        token: getToken('token_key') || ''
+        remember: false,
+        loading: 'idle',
+        error: ""
     },
     reducers: {
-
+        setRemember (state, action)  {
+            state.remember = action.payload
+            console.log("remeber me is updated: ",state.remember)
+        }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchLogin.fulfilled,(state,action) =>{
+        builder
+        .addCase(fetchLogin.pending,(state,action) =>{
+            console.log("pending")
+            state.loading = 'pending'
+        })
+        .addCase(fetchLogin.fulfilled,(state,action) =>{
+            console.log("fulfilled",action.payload)
             state.token = action.payload
-            // save the token on the local storage, otherwise the token loses once refreshing
-            setToken(action.payload)
+            state.loading = 'succeeded'
+            if(state.remember) {
+                setPersistence(auth, browserLocalPersistence)
+            }
+            else{
+                setPersistence(auth, browserSessionPersistence)
+            }
+        })
+        .addCase(fetchLogin.rejected, (state, action) => {
+            console.log("rejected", action.payload)
+            state.loading = 'failed'
+            state.error = action.payload
         })
     }
 })
 
 export const fetchLogin = createAsyncThunk(
     'user/fetchLogin',
-    async (loginForm) => {
-        const res = await request.post('/authorization', loginForm)
-        console.log("data returned from the server",res.data)
-        return res.data.token
+    async (loginForm, {rejectWithValue}) => {
+        const email = loginForm.email
+        const password = loginForm.password
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userId = userCredential.user.uid;
+            return userId
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue(error.code);
+        }
     }
 )
 
-
+export const { setRemember } = userStore.actions
 export default userStore.reducer

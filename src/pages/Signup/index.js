@@ -1,19 +1,27 @@
 import './index.scss'
-import { Card, Form, Input, Button, Checkbox, Select,message } from 'antd'
+import { Card, Form, Input, Button, Checkbox, Select, message } from 'antd'
 import logo from '@/assets/logo.png'
-import { useDispatch } from 'react-redux'
-import { fetchLogin } from '@/store/modules/user'
 import { useNavigate } from 'react-router-dom'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/firebase'
+
 
 const Signup = () => {
     const { Option } = Select;
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     
     const onFinish = async (values) => {
-        await dispatch(fetchLogin(values))
-        navigate('/')
-        message.success('------------Login---------')
+        console.log(values)
+        await createUserWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user)
+            navigate('/login')
+            message.success('------------Sign Up success---------')
+        })
+        .catch((error) => {
+            message.error(error.code)
+        });
     }
 
     const formItemsLayout = {
@@ -36,7 +44,7 @@ const Signup = () => {
                         rules={[
                             {
                                 type: 'email',
-                                message: 'The input is not valid E-mail!',
+                                message: 'The input is not a valid E-mail!',
                             },
                             {
                                 required: true,
@@ -139,7 +147,7 @@ const Signup = () => {
                         wrapperCol={{span:16,offset:8 }}
                     >
                         <Checkbox>
-                            I have read the <a href="">Privacy Agreement</a>
+                            I have read the <a href="http://localhost:3000/signup">Privacy Agreement</a>
                         </Checkbox>
                     </Form.Item>
 

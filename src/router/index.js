@@ -3,7 +3,8 @@ import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Signup from '@/pages/Signup'
 import Test from '@/pages/Test'
-import { AuthRoute } from '@/components/AuthRoute'
+import { AuthRoute } from '@/components/AuthRouter'
+
 
 import { createBrowserRouter } from 'react-router-dom'
 
@@ -12,7 +13,7 @@ import { createBrowserRouter } from 'react-router-dom'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AuthRoute><Home /></AuthRoute> 
+    element: <AuthRoute><Home /></AuthRoute>
   },
   {
     path: "/login",

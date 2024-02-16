@@ -1,14 +1,27 @@
-import { request } from "@/utils"
-import { useEffect } from "react"
-
+import { Button, message } from 'antd'
+import { signOut } from 'firebase/auth'
+import { auth } from '@/firebase'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-    useEffect(() => {
-        request.get('/authorization')
-    },[])
-
+    const navigate = useNavigate()
+    const signout = () => {
+        signOut(auth).then(() => {
+            navigate('/login')
+            message.success("Logout successed")
+        }).catch((error) => {
+            message.success("Logout Failed, please try again later")
+        });
+    }
     return (
-        <div>This is the homepage</div>
+        <div>This is the homepage
+        <Button type="primary" onClick={() => signout()}>
+            Logout!
+        </Button>
+
+        </div>
+        
+        
     )
 }
 
