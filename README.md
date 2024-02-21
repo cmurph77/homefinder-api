@@ -1,7 +1,29 @@
-# homefinder
-This is the backend code for the homefinder application as part of the group design project.
+# README
 
-# elasticsearch database set up.
+This is the [Flask](http://flask.pocoo.org/) [quick start](http://flask.pocoo.org/docs/1.0/quickstart/#a-minimal-application) example for [Render](https://render.com).
+
+The app in this repo is deployed at [https://flask.onrender.com](https://flask.onrender.com).
+
+## Deployment
+
+Follow the guide at https://render.com/docs/deploy-flask.
+
+# Endpoint
+
+https://homefinder-backend-ycju.onrender.com/
+
+# Testing 
+
+First you must install dependencies with -> 'pip install -r requirements.txt'
+
+Then to run the server ru the command -> 'gunicorn app:app'
+
+
+# Endpoints
+
+/dummydata-properties = this returns the property.json file which is filled with dummy data properties
+
+## elasticsearch database set up.
 
 - Pre-requisite
 1. Download and install *Docker Desktop*: https://www.docker.com/products/docker-desktop/
@@ -12,6 +34,7 @@ Run the batch file titled *elastic-setup.bat* and skip to *step 3*, to manually 
 2. In the terminal type the following line: *docker compose up*
 3. Wait for the following line to display: *setup-1 exited with code 0*.
 4. The elasticsearch container is now set up.
+  - You may need to keep this terminal window open to keep the container running.
 
 5. To test the server connection open up a web browser and go to the following address: *http://localhost:9200/*.
 6. If asked for credentials:
