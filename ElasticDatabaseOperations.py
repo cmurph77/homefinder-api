@@ -2,6 +2,7 @@
 # No functions in this class should be included in the functionality of our web app.
 # If you are looking for database functions, check the ElasticDatabase.py file
 
+import os
 import json
 from ElasticDatabase import ElasticDatabase
 
@@ -16,8 +17,7 @@ class ElasticDatabaseOperations:
             self.client.elasticsearch.indices.delete(index=indexName)
 
         self.client.elasticsearch.indices.create(index=indexName)
-        propertiesData = self.readJSON('mock_data\properties.json')
-        #self.indexData(self.client, indexName, propertiesData)
+        propertiesData = self.readJSON(os.path.join('mock_data', 'properties.json'))
         for doc_id, doc in enumerate(propertiesData):
             self.client.elasticsearch.index(index=indexName, id=doc_id, body=doc)
 
@@ -27,11 +27,6 @@ class ElasticDatabaseOperations:
         with open(fileName) as file:
             data = json.load(file)
         return data
-    
-    @staticmethod
-    def indexData(client, indexName, data):
-        for doc_id, doc in enumerate(data):
-            client.elasticsearch.index(index=indexName, id=doc_id, body=doc)
 
 
 def main():
