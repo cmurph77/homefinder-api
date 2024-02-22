@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .Header {
     max-height: 40px;
     width: 100vw;
@@ -25,11 +21,20 @@
 }
 
 .ProfileContainer {
-    max-height: 34px;
-    padding: 6px 10px
+    max-height: 36px;
+    padding: 4px 10px
 }
 
 .ChatButton {
     background-color:rgb(25, 72, 114);
     border-color: rgb(62, 131, 158);
+}
+
+.SignInButton {
+    background-color:rgb(66, 25, 114);
+    border-color: rgb(107, 62, 158);
+}
+
+.ProfileButton {
+
 }

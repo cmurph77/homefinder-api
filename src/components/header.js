@@ -1,49 +1,65 @@
 import React, { useMemo } from "react";
 import { PrimaryButton } from "@fluentui/react";
 import { Dropdown } from 'flowbite-react';
-import logo from '../images/logo.png';
+import logo from '@/images/logo.png';
 import './header.css';
 
 export default function Header() {
         
     const username = "username"; // Will be an imported prop later ToDo
-    const hasNewContact = true; //ToDo add logic
+    const isLoggedIn = true; //Will update later when login is implemented ToDo
+    const hasNewChat = true; //ToDo add logic
 
     //Logged out users do not see the chat button on the header bar
     //Logged in users can and will be able to see if they have unread chat notifications
     const chatButton =useMemo(() => {
-        if (hasNewContact) {
+        if (isLoggedIn && hasNewChat) {
             return(
                 <PrimaryButton
                     className={"ChatButton"}
                     onClick={() => null} //ToDo add functionality
                 >
-                    Notfications (New)
+                    Chat (New)
                 </PrimaryButton>
+            );
+        }
+        else if(isLoggedIn) {
+            return(
+                <PrimaryButton
+                    className={"ChatButton"}
+                    onClick={() => null} //ToDo add functionality
+                >
+                    Chat
+                </PrimaryButton>
+            );
+        }
+        else {
+            return(null);
+        }
+    }, [isLoggedIn, hasNewChat]);
+
+    //ToDo change click handlers to move between links
+    const profileButton =useMemo(() => {
+        if (isLoggedIn) {
+            return(
+                <Dropdown className={"ProfileButton"} label={username} dismissOnClick={false}>
+                    <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
+                    <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
+                    <Dropdown.Item onClick={() => alert('Sign Out')}> Sign out </Dropdown.Item>
+                </Dropdown>
             );
         }
         else {
             return(
                 <PrimaryButton
-                    className={"ChatButton"}
+                    className={"SignInButton"}
                     onClick={() => null} //ToDo add functionality
                 >
-                    Notfications
+                    Sign In
                 </PrimaryButton>
             );
         }
-    }, [hasNewContact]);
-
-    //ToDo change click handlers to move between links
-    const profileButton =useMemo(() => {
-        return(
-            <Dropdown className={"ProfileButton"} color="dark" size="xs" label={username} dismissOnClick={false}>
-                <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
-                <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
-                <Dropdown.Item onClick={() => alert('Sign Out')}> Sign out </Dropdown.Item>
-            </Dropdown>
-        );
-    }, []);
+    }, [isLoggedIn]);
 
     return (
         <section className="Header">
