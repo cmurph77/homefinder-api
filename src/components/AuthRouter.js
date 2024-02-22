@@ -11,7 +11,7 @@ export function AuthRoute ( { children } ) {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
           console.log("trigger");
           if (user) {
-            message.success('------------Login---------');
+            // message.success('------------Login---------');
           } else {
             message.error('You haven\'t logged in');
             navigate('/login');

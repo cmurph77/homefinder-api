@@ -128,7 +128,7 @@ const Signup = () => {
                         ]}
                         {...formItemsLayout}
                     >
-                        <Select placeholder="select your gender">
+                        <Select placeholder="Select your gender">
                             <Option value="male">Male</Option>
                             <Option value="female">Female</Option>
                             <Option value="other">Other</Option>
@@ -147,7 +147,7 @@ const Signup = () => {
                         wrapperCol={{span:16,offset:8 }}
                     >
                         <Checkbox>
-                            I have read the <a href="http://localhost:3000/signup">Privacy Agreement</a>
+                            I have read the <a href="http://localhost:3000/signup" style={{textDecoration:'none'}}>Privacy Agreement</a>
                         </Checkbox>
                     </Form.Item>
 

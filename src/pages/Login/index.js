@@ -87,7 +87,7 @@ const Login = () => {
                         wrapperCol={{offset:2 }}
                     >
                         <Checkbox onChange={onChange}>Remember me</Checkbox>
-                        <a className="login-forgot" href="http://localhost:3000/login">
+                        <a className="login-forgot" href="http://localhost:3000/login" style={{textDecoration:'none'}}>
                             Forgot password
                         </a>
                     </Form.Item>

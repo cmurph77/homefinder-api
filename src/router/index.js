@@ -3,6 +3,8 @@ import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Signup from '@/pages/Signup'
 import Test from '@/pages/Test'
+import Listing from '@/pages/Listing'
+import NotFound from '@/pages/NotFound'
 import { AuthRoute } from '@/components/AuthRouter'
 
 
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
   {
     path: '/test',
     element: <Test />
+  },
+  {
+    path: '/listing/:id',
+    element: <Listing/>
+  },
+  {
+    path: '*',
+    element: <NotFound/>
   }
 ])
 
