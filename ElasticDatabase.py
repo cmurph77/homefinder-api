@@ -1,18 +1,18 @@
+# This class is for general elastic search functions which can and should be used by backend and frontend developers
+
 from elasticsearch import Elasticsearch
 
 ELASTIC_USERNAME = "elastic"
 ELASTIC_PASSWORD = "changeme"
 ELASTIC_ENDPOINT = "http://localhost:9200/"
 
-client = Elasticsearch( ELASTIC_ENDPOINT, basic_auth=("elastic", ELASTIC_PASSWORD))
-
-print(client.info())
-
 class ElasticDatabase:
-    def __init__(self, host='localhost', port=9200):
-        self.host = host
-        self.port = port
-        self.elasticsearch = Elasticsearch([f"{self.host}:{self.port}"])
+    def __init__(self):
+        self.endpoint = ELASTIC_ENDPOINT
+        self.elasticsearch = Elasticsearch(ELASTIC_ENDPOINT, basic_auth=(ELASTIC_USERNAME, ELASTIC_PASSWORD))
+
+    def info(self):
+        return self.elasticsearch.info()
 
     def search(self, index, query):
         try:
@@ -22,15 +22,30 @@ class ElasticDatabase:
         except Exception as e:
             print(f"An error occurred during search: {e}")
             return ['Error']
+        
+
+# Test connection
+def main():
+        
+    client = ElasticDatabase()
+    print(client.info())
+
+if __name__ == "__main__":
+    main()
 
 
 # ---------------------------------------------------------------------------------------------------------
 # Example:
 
 # Create instance call it whatever you want
-# elastic_db = ElasticDatabase(host='localhost', port=9200)
+
+# elastic_db = ElasticDatabase()
+
+
 
 # perform a search like this :)
+# This depends on the structure of the json (better functions coming soon!!!)
+
 # index = 'your_index_name'
 # query = {
 #     "query": {
