@@ -1,4 +1,4 @@
-import listingData from "@/server/data.json";
+import listingData from "@/server/daftData.json";
 import Header from "@/components/header.js";
 import ListingGrid from "@/components/listingGrid.js";
 
