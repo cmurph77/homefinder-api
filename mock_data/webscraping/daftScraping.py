@@ -20,13 +20,20 @@ for listing in listings:
         images = listing.images
     else:
         images = []
-        
+          
     bedrooms = "N/A"
     try:
         # Attempt to retrieve the number of bedrooms, sometimes there is issues with this field being blank
         bedrooms = listing.bedrooms
     except Exception as e:
         print(f"Info missing: {e}. Setting bedrooms to 'N/A'.")
+        
+    firstImage = "N/A"
+    try:
+        # Attempt to retrieve first image, sometimes there is issues with this field being blank
+        firstImage = images[0]['size720x480']
+    except Exception as e:
+        print(f"Info missing: {e}. Setting first image to 'N/A'.")
         
     property_info = {
         "id": listing.shortcode,  # Using Daft.ie shortcode as ID
@@ -42,6 +49,8 @@ for listing in listings:
             "bath": listing.bathrooms,
             "m2": listing.size_meters_squared
         },
+        "num_images" : listing.total_images,
+        "img1_size720x480" : firstImage,
         "pic": images
     }
     properties.append(property_info)
