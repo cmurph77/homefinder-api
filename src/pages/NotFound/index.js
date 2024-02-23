@@ -10,8 +10,6 @@ const NotFound = () => {
     }
 
     return (
-
-        // <div>Page Not Found</div>
         <>
         <Result
             status="404"

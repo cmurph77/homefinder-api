@@ -35,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFound/>
+    element: <AuthRoute><NotFound/></AuthRoute>
   }
 ])
 

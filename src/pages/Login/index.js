@@ -13,12 +13,13 @@ const Login = () => {
     const navigate = useNavigate()
     
     useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 navigate('/')
                 message.success('------------Login---------');
             }
         });
+        return () => unsubscribe()
     },[])
     
     const onFinish = async (values) => {
