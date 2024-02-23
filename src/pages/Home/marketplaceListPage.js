@@ -1,8 +1,9 @@
-import listingData from "@/server/daftData.json";
+import listingData from "../../../server/daftData.json";
 import Header from "@/components/header.js";
 import ListingGrid from "@/components/listingGrid.js";
 
 export default function MarketplaceListPage() {
+  console.log("----------------------",listingData)
   const listings = listingData.properties;
 
   return (

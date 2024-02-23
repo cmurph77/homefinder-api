@@ -2,7 +2,7 @@ import { Button, message } from 'antd'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
 import { useNavigate } from 'react-router-dom'
-import listingData from "@/server/data.json";
+import listingData from "@/server/daftData.json";
 import Header from "@/components/header.js";
 import ListingGrid from "@/components/listingGrid.js";
 

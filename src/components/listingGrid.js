@@ -3,7 +3,17 @@ import ListingCard from "./listingCard.js";
 import './listingGrid.css';
 
 export default function ListingGrid(props) {
-    const cardList = props.properties.map(property => <ListingCard rentPerMonth={property.rentpermonth} img={property.pic} address={property.address} id={property.id} bed={property.propertytype.bed} bath={property.propertytype.bath} />)
+
+    const cardList = props.properties.map(
+        property => <ListingCard 
+                rentPerMonth={property['rent per month']} 
+                img={property['img1_size720x480']} 
+                address={property.address} 
+                id={property.id} 
+                bed={property["property-type"]['bed']} 
+                bath={property["property-type"]['bath']} 
+            />
+    )
     
     return(
         <section className="ListingGrid">
