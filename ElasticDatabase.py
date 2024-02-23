@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+# This class is for general elastic search functions which can and should be used by backend and frontend developers.
+
+>>>>>>> Stashed changes
 from elasticsearch import Elasticsearch
 
 ELASTIC_USERNAME = "elastic"
