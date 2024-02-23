@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import ListingCard from "./listingCard.js";
 import './listingGrid.css';
 
