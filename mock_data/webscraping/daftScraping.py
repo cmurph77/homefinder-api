@@ -33,6 +33,8 @@ for listing in listings:
         "address": listing.title,
         "rent per month": listing.monthly_price,
         "daft.ie link":listing.daft_link,
+        "latitude": listing.latitude,
+        "longitude": listing.longitude,
         "property-type": {
             "category": listing.category,  # Assuming property_type is an Enum
             "type": listing.sections,
