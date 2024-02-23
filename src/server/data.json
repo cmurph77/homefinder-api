@@ -1,0 +1,165 @@
+{
+    "properties": [
+        {
+            "id": 1,
+            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 2250,
+            "propertytype": {
+                "type": "Apartment",
+                "bed": 1,
+                "bath": 1
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIyL2QvMmQwNGI5ZWZkZDM1ZGE3OGJhNWMzZDJmMzhiNjVhYTAuanBnIn0=?signature=52fb1faf17509a7f48eb4240e534aa99ca8a1b6eb54df5c95aca3cb4e85bd613",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIzLzUvMzUwZjM1MDUzZTY0OWNlZWRjNzgzZDc5MmRiNjUxNzIuanBnIn0=?signature=4c0ed2858f4e03306c1249e244cb79870530d815c68819ed8ffb3fb378e501ad",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI0L2YvNGZmZTg1YTVkNzg5ZjNhMjY0NjViZjVmN2YwNDM3ZDAuanBnIn0=?signature=7ac604246dd628896d6cd47ac5cf160a1dbe50ae9d6c6bc943a890f875305c8d"
+            ]
+        },
+        {
+            "id": 2,
+            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 3092,
+            "propertytype": {
+                "type": "Apartment",
+                "bed": 2,
+                "bath": 2
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJkL2UvZGU5Yzg5YTgyOGFlMzljN2QxYzZhNTA1NGZhNzMyMDQuanBnIn0=?signature=b59e296cc200656de9d1ab6acfff38c6ef70faf35a715c38ba785c9aeb841f25",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJhLzgvYTgxMDE5N2U4N2ZhZmZmOGUzNTFiNmVkZmU5MDUyYTcuanBnIn0=?signature=1f3c6355717dde63953ccfd14837c2a8005000c99c483aa910f85e85de685ed7",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI2LzQvNjQ3MDM0ZGUyOWMwMDM3MjE2NmYwODIyNjI5ODlhNDMucG5nIn0=?signature=4254fbfea3957a02a978ad5b93454cda9a24a2b036ca518cb1cf5197f87eb4e7"
+            ]
+        },
+        {
+            "id": 3,
+            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 4250,
+            "propertytype": {
+                "type": "Apartment",
+                "bed": 3,
+                "bath": 3
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIyL2IvMmI3MzkwMjVhZDA1OWU5YjJiMzU1MzEzZDQ1MjI2YjQuanBnIn0=?signature=951e6350066487b7b42349908dd1e35331abcde72ba99000a2e49316b9ebc512",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI3LzMvNzNmZTg2ZGFjNjFjNDJkNGJiMmI5YzExZDA5OTczNjIuanBnIn0=?signature=5367aec8d2d6ce3bc81be14df7a0eb22c5ad57e7417ae36f83750a0ed8c51daa",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJjLzgvYzgzODRjNTQwYjdlZDlmZTU4ZWJiNzU4ZTVlOTgyZTMuanBnIn0=?signature=417953b17b259ec5ea03343837cc8e27ea3443782ccfa30fd7e9f8a08e38a4b4"
+            ]
+        },
+        {
+            "id": 4,
+            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "postalcode": "D09 PN1K",
+            "rentpermonth": 4900,
+            "propertytype": {
+                "type": "House",
+                "bed": 4,
+                "bath": 3
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIwLzgvMDg5MDU0NzVlMjNjMTI4MzFkYzAxOTQyMGEyN2EyNTcuanBnIn0=?signature=c579a24d96134f055cbd1ff1a7344b9c57f95ed294fbaee7f026bf093275334f",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI2L2UvNmVmN2Q0ZDk0YTBiMDBkNmM2YjU2Njg1ZWRhMjJhMTYuanBnIn0=?signature=17e8839eab9d756560b05b476603e695abbf391296839815b94f27a0a1b2a69d",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI3LzYvNzYzOGQzMjY1MGU5ZDc5NGZhYWNiYWU2MjcyODYyNzQuanBnIn0=?signature=90609ffa75b2ea9d9f1ab2e4fc452d4098f7293abddbb9c0eb6ee133e795555f"
+            ]
+        },
+        {
+            "id": 5,
+            "address": "Niche Living , Eblana Avenue, Dun Laoghaire, Co. Dublin",
+            "postalcode": "A96 W8XT",
+            "rentpermonth": 1880,
+            "propertytype": {
+                "type": "Studio",
+                "bed": 1,
+                "bath": 1
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI2L2QvNmQ4MjhiM2Y1MDQ2NzA4Nzk4MGI4YTMzZjc4YTAzNzUucG5nIn0=?signature=6a2be0a2c12887da4bf6e9f2a5bc1c333310c26d2d1899239f2f5179c85a7cc1",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIwL2UvMGVmNmRkZDJlM2NiYzA3YWU1NDE4MGI5Y2ExNWY3ZTIucG5nIn0=?signature=16bee1a4352b7431b0765d7a82547dbd19f9b8a6086977d4f1dc777eca31a1ae",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIxLzkvMTk0ZTUzNjcyNmEzYjkwY2JjYzdlOTRiNjk2NTI4ZjIucG5nIn0=?signature=e1a43b5a98c6e9a90db61724e3242012103fa6865da9ca9994b28a3f10b0d26f"
+            ]
+        },
+        {
+            "id": 6,
+            "address": "Rathmines House, Rathmines High Street, Rathmines, Dublin 6",
+            "postalcode": "D06 Y3C3",
+            "rentpermonth": 1850,
+            "propertytype": {
+                "type": "Studio",
+                "bed": 1,
+                "bath": 1
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIwL2UvMGU4MzhmMTRkNGYwYTk5MWE1ZmNlMDdlMGEwYTZhOGEuanBnIn0=?signature=f4d9239e093295aaa38afdd9791a89da08065167bee012e57851be62e1742558",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI2LzMvNjNlMTNkMzNiMDMwZDNmMzQ1MThjNjJkM2E0NzQ3NzguanBnIn0=?signature=961630212b5418b19bf5bde6b5db3a7b39e4a416f6ea659a9d2b71a35fae5be7",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJmL2IvZmIxYmFiMjY0NWEyZjAwOWRjZjdlN2ViNjM5ZTQwMzIuanBnIn0=?signature=5756e8830b05347056966732f30978b1415d0c17764ccf3a651b5895cbabdb13"
+            ]
+        },
+        {
+            "id": 7,
+            "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
+            "postalcode": "D18 HX8Y",
+            "rentpermonth": 2150,
+            "propertytype": {
+                "type": "Apartment",
+                "bed": 1,
+                "bath": 1
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJmL2YvZmY4NGVjMDNmYjUzMWJmM2Q3OTgyYzQ0YTE4ZTNlZDUuanBnIn0=?signature=12f7bc6f5ea8d94a54d554b092d689ab58eaf70ccf096462081ac3c95b410bed",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI5L2YvOWYyNDAzYzA2ZThiZjhiY2M4OWQ4Y2ZlNjQ0ZjkzZTkuanBnIn0=?signature=ece02e16b6cc168415c6d373111c1d28cd6cb3a96a744d40de27213bcee3795d",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIyLzIvMjIwMjU1OTM1NWE2OTI4NTE5ZTk4MDUzMjc2YjJhMTguanBnIn0=?signature=ec7aef4a07e6008c36a2a91d1fddee4f6e9418c7739f2ca0464556b5f4d88490"
+            ]
+        },
+        {
+            "id": 8,
+            "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
+            "postalcode": "D18 HX8Y",
+            "rentpermonth": 2450,
+            "propertytype": {
+                "type": "Apartment",
+                "bed": 2,
+                "bath": 2
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJkL2MvZGM4ZjBkMmVhODhiOGRmZTM1MmY4M2I1OGM4MDU3NTguanBnIn0=?signature=324b39d72f13f9b2abfb0411381f9f3b1a1666c51e32e6f067f421dea7d4e954",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJmLzUvZjVmZTBiMDM1NzZmYmFmNmQ3ZjI4Mzk4MjdlZjJhM2EuanBnIn0=?signature=c4e3c89216522a07e3815fe9977d690a96f2374474e568218d46476dd1e53668",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiIyLzMvMjM5ZDg5NTE4NjE4ZGI2NmJlNjg5OTkzNWZiYzEzZGUuanBnIn0=?signature=70448d0cafbeb375fa7cad7e3eb928f7b9809e7267b94179e3658633a5b2fbd7"
+            ]
+        },
+        {
+            "id": 9,
+            "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
+            "postalcode": "D18 HX8Y",
+            "rentpermonth": 3275,
+            "propertytype": {
+                "type": "Apartment",
+                "bed": 3,
+                "bath": 3
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJlLzIvZTI5NDgzOTYwNjc2Y2JiOGY5MzRkMWZiYzA0MTQ3MTQuanBnIn0=?signature=97aa7eab466b6b2232830a1ca66d88262f417db6993c5ba71d243fa6cd41f618",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI2LzUvNjU4ODEzYTFlYjZkMGI2NDA5MzExZjc3NTk3ZjIwZTguanBnIn0=?signature=0377e6c24f083f492b91f41b84e53794893e0bd11d0a73de91605b05d533e150",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJkL2UvZGVjZmM5ZTAwOTkzM2M0ZDhjYjJiYWQwNTBlYzIwOTEuanBnIn0=?signature=9aec5a5e9aae3c504c67d26cc3cecb569d10e08b45e5f48446437ef11ba223fe"
+            ]
+        },
+        {
+            "id": 10,
+            "address": "The Lookout , Harbour Road, Dalkey, Co. Dublin",
+            "postalcode": "A96 RX4N",
+            "rentpermonth": 2150,
+            "propertytype": {
+                "type": "Apartment",
+                "bed": 1,
+                "bath": 1
+            },
+            "pic": [
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI5L2IvOWJhNThjMGZiODczOWVjYWMwMmQ5YjU2MjE5ZGY2ZTIuanBnIn0=?signature=895e56949439b55106befa83a294dcfa7b4c46d65198f8655b3b9a6eefbd18c4",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiJmLzkvZjlmMjg3ZWU2YmJlNjc3MDNkMTJlNmQ3ZjBiNmU4MTkuanBnIn0=?signature=64b15fd302fe2ec05fc6a62f9ee809319ba465e1acb23d1ea130caab8fe27974",
+                "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLXh4bGFyZ2UtdjMucG5nIn0sInJlc2l6ZSI6eyJmaXQiOiJpbnNpZGUiLCJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwfX0sIm91dHB1dEZvcm1hdCI6ImpwZWciLCJrZXkiOiI0L2QvNGQxZGY0MmZjYjFjZWRiMjgzYjViYzYwNzUxZGIzYjAuanBnIn0=?signature=9f7366984d673aab2aecfc528c30f3eca9bad7d4df068379b0abe94c51835aa7"
+            ]
+        }
+    ]
+
+}

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { PrimaryButton } from "@fluentui/react";
 import { Dropdown } from 'flowbite-react';
-import logo from '../images/logo.png';
+import logo from '@/images/logo.png';
 import './header.css';
 
 export default function Header() {
