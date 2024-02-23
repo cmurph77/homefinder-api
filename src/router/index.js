@@ -9,6 +9,7 @@ import { AuthRoute } from '@/components/AuthRouter'
 
 
 import { createBrowserRouter } from 'react-router-dom'
+const api_url = 'http://127.0.0.1:8000'
 
 // Configure the instance of router
 
