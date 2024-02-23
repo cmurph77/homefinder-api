@@ -2,7 +2,7 @@
     "properties": [
         {
             "id": 1,
-            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "address": "[DD] Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
             "postal code": "D09 PN1K",
             "rent per month": 2250,
             "property-type": {
@@ -18,7 +18,7 @@
         },
         {
             "id": 2,
-            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "address": "[DD]Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
             "postal code": "D09 PN1K",
             "rent per month": 3092,
             "property-type": {
@@ -34,7 +34,7 @@
         },
         {
             "id": 3,
-            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "address": "[DD]Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
             "postal code": "D09 PN1K",
             "rent per month": 4250,
             "property-type": {
@@ -50,7 +50,7 @@
         },
         {
             "id": 4,
-            "address": "Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
+            "address": "[DD]Griffith Wood, Griffith Avenue, Drumcondra, Dublin 9",
             "postal code": "D09 PN1K",
             "rent per month": 4900,
             "property-type": {
@@ -66,7 +66,7 @@
         },
         {
             "id": 5,
-            "address": "Niche Living , Eblana Avenue, Dun Laoghaire, Co. Dublin",
+            "address": "[DD] Niche Living , Eblana Avenue, Dun Laoghaire, Co. Dublin",
             "postal code": "A96 W8XT",
             "rent per month": 1880,
             "property-type": {
@@ -82,7 +82,7 @@
         },
         {
             "id": 6,
-            "address": "Rathmines House, Rathmines High Street, Rathmines, Dublin 6",
+            "address": "[DD] Rathmines House, Rathmines High Street, Rathmines, Dublin 6",
             "postal code": "D06 Y3C3",
             "rent per month": 1850,
             "property-type": {
@@ -98,7 +98,7 @@
         },
         {
             "id": 7,
-            "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
+            "address": "[DD] Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
             "postal code": "D18 HX8Y",
             "rent per month": 2150,
             "type": {
@@ -114,7 +114,7 @@
         },
         {
             "id": 8,
-            "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
+            "address": "[DD]Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
             "postal code": "D18 HX8Y",
             "rent per month": 2450,
             "type": {
@@ -130,7 +130,7 @@
         },
         {
             "id": 9,
-            "address": "Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
+            "address": "[DD]Occu East Village, Leopardstown, Dublin 18, Clay Farm Drive, Leopardstown, Dublin 18",
             "postal code": "D18 HX8Y",
             "rent per month": 3275,
             "type": {
@@ -146,7 +146,7 @@
         },
         {
             "id": 10,
-            "address": "The Lookout , Harbour Road, Dalkey, Co. Dublin",
+            "address": "[DD]The Lookout , Harbour Road, Dalkey, Co. Dublin",
             "postal code": "A96 RX4N",
             "rent per month": 2150,
             "type": {
