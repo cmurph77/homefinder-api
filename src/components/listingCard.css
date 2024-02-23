@@ -1,5 +1,5 @@
 .Card{
-    max-height: 310x;
+    max-height: 310px;
     max-width: 260px;
     display: flex;
     flex-direction: column;
@@ -12,6 +12,7 @@
 }
 
 .Card-Image{
+    padding-left: 5px;
     height: 250px;
     width: 250px;
     overflow: hidden;
@@ -22,18 +23,21 @@
 }
 
 a{
+    padding-left: 5px;
     font-weight: bolder;
     font-family:Arial;
     text-decoration: underline;
 }
 
-h1{
+b{
+    padding-left: 5px;
     font-size: medium;
     font-family:Arial;
     font-weight: bold;
 }
 
 h2{
+    padding-left: 5px;
     font-size: small;
     font-family:Arial;
     color: rgb(15, 15, 15);
