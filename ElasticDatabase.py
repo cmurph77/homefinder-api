@@ -28,6 +28,7 @@ class ElasticDatabase:
 def main():
         
     client = ElasticDatabase()
+    json = client.info()
     print(client.info())
 
 if __name__ == "__main__":
