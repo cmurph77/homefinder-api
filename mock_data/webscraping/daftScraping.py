@@ -56,7 +56,7 @@ for listing in listings:
     properties.append(property_info)
 
 # Create the JSON object
-data = {"properties": properties}
+data = {"property-listings": properties}
 
 # Define the file name
 file_name = "daftData.json"
