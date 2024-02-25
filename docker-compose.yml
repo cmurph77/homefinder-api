@@ -87,3 +87,9 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+
+  api:
+    build: .
+    ports: 
+      - "8000:8000"
+    command: gunicorn -b 0.0.0.0:8000 app:app
