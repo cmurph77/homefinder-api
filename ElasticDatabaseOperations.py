@@ -21,7 +21,7 @@ class ElasticDatabaseOperations:
         print(f'Creating index \"{indexName}\"')
         self.client.elasticsearch.indices.create(index=indexName, body=self.mapping)
 
-        jsonName = os.path.join('mock_data', 'daftData.json')
+        jsonName = os.path.join('mock_data\\webscraping', 'daftData.json')
         print(f'Reading json \"{jsonName}\"')
         data = self.readJSON(jsonName)
 
@@ -44,7 +44,10 @@ class ElasticDatabaseOperations:
                         'bed': jsonData['property-type']['bed'],
                         'bath': jsonData['property-type']['bath'],
                         'm2': jsonData['property-type']['m2']
-                    }
+                    },
+                    'num_images': jsonData['num_images'],
+                    'img1_size720x480': jsonData['img1_size720x480'],
+                    'pic': jsonData['pic']
                 }
                 self.client.elasticsearch.index(index=indexName, id=jsonData['id'], document=doc)
 
@@ -74,7 +77,7 @@ class ElasticDatabaseOperations:
                     "longitude":{
                         "type": "double"
                     },
-                    "property-type": {
+                    "property-type":{
                         "type": "nested", "properties": {
                             "category":{
                                 "type": "keyword"
@@ -94,6 +97,18 @@ class ElasticDatabaseOperations:
                             "m2":{
                                 "type": "text"
                             }
+                        }
+                    },
+                    "num_images":{
+                        "type": "integer"
+                    },
+                    "img1_size720x480":{
+                        "type": "text"
+                    },
+                    "pic": {
+                        "type": "nested",
+                        "properties": {
+                           
                         }
                     }
                 }
