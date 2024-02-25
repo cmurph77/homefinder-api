@@ -2,11 +2,9 @@ from flask import Flask, send_file
 app = Flask(__name__)
 import os
 
-
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
-
 
 @app.route('/dummydata-properties', methods=['GET'])
 def get_properties():

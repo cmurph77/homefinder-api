@@ -34,6 +34,18 @@ def main():
 if __name__ == "__main__":
     main()
 
+def main():
+    print('ready...')
+
+    client = ElasticDatabase()
+    print(client.info())
+
+    print('All done :)')
+
+
+if __name__ == "__main__":
+    main()
+
 
 # ---------------------------------------------------------------------------------------------------------
 # Example:
