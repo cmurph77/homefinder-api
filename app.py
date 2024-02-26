@@ -4,13 +4,13 @@ import os
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello, Welcome to the homefinder Server!'
 
 @app.route('/dummydata-properties', methods=['GET'])
 def get_properties():
     print("RECIEVED REQUEST FOR PROPERTY DATA")
     # Define the path to the properties.json file
-    properties_path = os.path.join(os.getcwd(), 'mock_data', 'properties.json')
+    properties_path = os.path.join(os.getcwd(), 'mock_data', 'daftData.json')
     
     # Check if the file exists
     if os.path.exists(properties_path):
