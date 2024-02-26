@@ -33,6 +33,7 @@ class ElasticDatabaseOperations:
     def indexData(self, data, indexName):
         for jsonData in data[indexName]:
                 doc = {
+                    'identifier' : jsonData['id'],
                     'address': jsonData['address'],
                     'rent per month': jsonData['rent per month'],
                     'daft.ie link': jsonData['daft.ie link'],
@@ -62,8 +63,11 @@ class ElasticDatabaseOperations:
         mapping = {
             "mappings": {
                 "properties": {
+                    "identifier":{
+                        "type": "integer"
+                    },
                     "address": {
-                        "type": "text"
+                        "type": "keyword"
                     },
                     "rent per month":{
                         "type": "integer"
