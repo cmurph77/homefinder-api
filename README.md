@@ -16,7 +16,12 @@ https://homefinder-backend-ycju.onrender.com/
 
 First you must install dependencies with -> 'pip install -r requirements.txt'
 
-Then to run the server ru the command -> 'gunicorn app:app'
+To manually run the server run the command -> 'gunicorn app:app'
+
+The server should run in the docker container labelled api which will be created when running docker-compose for elasticsearch
+
+When making changes to the api container run -> 'docker-compose build' to apply these changes to the api
+
 
 
 # Endpoints
