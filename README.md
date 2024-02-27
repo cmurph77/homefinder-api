@@ -1,16 +1,3 @@
-# README
-
-This is the [Flask](http://flask.pocoo.org/) [quick start](https://flask.palletsprojects.com/en/3.0.x/quickstart/#a-minimal-application) example for [Render](https://render.com).
-
-The app in this repo is deployed at [https://flask.onrender.com](https://flask.onrender.com).
-
-## Deployment
-
-Follow the guide at https://render.com/docs/deploy-flask.
-
-# Endpoint
-
-https://homefinder-backend-ycju.onrender.com/
 
 # Testing 
 
@@ -18,15 +5,15 @@ First you must install dependencies with -> 'pip install -r requirements.txt'
 
 To manually run the server run the command -> 'gunicorn app:app'
 
+
 The server should run in the docker container labelled api which will be created when running docker-compose for elasticsearch
 
 When making changes to the api container run -> 'docker-compose build' to apply these changes to the api
 
 
-
 # Endpoints
 
-/dummydata-properties = this returns the property.json file which is filled with dummy data properties
+1. /dummydata-properties = this returns the daftData.json file which is filled with property data recieved from the daft webscraping script
 
 ## elasticsearch database set up.
 
