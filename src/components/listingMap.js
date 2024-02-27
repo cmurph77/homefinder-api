@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import L from 'leaflet';
 import './listingMap.css';
-import ListingCard from "./listingCard.js";
 
 export default function ListingMap(props) {
   const linkList = props.properties.map(
