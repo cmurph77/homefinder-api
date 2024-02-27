@@ -1,3 +1,5 @@
+import React, { useMemo } from "react";
+import { useState } from 'react';
 import { Button, message } from 'antd'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
@@ -50,13 +52,30 @@ const Home = () => {
             message.success("Logout Failed, please try again later")
         });
     }
+
+    const [mapView, setView] = useState(false);
+
+    const handleToggle = () => {
+        setView((current) => !current);
+    };
+
+    const ListingType = useMemo(() => {
+        if (mapView) {
+            return(<ListingMap properties={listings}/>);
+        }
+        else {
+            return(<ListingGrid properties={listings}/>);
+        }
+    }, [mapView]);
+
     return (
         <div>This is the homepage
             <Button type="primary" onClick={() => signout()}>
                 Logout!
             </Button>
             <Header />
-            <ListingGrid properties={listings}/>
+            <Button classname = "viewButton" onClick={handleToggle}>Change View</Button>
+            {ListingType}
         </div>
         
         
