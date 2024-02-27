@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import empty_listings from "@/server/empty-property-object.json";
 import Header from "@/components/header.js";
 import ListingGrid from "@/components/listingGrid.js";
+import ListingMap from "@/components/listingMap.js";
 import { list } from 'postcss';
 
 // const old_listings = listingData.properties
