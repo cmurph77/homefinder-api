@@ -1,6 +1,7 @@
 # This class is for general elastic search functions which can and should be used by backend and frontend developers
 
 from elasticsearch import Elasticsearch
+import json
 
 ELASTIC_USERNAME = "elastic"
 ELASTIC_PASSWORD = "changeme"
@@ -30,7 +31,8 @@ class ElasticDatabase:
             for key, value in doc.items():
                 if(key == "_source"):
                     properties.append(value)
-        return properties
+        properties_json = json.dumps(propertyData)
+        return properties_json
 
 
 
@@ -51,18 +53,42 @@ class ElasticDatabase:
             for key, value in doc.items():
                 if(key == "_source"):
                     properties.append(value)
-        return properties
+        properties_json = json.dumps(properties)
+        return properties_json
+
+
+    def searchByPropertyID(self, identifier):
+        query = {
+            "query": {
+                "match": {
+                    "identifier": identifier
+                }
+            }
+        }
+        searchResult = self.elasticsearch.search(index="property-listings", body=query)
+        propertyData = []
+        for hit in searchResult["hits"]["hits"]:
+            propertyData.append(hit["_source"])
+        properties_json = json.dumps(propertyData)
+        return properties_json
         
 
 # Test connection
 def main():
     client = ElasticDatabase()
-    numberOfResults = 50
-    pageNumber = 1
-    sortBy = 'address'
-    properties = client.searchWithField(numberOfResults, pageNumber, sortBy)
-    for prop in properties:
-        print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
+
+    # Search with field
+    # numberOfResults = 50
+    # pageNumber = 1
+    # sortBy = 'address'
+    # properties_json = client.searchWithField(numberOfResults, pageNumber, sortBy)
+    # properties = json.loads(properties_json)
+    # for prop in properties:
+    #     print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
+
+
+    propertyData = client.searchByPropertyID(218980691)
+    print(propertyData)
 
 if __name__ == "__main__":
     main()
