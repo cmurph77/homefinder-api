@@ -3,3 +3,4 @@ Werkzeug==2.0.0
 Gunicorn
 daftlistings
 elasticsearch
+Flask-CORS
