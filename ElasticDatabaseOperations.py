@@ -21,7 +21,7 @@ class ElasticDatabaseOperations:
         print(f'Creating index \"{indexName}\"')
         self.client.elasticsearch.indices.create(index=indexName, body=self.mapping)
 
-        jsonName = os.path.join('mock_data\\webscraping', 'daftData.json')
+        jsonName = os.path.join(os.path.join('mock_data', 'webscraping'), 'daftData.json')
         print(f'Reading json \"{jsonName}\"')
         data = self.readJSON(jsonName)
 
