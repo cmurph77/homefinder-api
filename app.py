@@ -1,5 +1,10 @@
 from flask import Flask, send_file
+from flask_cors import CORS
+from datetime import datetime
+
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 import os
 
 @app.route('/')
@@ -8,7 +13,8 @@ def hello_world():
 
 @app.route('/dummydata-properties', methods=['GET'])
 def get_properties():
-    print("RECIEVED REQUEST FOR PROPERTY DATA")
+    current_time = datetime.now()
+    print("GET REQ - /dummydata-properties   @ [" + str(current_time) + "]")
     # Define the path to the properties.json file
     properties_path = os.path.join(os.getcwd(), 'mock_data', 'daftData.json')
     
