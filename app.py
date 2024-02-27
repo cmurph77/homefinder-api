@@ -11,6 +11,7 @@ import os
 def hello_world():
     return 'Hello, Welcome to the homefinder Server!'
 
+# this endpoint returns the dummy-data.json file
 @app.route('/dummydata-properties', methods=['GET'])
 def get_properties():
     current_time = datetime.now()
@@ -25,5 +26,30 @@ def get_properties():
     else:
         # Return an error message if the file does not exist
         return {'error': 'properties.json file not found'}, 404
+
+
+@app.route('/get-property-by-id/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    print(user_id)
+    return {
+            "id": "  ",
+            "address": "Samle Property",
+            "rent per month": 0,
+            "daft.ie link": "  ",
+            "latitude": 53.341833017884795,
+            "longitude": -6.288615427057721,
+            "property-type": {
+                "category": "  ",
+                "type": [
+                    "  ",
+                    "  ",
+                    "  "
+                ],
+                "bed": "  ",
+                "bath": "  ",
+                "m2": "N/A"
+            }
+        }
+
 
 
