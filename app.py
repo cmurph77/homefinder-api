@@ -1,6 +1,8 @@
 from flask import Flask, send_file
 from flask_cors import CORS
 from datetime import datetime
+import os
+from ElasticDatabase import ElasticDatabase
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -26,6 +28,15 @@ def get_properties():
     else:
         # Return an error message if the file does not exist
         return {'error': 'properties.json file not found'}, 404
+
+# Endpoint to get property by ID
+@app.route('/get-property-by-id/<int:property_id>', methods=['GET'])
+def get_property(property_id):
+    property_data = ElasticDatabase.searchByID(property_id)
+    if property_data:
+        return property_data
+    else:
+        return {'error': 'Property not found'}, 404
 
 
 @app.route('/get-property-by-id/<int:user_id>', methods=['GET'])
