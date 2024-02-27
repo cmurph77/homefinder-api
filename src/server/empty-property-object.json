@@ -1,0 +1,23 @@
+{
+"properties": [
+        {
+            "id": "  ",
+            "address": "No Properties Available ",
+            "rent per month": 0,
+            "daft.ie link": "  ",
+            "latitude": 53.341833017884795,
+            "longitude": -6.288615427057721,
+            "property-type": {
+                "category": "  ",
+                "type": [
+                    "  ",
+                    "  ",
+                    "  "
+                ],
+                "bed": "  ",
+                "bath": "  ",
+                "m2": "N/A"
+            }
+        }
+        ]
+}

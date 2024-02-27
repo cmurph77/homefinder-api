@@ -4,13 +4,44 @@ import { Button, message } from 'antd'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
 import { useNavigate } from 'react-router-dom'
-import listingData from "@/server/daftData.json";
+import empty_listings from "@/server/empty-property-object.json";
 import Header from "@/components/header.js";
 import ListingGrid from "@/components/listingGrid.js";
-import ListingMap from "../../components/listingMap";
-import './index.scss';
+import { list } from 'postcss';
 
-const listings = listingData.properties;
+// const old_listings = listingData.properties
+// console.log("Frontend Property Data - oldlistings ")
+// console.log(old_listings)
+
+// Make the API call --------------------------------------
+
+var listings
+await fetch('http://127.0.0.1:8000/dummydata-properties')
+  .then(response => {
+    // Check if the request was successful (status code 200)
+    if (!response.ok) {
+        listings = empty_listings.properties
+      throw new Error('Failed to retrieve data');
+    }
+    // If successful, parse the JSON data
+    return response.json();
+  })
+  .then(api_data => {
+    // Now you can work with the JSON data
+    listings = api_data.properties
+
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    listings = empty_listings.properties
+
+  });
+
+
+console.log("listings recieved from the backend")
+console.log(listings)
+
+
 const Home = () => {
     const navigate = useNavigate()
     const signout = () => {
