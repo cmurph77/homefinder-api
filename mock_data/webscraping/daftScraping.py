@@ -1,4 +1,5 @@
 import json
+import validators
 from daftlistings import Daft, Location, SearchType, PropertyType
 
 # Create a Daft object and set the search parameters
@@ -30,9 +31,17 @@ for listing in listings:
     
     pureLinks = []
 
+    # Bulk of images, some of them repeated but in different sizes
+    # for image in images:
+    #     for key, value in image.items():
+    #         pureLinks.append(value)
+
+    # just one image from each dictionary, issue with the caption field fixed by validating URLS (Steven issue) 
     for image in images:
-        for key, value in image.items():
-            pureLinks.append(value)
+        for value in image.values():
+            if validators.url(value):  # Check if the value is a valid URL
+                pureLinks.append(value)
+                break  # Exit the loop after adding the first valid URL
 
     property_info = {
         "id": listing.shortcode,  # Using Daft.ie shortcode as ID
@@ -41,6 +50,7 @@ for listing in listings:
         "daft.ie link":listing.daft_link,
         "latitude": listing.latitude,
         "longitude": listing.longitude,
+        "publish date": listing.publish_date,
         "property-type": {
             "category": listing.category,  # Assuming property_type is an Enum
             "type": listing.sections,
