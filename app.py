@@ -16,7 +16,7 @@ def get_properties():
     current_time = datetime.now()
     print("GET REQ - /dummydata-properties   @ [" + str(current_time) + "]")
     # Define the path to the properties.json file
-    properties_path = os.path.join(os.getcwd(), 'mock_data', 'daftData.json')
+    properties_path = os.path.join(os.getcwd(), 'mock_data', 'dummy-data.json')
     
     # Check if the file exists
     if os.path.exists(properties_path):
