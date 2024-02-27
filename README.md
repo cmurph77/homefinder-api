@@ -16,7 +16,12 @@ https://homefinder-backend-ycju.onrender.com/
 
 First you must install dependencies with -> 'pip install -r requirements.txt'
 
-Then to run the server ru the command -> 'gunicorn app:app'
+To manually run the server run the command -> 'gunicorn app:app'
+
+The server should run in the docker container labelled api which will be created when running docker-compose for elasticsearch
+
+When making changes to the api container run -> 'docker-compose build' to apply these changes to the api
+
 
 
 # Endpoints
@@ -68,5 +73,10 @@ Run the batch file titled *elastic-setup.bat* and skip to *step 3*, to manually 
 10. If you restart your PC you may need to teardown and rebuild the server, to do this run the batch file titled *elastic-teardown.bat*.
    - Alternatively open a terminal in the same folder as the *docker-compose.yaml* file and enter the following command:
       *docker compose down*
+     
+11. Run the ElasticDatabaseOperations.py file within vscode to populate the database.
+
+12. Run the ElasticDatabase.py file within vscode, check the terminal and you should see search results
+
 
 * If you have any trouble setting up the elastic database, ask Cian O'Gorman.
