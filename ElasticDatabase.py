@@ -2,6 +2,7 @@
 
 from elasticsearch import Elasticsearch
 import json
+import os
 
 ELASTIC_USERNAME = "elastic"
 ELASTIC_PASSWORD = "changeme"
@@ -13,9 +14,11 @@ class ElasticDatabase:
         self.elasticsearch = Elasticsearch(ELASTIC_ENDPOINT, basic_auth=(ELASTIC_USERNAME, ELASTIC_PASSWORD))
 
     def info(self):
-        return self.elasticsearch.info()
+        client = ElasticDatabase()
+        return client.elasticsearch.info()
 
-    def search(self, numberOfResults, pageNumber):
+    def search(numberOfResults, pageNumber):
+        client = ElasticDatabase()
         startIndex = (pageNumber - 1) * numberOfResults
         query = {
             "size": numberOfResults,
@@ -24,19 +27,20 @@ class ElasticDatabase:
                 "match_all": {}
             }
         }
-        searchResult = self.elasticsearch.search(index="property-listings", body=query)
-        properties = []
+        searchResult = client.elasticsearch.search(index="property-listings", body=query)
+        propertiesData = []
         all_hits = searchResult['hits']['hits']
         for num, doc in enumerate(all_hits):
             for key, value in doc.items():
                 if(key == "_source"):
-                    properties.append(value)
-        properties_json = json.dumps(propertyData)
-        return properties_json
+                    propertiesData.append(value)
+        propertiesJSON = json.dumps(propertiesData, indent=4)
+        return propertiesJSON
 
 
 
-    def searchWithField(self, numberOfResults, pageNumber, field):
+    def searchWithField(numberOfResults, pageNumber, field):
+        client = ElasticDatabase()
         startIndex = (pageNumber - 1) * numberOfResults
         query = {
             "size": numberOfResults,
@@ -46,18 +50,19 @@ class ElasticDatabase:
                 "match_all": {}
             }
         }
-        searchResult = self.elasticsearch.search(index="property-listings", body=query)
-        properties = []
+        searchResult = client.elasticsearch.search(index="property-listings", body=query)
+        propertiesData = []
         all_hits = searchResult['hits']['hits']
         for num, doc in enumerate(all_hits):
             for key, value in doc.items():
                 if(key == "_source"):
-                    properties.append(value)
-        properties_json = json.dumps(properties)
-        return properties_json
+                    propertiesData.append(value)
+        propertiesJSON = json.dumps(propertiesData, indent=4)
+        return propertiesJSON
 
 
-    def searchByPropertyID(self, identifier):
+    def searchByPropertyID(identifier):
+        client = ElasticDatabase()
         query = {
             "query": {
                 "match": {
@@ -65,30 +70,55 @@ class ElasticDatabase:
                 }
             }
         }
-        searchResult = self.elasticsearch.search(index="property-listings", body=query)
+        searchResult = client.elasticsearch.search(index="property-listings", body=query)
         propertyData = []
-        for hit in searchResult["hits"]["hits"]:
-            propertyData.append(hit["_source"])
-        properties_json = json.dumps(propertyData)
-        return properties_json
+        if searchResult["hits"]["hits"]:
+            propertyData = searchResult["hits"]["hits"][0]["_source"]
+        propertiesJSON = json.dumps(propertyData, indent=4)
+        return propertiesJSON
         
 
 # Test connection
 def main():
-    client = ElasticDatabase()
 
-    # Search with field
-    # numberOfResults = 50
+    # - - Search for first 50 properties - -
+
+    # numberOfResults = 10
     # pageNumber = 1
-    # sortBy = 'address'
-    # properties_json = client.searchWithField(numberOfResults, pageNumber, sortBy)
-    # properties = json.loads(properties_json)
-    # for prop in properties:
+    # propertyData = ElasticDatabase.search(numberOfResults, pageNumber)
+    # # Print propertyData
+    # propertyList = json.loads(propertyData)
+    # for prop in propertyList:
     #     print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
 
 
-    propertyData = client.searchByPropertyID(218980691)
-    print(propertyData)
+
+    # - - Search using a field - -
+
+    numberOfResults = 50
+    pageNumber = 1
+    sortBy = 'rent per month'
+    propertyData = ElasticDatabase.searchWithField(numberOfResults, pageNumber, sortBy)
+    # Print propertyData
+    propertyList = json.loads(propertyData)
+    for prop in propertyList:
+        print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
+
+
+
+    # - - Search for a property by identifier - -
+
+    # propertyData = ElasticDatabase.searchByPropertyID(218980691)
+    # # Print propertyData
+    # print(propertyData)
+
+
+    # Store PropertyData in a json
+
+    fileName = 'FieldSearch50ByRentExample.json'
+    filePath = os.path.join('mock_data', 'ExampleJSONs', fileName)
+    with open(filePath, "w") as jsonFile:
+        jsonFile.write(propertyData)
 
 if __name__ == "__main__":
     main()
