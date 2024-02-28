@@ -31,7 +31,7 @@ def get_properties():
 
 
 # # Endpoint to get property by ID
-@app.route('/get-property-by-id/<int:property_id>', methods=['GET'])
+@app.route('/get-property-by-id-live/<int:property_id>', methods=['GET'])
 def get_property(property_id):
     current_time = datetime.now()
     print("GET REQ - /get-property-by-id  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
