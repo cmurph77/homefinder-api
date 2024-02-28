@@ -10,12 +10,17 @@ The server should run in the docker container labelled api which will be created
 
 When making changes to the api container run -> 'docker-compose build' to apply these changes to the api
 
+# LIVE Enpoints
+/get-property-by-id-live/<int:property_id>' : This returns a property object of the given 'id'
+/get-propertys-by-pagenum-live/<int:pagenum>/<int:numresults> : This returns a list of propertys that should be ont he specified pagenum
 
-# Endpoints
+# Sample Endpoints
 
 1. /dummydata-properties = this returns the daftData.json file which is filled with property data recieved from the daft webscraping script
 2. //get-property-by-id-sample/<int:property_id> => This returns an property object - it is not connected to the database but will be noon (note sample keyword at the end)
 3. /get-propertys-by-pagenum-sample/<int:pagenum>/<int:numresults> => returns a list of propertys - it is not connected to the database but will be noon (note sample keyword at the end)
+
+
 
 ## elasticsearch database set up.
 
