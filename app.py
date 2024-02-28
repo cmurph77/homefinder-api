@@ -31,15 +31,15 @@ def get_properties():
 
 
 # # Endpoint to get property by ID
-# @app.route('/get-property-by-id/<int:property_id>', methods=['GET'])
-# def get_property(property_id):
-#     current_time = datetime.now()
-#     print("GET REQ - /get-property-by-id  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
-#     property_data = ElasticDatabase.searchByPropertyID(property_id)
-#     if property_data:
-#         return property_data
-#     else:
-#         return {'error': 'Property not found'}, 404
+@app.route('/get-property-by-id/<int:property_id>', methods=['GET'])
+def get_property(property_id):
+    current_time = datetime.now()
+    print("GET REQ - /get-property-by-id  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
+    property_data = ElasticDatabase.searchByPropertyID(property_id)
+    if property_data:
+        return property_data
+    else:
+        return {'error': 'Property not found'}, 404
 
 # This is a sample call that just returns the example-data as it would acctually be rrturned from the database
 @app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
