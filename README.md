@@ -5,7 +5,7 @@ Pre-requisite
 - Ensure docker desktop is running before continuing.
 
 
------------- Instructions For Setting Up the homefinder Applicaiton ----------------------------------------
+------------ Step-by-Step Instructions For Setting Up the homefinder Applicaiton ----------------------------------------
 
 In order to run this applicaiton in development Mode you must clone the code for the backend and frontend into 2 seperate dirctories
 
