@@ -41,6 +41,21 @@ def get_properties():
 #     else:
 #         return {'error': 'Property not found'}, 404
 
+# This is a sample call that just returns the example-data as it would acctually be rrturned from the database
+@app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
+def get_property_sample(property_id):
+    current_time = datetime.now()
+    print("GET REQ - /get-property-by-id-sample  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
+    
+    propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'searchByIDExample.json')
+
+    # Check if the file exists
+    if os.path.exists(propertyObjectPath):
+        # Return the JSON file
+        return send_file(propertyObjectPath, mimetype='application/json')
+    else:
+        # Return an error message if the file does not exist
+        return {'error': 'json file not found'}, 404
 
 @app.route('/get-propertys-by-pagenum-live/<int:pagenum>/<int:numresults>', methods=['GET'])
 def get_propertys_pagesize(pagenum,numresults):
@@ -49,10 +64,12 @@ def get_propertys_pagesize(pagenum,numresults):
     data = ElasticDatabase.search(numresults,pagenum)
     return data
 
+# This is a sample call that just returns the example-data as it would acctually be rrturned from the database
+# the word 'sample' is at the end to make it clear, when the real enpoints are working it should be simple to change from 'sample' to 'live'
 @app.route('/get-propertys-by-pagenum-sample/<int:pagenum>/<int:numresults>', methods=['GET'])
 def get_propertys_pagesize_sample(pagenum,numresults):
     current_time = datetime.now()
-    print("GET REQ - /get-propertys-by-pagenum  pagenum: " +str(pagenum) + ", pagesize:" +str(numresults)+" @ [" + str(current_time) + "]")
+    print("GET REQ - /get-propertys-by-pagenum-sample  pagenum: " +str(pagenum) + ", pagesize:" +str(numresults)+" @ [" + str(current_time) + "]")
 
     fieldSearchPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'FieldSearch50ByRentExample.json')
 

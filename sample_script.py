@@ -1,4 +1,4 @@
-from ElasticDatabase import ElasticDatabase
+from ElasticDatabase import ElasticDatabase;
 
-data = ElasticDatabase.search(50,2)
-print(data)
+data = ElasticDatabase.search(50,2);
+print(data);
