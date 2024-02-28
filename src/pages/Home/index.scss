@@ -2,3 +2,38 @@
     margin-top: 5px;
     margin-left: 5px;
 }
+
+.home-layout{
+    // height: 100%;
+
+    .home-header{
+        line-height: 0px;
+        padding: 0;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+    }
+
+    .home-content{
+        width: 1200px;
+        margin: 0 auto;
+        background-color: #fff;
+        @media screen and (max-width: 1200px) {
+            width: 100%;
+        }
+    }
+
+    .home-footer{
+        width: 1200px;
+        margin: 0 auto;
+        background-color: #fff;
+        @media screen and (max-width: 1200px) {
+            width: 100%;
+        }
+        ul{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

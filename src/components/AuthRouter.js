@@ -33,7 +33,6 @@ export function AuthRoute({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("trigger");
       if (user) {
         setUserExists(true);
         // message.success('------------Login---------');

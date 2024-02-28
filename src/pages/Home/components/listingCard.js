@@ -6,9 +6,9 @@ export default function ListingCard(props) {
     return(
         <section className="Card">
             <img src={props.img} className="Card-Image" alt="Listing"/>
-            <a classname="Address" href={link}>{props.address}</a>
-            <b classname="Rent">Rent - {props.rentPerMonth}€</b>
-            <h2 classname="Info">Beds {props.bed} Baths {props.bath}</h2>
+            <a className="Address" href={link}>{props.address}</a>
+            <b className="Rent">Rent - {props.rentPerMonth}€</b>
+            <h2 className="Info">Beds {props.bed} Baths {props.bath}</h2>
         </section>
     );
 }

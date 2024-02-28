@@ -3,11 +3,12 @@ import L from 'leaflet';
 import './listingMap.css';
 
 export default function ListingMap(props) {
-  const linkList = props.properties.map(
+  console.log("listing map",props.properties.data)
+  const linkList = props.properties.data.map(
     property =>  "listing/" + props.id
   )
 
-  const latlngList =props.properties.map(
+  const latlngList =props.properties.data.map(
     property => new L.latLng(property.latitude, property.longitude)
   )
 

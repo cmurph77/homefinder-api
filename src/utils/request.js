@@ -1,12 +1,11 @@
 // Encapsulate Axios
 import axios from 'axios'
-import { getToken } from './token';
 
-const request = axios.create({
+const axios_instance = axios.create({
     // Configure root domain
-    baseURL: 'http://127.0.0.1',  
+    baseURL: 'http://127.0.0.1:8000',  
     // Set Timeout
-    timeout: 5000,
+    // timeout: 5000,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -14,12 +13,8 @@ const request = axios.create({
 
 
 // Add a request interceptor
-request.interceptors.request.use( (config) => {
+axios_instance.interceptors.request.use( (config) => {
     // put token in the request Header
-    const token = getToken()
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
     return config;
   }, function (error) {
     // Do something with request error
@@ -27,7 +22,7 @@ request.interceptors.request.use( (config) => {
 });
 
 // Add a response interceptor
-request.interceptors.response.use(function (response) {
+axios_instance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
@@ -38,4 +33,4 @@ request.interceptors.response.use(function (response) {
   });
 
 
-  export { request }
+  export { axios_instance }
