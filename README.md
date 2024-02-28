@@ -14,6 +14,8 @@ When making changes to the api container run -> 'docker-compose build' to apply 
 # Endpoints
 
 1. /dummydata-properties = this returns the daftData.json file which is filled with property data recieved from the daft webscraping script
+2. //get-property-by-id-sample/<int:property_id> => This returns an property object - it is not connected to the database but will be noon (note sample keyword at the end)
+3. /get-propertys-by-pagenum-sample/<int:pagenum>/<int:numresults> => returns a list of propertys - it is not connected to the database but will be noon (note sample keyword at the end)
 
 ## elasticsearch database set up.
 
