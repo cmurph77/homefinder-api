@@ -48,7 +48,6 @@ def unlike_property(user_id,property_id):
 # This is a sample call that just returns the example-data as it would acctually be rrturned from the database
 @app.route('/get-users-liked-properties-sample/<int:user_id>/<int:property_id>', methods=['GET'])
 def get_users_liked_properties(user_id,property_id):
-
     #  currently returns a sample json of a list of properties 
     propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'FieldSearch50ByRentExample.json')
 
