@@ -7,7 +7,7 @@ Pre-requisite
 
 ------------ Step-by-Step Instructions For Setting Up the homefinder Applicaiton ----------------------------------------
 
-In order to run this applicaiton in development Mode you must clone the code for the backend and frontend into 2 seperate dirctories
+In order to run this applicaiton in development mode you must clone the code for the backend and frontend into 2 seperate directories
 
 1. Clone the 'production-back-end' and follow the instructions below to set up the backend infrastructure
 2. Open a terminal in the same folder as the 'docker-compose.yaml' file.
