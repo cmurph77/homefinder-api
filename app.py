@@ -46,6 +46,22 @@ def unlike_property(user_id,property_id):
 # -------------- Returning Sample Data
 
 # This is a sample call that just returns the example-data as it would acctually be rrturned from the database
+@app.route('/get-users-liked-properties-sample/<int:user_id>/<int:property_id>', methods=['GET'])
+def get_users_liked_properties(user_id,property_id):
+    #  currently returns a sample json of a list of properties 
+    propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'FieldSearch50ByRentExample.json')
+
+    # Check if the file exists
+    if os.path.exists(propertyObjectPath):
+        # Return the JSON file
+        return send_file(propertyObjectPath, mimetype='application/json')
+    else:
+        # Return an error message if the file does not exist
+        return {'error': 'json file not found'}, 404
+
+        
+
+# This is a sample call that just returns the example-data as it would acctually be rrturned from the database
 # the word 'sample' is at the end to make it clear, when the real enpoints are working it should be simple to change from 'sample' to 'live'
 @app.route('/get-propertys-by-pagenum-sample/<int:pagenum>/<int:numresults>', methods=['GET'])
 def get_propertys_pagesize_sample(pagenum,numresults):
