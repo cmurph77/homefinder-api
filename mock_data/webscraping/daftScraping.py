@@ -1,6 +1,16 @@
 import json
 import validators
+import os
 from daftlistings import Daft, Location, SearchType, PropertyType
+
+# Get the current directory of the script
+current_dir = os.path.dirname(__file__)
+
+# Construct the file path to property_ids.json
+file_path = os.path.join(current_dir, 'daftData.json')
+
+# Construct the file path to property_ids.json
+file_path2 = os.path.join(current_dir, 'property_ids.json')
 
 # Create a Daft object and set the search parameters
 daft = Daft()
@@ -13,6 +23,9 @@ listings = daft.search()
 
 # Initialize an empty list to store properties
 properties = []
+
+# Initialize an empty list to store property IDs
+property_ids = []
 
 # Iterate through listings and populate properties list
 for listing in listings:
@@ -42,6 +55,12 @@ for listing in listings:
             if validators.url(value):  # Check if the value is a valid URL
                 pureLinks.append(value)
                 break  # Exit the loop after adding the first valid URL
+            
+    # Extract property ID
+    property_id = listing.shortcode
+    
+    # Append property ID to the list
+    property_ids.append(property_id)
 
     property_info = {
         "id": listing.shortcode,  # Using Daft.ie shortcode as ID
@@ -65,11 +84,17 @@ for listing in listings:
 # Create the JSON object
 data = {"property-listings": properties}
 
-# Define the file name
-file_name = "daftData.json"
-
 # Write JSON data to the file
-with open(file_name, "w") as json_file:
+with open(file_path, "w") as json_file:
     json.dump(data, json_file, indent=4)
 
-print(f"JSON data has been saved to {file_name}")
+print(f"JSON data has been saved to {file_path}")
+
+# Create the JSON object for property IDs
+ids_data = {"property_ids": property_ids}
+
+# Write JSON data for property IDs to the file
+with open(file_path2, "w") as json_file:
+    json.dump(ids_data, json_file, indent=4)
+
+print(f"Property IDs JSON data has been saved to {file_path2}")
