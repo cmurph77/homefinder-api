@@ -25,7 +25,7 @@ property_ids_list = property_ids["property_ids"]
 
 # List of available tags
 tags = {
-    "language": ["English", "Spanish", "French"],
+    "language": ["English", "Spanish", "French", "Chinese", "Portuguese", "Russian", "Hindi"],
     "smoker": ["Smoker", "Non-smoker", "Social smoker"],
     "pets": ["Dog-friendly", "Cat-friendly", "No-pets"],
     "diet": ["Vegan", "Vegetarian"],
@@ -61,11 +61,18 @@ def generate_user_data():
 # Function to generate selected tags for the user
 def generate_selected_tags():
     selected_tags = {}
+    
+      # Generate a random number of languages between 1 and the total number of available languages
+    num_languages = random.randint(1, 3)
+    
+    # Randomly select languages
+    selected_tags["language"] = random.sample(tags["language"], num_languages)  
+    
+    # Randomly select other tags
     for category, options in tags.items():
-        if random.random() < 0.35:  # Probability of leaving the tag blank
-            selected_tags[category] = ""
-        else:
+        if category != "language":
             selected_tags[category] = random.choice(options)
+    
     return selected_tags
 
 # Function to generate random Firebase ID with letters and digits
