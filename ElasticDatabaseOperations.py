@@ -10,6 +10,7 @@ class ElasticDatabaseOperations:
     def __init__(self):
         self.client = ElasticDatabase()
         self.mapping = ElasticDatabaseOperations.createIndexMapping()
+        self.propertyLikesMapping = ElasticDatabaseOperations.createPropertyLikesMapping()
 
     def populateDatabaseWithPropertiesData(self):
         indexName = 'property-listings'
@@ -49,6 +50,57 @@ class ElasticDatabaseOperations:
                     'pic': jsonData['pic']
                 }
                 self.client.elasticsearch.index(index=indexName, id=jsonData['id'], document=doc)
+
+    def indexLikedData(self, propertyIdData, userData ,indexName):
+        for propertyId in propertyIdData:
+            liked_by = []
+            for user in userData:
+                liked_properties = user.get('liked_properties', [])
+                print(liked_properties)
+                if propertyId in liked_properties:
+                    liked_by.append(user['firebase_id'])
+
+            doc = {
+                'property_id': propertyId,
+                'liked_by': liked_by
+            }
+
+            # DEBUG
+            #with open('debugLikes.json', 'a') as file:
+                #json.dump(doc, file) 
+                #file.write('\n') 
+
+            self.client.elasticsearch.index(index=indexName, body=doc)
+
+
+    def populateDatabaseWithPropertyLikes(self):
+        indexName = 'property-likes'
+
+        if self.client.elasticsearch.indices.exists(index=indexName):
+            print(f'Deleting index \"{indexName}\"')
+            self.client.elasticsearch.indices.delete(index=indexName)
+
+        print(f'Creating index \"{indexName}\"')
+        self.client.elasticsearch.indices.create(index=indexName, body=self.mapping)
+
+        propertyIdJson = os.path.join('mock_data', 'webscraping', 'property_ids.json')
+        print(f'Reading json \"{propertyIdJson}\"')
+        propertyIdData = self.readJSON(propertyIdJson)
+
+        print(f'\"{propertyIdJson}\" indexing complete')
+
+        mockUserJson = os.path.join('mock_data', 'mock_users', 'mock_users.json')
+        print(f'Reading json \"{propertyIdData}\"')
+
+        mockUserData = self.readJSON(mockUserJson)
+        print(f'\"{mockUserJson}\" indexing complete')
+        print(f'Reading json \"{mockUserData}\"')
+
+        # Need to index both files
+        print('Indexing (please wait for confirmation)...')
+        self.indexLikedData(propertyIdData['property_ids'], mockUserData, indexName)
+
+        print(f'\"{mockUserJson}\" indexing complete')
 
     @staticmethod
     def readJSON(fileName):
@@ -109,11 +161,24 @@ class ElasticDatabaseOperations:
         }
         return mapping
 
+    @staticmethod
+    def createPropertyLikesMapping():
+        propertyLikesMapping = {
+            "mappings": {
+                "properties": {
+                    "property_id": {"type": "keyword"},
+                    "liked_users": {"type": "keyword"}
+                }
+            }
+        }
+        return propertyLikesMapping
+
 
 def main():
     indexName = 'property-listings'
     elasticDatabaseOperations = ElasticDatabaseOperations()
     elasticDatabaseOperations.populateDatabaseWithPropertiesData()
+    elasticDatabaseOperations.populateDatabaseWithPropertyLikes()
     print('All done!')
     
 if __name__ == "__main__":
