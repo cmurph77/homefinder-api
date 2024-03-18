@@ -33,12 +33,12 @@ def get_propertys_pagesize(pagenum,numresults):
     data = ElasticDatabase.search(numresults,pagenum)
     return data
 
-@app.route('like-property/<int:user_id>/<int:property_id>',methods = ['POST'])
+@app.route('/like-property/<int:user_id>/<int:property_id>',methods = ['POST'])
 def like_property(user_id,property_id):
     # logic to like property
     return {'message': 'Property liked'}, 200
 
-@app.route('unlike-property/<int:user_id>/<int:property_id>',methods = ['POST'])
+@app.route('/unlike-property/<int:user_id>/<int:property_id>',methods = ['POST'])
 def unlike_property(user_id,property_id):
     # logic to unlike property
     return {'message': 'Property liked'}, 200
