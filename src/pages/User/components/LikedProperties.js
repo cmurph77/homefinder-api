@@ -53,6 +53,7 @@ const LikedProperties = () => {
         setSelectedRowKeys(newSelectedRowKeys);
     };
     const rowSelection = {
+        columnTitle: 'Liked',
         selectedRowKeys,
         onChange: onSelectChange,
         renderCell: (checked, record, index, originNode) => {
@@ -86,7 +87,12 @@ const LikedProperties = () => {
             <Table 
                 rowSelection={rowSelection} 
                 columns={columns} 
-                dataSource={data} 
+                dataSource={data}
+                pagination={{
+                    pageSize: 20,
+                    position: ['bottomCenter'],
+                    showSizeChanger: false,
+                }}
             />
         </div>
     )
