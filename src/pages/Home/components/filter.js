@@ -1,65 +1,71 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
+import { Slider, Divider, Button } from 'antd';
 import './filter.css';
 
 export default function Filter(props) {
-    const [filterOptions, setFilterOptions] = useState({
-        minRent: '',
-        maxRent: '',
-        minBedrooms: '',
-        maxBedrooms: '',
-        minBath: '',
-        maxBath: '',
-    });
-    
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFilterOptions({ ...filterOptions, [name]: value });
+    const [rentVal, setRent] = useState([0, 5000]);
+    const [bedVal, setBed] = useState([0, 6]);
+    const [bathVal, setBath] = useState([0, 6]);
+
+    const onChangeCompleteRent = (value) => 
+    {
+        setRent(value);
+    };
+
+    const onChangeCompleteBed = (value) => 
+    {
+        setBed(value);
+    };
+
+    const onChangeCompleteBath = (value) => 
+    {
+        setBath(value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.onFilter(filterOptions);
+        props.onFilter(rentVal, bedVal, bathVal);
     };
 
     return(
         <form className="Filter" onSubmit={handleSubmit}>
-            <label>
-                Min Rent:
-                <input
-                type="number"
-                name="minRent"
-                value={filterOptions.minRent}
-                onChange={handleInputChange}
+            <div>
+                <label> Rent Price: </label>
+                <Slider className = "Range"
+                    range
+                    min={0}
+                    max={5000}
+                    step={100}
+                    defaultValue={[0, 5000]}
+                    onChangeComplete={onChangeCompleteRent}
                 />
-            </label>
-            <label>
-                Max Rent:
-                <input
-                type="number"
-                name="maxRent"
-                value={filterOptions.maxRent}
-                onChange={handleInputChange}
+            </div>
+            <Divider style={{ height: "auto", borderRadius: "5px", borderLeft: '2px solid white' }} type="vertical" />
+            <div>
+                <label> Number of Beds: </label>
+                <Slider className = "Range"
+                    range
+                    min={0}
+                    max={6}
+                    step={1}
+                    defaultValue={[0, 6]}
+                    onChangeComplete={onChangeCompleteBed}
                 />
-            </label>
-            <label>
-                Min Baths:
-                <input
-                type="number"
-                name="minBath"
-                value={filterOptions.minBath}
-                onChange={handleInputChange}
+            </div>
+            <Divider style={{ height: "auto", borderRadius: "5px", borderLeft: '2px solid white' }} type="vertical" />
+            <div>
+                <label> Number of Baths: </label>
+                <Slider className = "Range"
+                    range
+                    min={0}
+                    max={6}
+                    step={1}
+                    defaultValue={[0, 6]}
+                    onChangeComplete={onChangeCompleteBath}
                 />
-            </label>
-            <label>
-                Max Baths:
-                <input
-                type="number"
-                name="maxBath"
-                value={filterOptions.maxBath}
-                onChange={handleInputChange}
-                />
-            </label>
-            <button type="submit">Apply Filters</button>
+            </div>
+            <Divider style={{ height: "auto", borderRadius: "5px", borderLeft: '2px solid white' }} type="vertical" />
+            <Button className="SubmitButton" type="primary" size='large'>Apply Filters</Button>
         </form>
     );
 }

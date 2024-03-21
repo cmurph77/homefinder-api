@@ -154,12 +154,11 @@ const Home = () => {
     },[pageNo, pageSize])
   
     //--------- Filter ------
-    const handleFilter = (filterOptions) => 
+    const handleFilter = (rentVal, BedVal, BathVal) => 
     {
         //Have to make API call here and update listings/setlistings with the response
         //Does not exist in backend currently
         console.log("Filtered");
-        console.log(filterOptions.minRent);
     };
 
     const [mapView, setView] = useState(false);
