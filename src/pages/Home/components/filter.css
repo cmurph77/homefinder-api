@@ -1,0 +1,14 @@
+.Filter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 20px;
+    padding: 5px 5px;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #3F007F;
+    background-color: rgb(234, 229, 237);
+    font-weight: bolder;
+    font-family:Arial;
+}

@@ -11,6 +11,8 @@ import _Header from "@/components/header.js";
 import ListingGrid from "./components/listingGrid.js";
 import ListingMap from "./components/listingMap.js";
 
+import Filter from "./components/filter.js";
+
 // import axios instance
 import { axios_instance } from "@/utils/request";
 
@@ -174,6 +176,8 @@ const Home = () => {
                 <_Header/>
                 <Button className = "viewButton" type="primary" onClick={handleToggle}>Change View</Button>
             </Header>
+
+            < Filter/>
 
             <Content className="home-content">
                 { loading ? <p>Loading...</p> : ( mapView ? <ListingMap properties={listings} status={loading}/> : <ListingGrid properties={listings}/>) }
