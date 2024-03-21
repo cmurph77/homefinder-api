@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import './filter.css';
 
-export default function Filter(props, onFilter) {
+export default function Filter(props) {
     const [filterOptions, setFilterOptions] = useState({
         minRent: '',
         maxRent: '',
@@ -18,7 +18,7 @@ export default function Filter(props, onFilter) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onFilter(filterOptions);
+        props.onFilter(filterOptions);
     };
 
     return(

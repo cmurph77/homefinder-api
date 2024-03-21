@@ -153,6 +153,14 @@ const Home = () => {
         fetchData()
     },[pageNo, pageSize])
   
+    //--------- Filter ------
+    const handleFilter = (filterOptions) => 
+    {
+        //Have to make API call here and update listings/setlistings with the response
+        //Does not exist in backend currently
+        console.log("Filtered");
+        console.log(filterOptions.minRent);
+    };
 
     const [mapView, setView] = useState(false);
 
@@ -177,9 +185,8 @@ const Home = () => {
                 <Button className = "viewButton" type="primary" onClick={handleToggle}>Change View</Button>
             </Header>
 
-            < Filter/>
-
             <Content className="home-content">
+                <Filter onFilter={handleFilter}/>
                 { loading ? <p>Loading...</p> : ( mapView ? <ListingMap properties={listings} status={loading}/> : <ListingGrid properties={listings}/>) }
             </Content>
 
