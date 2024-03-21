@@ -5,7 +5,8 @@ import logo from '@/images/logo.png';
 import './header.css';
 import { useNavigate } from "react-router-dom"
 
-import {  message } from 'antd'
+import {  message, Popconfirm } from 'antd'
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
 
@@ -55,33 +56,59 @@ export default function Header() {
     }, [isLoggedIn, hasNewChat]);
 
     //ToDo change click handlers to move between links
-    const profileButton = useMemo(() => {
-        if (isLoggedIn) {
-            return(
-                <Dropdown className={"ProfileButton"} label={username} dismissOnClick={false}>
-                    <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
-                    <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
-                    <Dropdown.Item onClick={() => signout()}> Sign out </Dropdown.Item>
-                </Dropdown>
-            );
-        }
-        else {
-            return(
-                <PrimaryButton
-                    className={"SignInButton"}
-                    onClick={() => null} //ToDo add functionality
+    // const profileButton = useMemo(() => {
+    //     if (isLoggedIn) {
+    //         return(
+    //             <Dropdown className={"ProfileButton"} label={username} dismissOnClick={false}>
+    //                 <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
+    //                 <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
+    //                 <Dropdown.Item onClick={() => signout()}> Sign out </Dropdown.Item>
+    //             </Dropdown>
+    //         );
+    //     }
+    //     else {
+    //         return(
+    //             <PrimaryButton
+    //                 className={"SignInButton"}
+    //                 onClick={() => null} //ToDo add functionality
+    //             >
+    //                 Sign In
+    //             </PrimaryButton>
+    //         );
+    //     }
+    // }, [isLoggedIn]);
+
+    const UserButton = () => {
+        const userName = 'User Name Here'
+        return (
+            <div className="user-info">
+                <span 
+                    className="user-name" 
+                    style={{ marginRight: '20px', cursor: 'pointer'}}
+                    onClick={() => navigate('/user/profile')}
                 >
-                    Sign In
-                </PrimaryButton>
-            );
-        }
-    }, [isLoggedIn]);
+                    <UserOutlined />
+                    {userName}
+                </span>
+                <span className="user-logout"  style={{ cursor: 'pointer'}}>
+                    <Popconfirm 
+                        title="Sign Out？" 
+                        okText="Sign Out" 
+                        cancelText="Cancel" 
+                        onConfirm={signout}
+                    >
+                        <LogoutOutlined /> Sign Out
+                    </Popconfirm>
+                </span>
+            </div>
+        )
+    }
 
     return (
         <section className="Header">
             <img src={logo} className="HF-Logo" alt="logo" onClick={()=>{navigate('/')}} />
             <div className={"ChatContainer"}>{chatButton}</div>
-            <div className={"ProfileContainer"}>{profileButton}</div>
+            <UserButton/>
         </section>
     );
 }

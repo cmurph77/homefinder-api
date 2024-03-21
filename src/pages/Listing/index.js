@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom"
-import { Divider  } from 'antd'
+import { Divider, Button  } from 'antd'
 import { axios_instance } from '@/utils'
 import { useEffect, useState } from "react"
 import _Header from "@/components/header.js";
-
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import Carousel from "./components/Carousel"
+import UserList from "./components/UserList";
 
 import './index.scss'
 
@@ -14,6 +15,8 @@ const { Header, Content } = Layout;
 const Listing = () => {
     const [ data, setData ] = useState('')
     const [ loading, setLoading ] = useState(true)
+
+    const [liked, setLiked] = useState(false)
     
     const params = useParams()
     const id = params.id
@@ -27,7 +30,7 @@ const Listing = () => {
                     console.log(error.response.status);
                     console.log(error.response.headers);
                 } else if (error.request) {
-                console.log(error.request);
+                    console.log(error.request);
                 } else {
                     console.log('Error', error.message);
                 }
@@ -39,6 +42,16 @@ const Listing = () => {
         }
         fetchData()
     },[])
+
+    const toggleLike = async () => {
+        await setLiked(!liked)
+        // const res_liked = await axios_instance.post(`/liked-property`,{
+        //     params: {
+        //         property_id: id,
+        //         liked: liked
+        //     }
+        // })
+    }
 
 
 
@@ -60,6 +73,13 @@ const Listing = () => {
                     <p className="cardInfo-bath">{data["property-type"]["bath"]} Bath</p>
                     <p className="cardInfo-type">{data["property-type"]["type-info"][2]}</p>
                 </div>
+                <Button
+                    type="text"
+                    icon={liked ? <HeartFilled style={{ color: 'red' }} /> : <HeartOutlined />}
+                    onClick={toggleLike}
+                >
+                    {liked ? 'Liked' : 'Like'}
+                </Button>
                 <Divider/>
                 <div className="listing-overview">
                     <h3>Property Overview</h3>
@@ -75,8 +95,9 @@ const Listing = () => {
                         </li>
                     </ul>
                 </div>
-
             </div>
+            <Divider/>
+            { liked ? <UserList/> : <p>Like to see more</p>}
         </Content>)
     }
 

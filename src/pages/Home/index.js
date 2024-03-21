@@ -129,7 +129,10 @@ const Home = () => {
     useEffect(  ()=>{
         const fetchData = async () => {
             setLoading(true)
+            console.log("fetching data," , pageNo, pageSize)
             const res = await axios_instance.get(`/get-propertys-by-pagenum-live/${pageNo}/${pageSize}`)
+            // const res = await axios_instance.get(`http://localhost:8000/get-propertys-by-pagenum-live/1/20`)
+            
                 .catch((error)=>{
                         setListing(empty_listings.properties)
                     if (error.response) {
