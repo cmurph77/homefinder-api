@@ -76,6 +76,24 @@ class ElasticDatabase:
             propertyData = searchResult["hits"]["hits"][0]["_source"]
         propertiesJSON = json.dumps(propertyData, indent=4)
         return propertiesJSON
+    
+
+    def searchByUserID(identifier):
+        client = ElasticDatabase()
+        query = {
+            "query": {
+                "match": {
+                    "firebase_id": identifier
+                }
+            }
+        }
+        searchResult = client.elasticsearch.search(index="users-db", body=query)
+        userData = {}
+    
+        if searchResult["hits"]["hits"]:
+            userData = searchResult["hits"]["hits"][0]["_source"]
+        userJSON = json.dumps(userData.get("liked_properties", []), indent=4)
+        return userJSON
         
 
 # Test connection

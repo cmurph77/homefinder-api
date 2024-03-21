@@ -33,12 +33,12 @@ def get_propertys_pagesize(pagenum,numresults):
     data = ElasticDatabase.search(numresults,pagenum)
     return data
 
-@app.route('like-property/<int:user_id>/<int:property_id>',methods = ['POST'])
+@app.route('/like-property/<int:user_id>/<int:property_id>',methods = ['POST'])
 def like_property(user_id,property_id):
     # logic to like property
     return {'message': 'Property liked'}, 200
 
-@app.route('unlike-property/<int:user_id>/<int:property_id>',methods = ['POST'])
+@app.route('/unlike-property/<int:user_id>/<int:property_id>',methods = ['POST'])
 def unlike_property(user_id,property_id):
     # logic to unlike property
     return {'message': 'Property liked'}, 200
@@ -111,3 +111,13 @@ def get_property_sample(property_id):
     else:
         # Return an error message if the file does not exist
         return {'error': 'json file not found'}, 404
+    
+@app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
+def get_liked_properties(user_id):
+    liked_properties = ElasticDatabase.searchByUserID(user_id) #Try YSixicUz for debug
+    #print('properties')
+    if liked_properties: 
+        return liked_properties
+    else:
+        return {'error': 'Liked properties not found'}, 404
+    
