@@ -33,9 +33,6 @@ const data = [
     },
 ];
 
-
-
-
 const LikedProperties = () => {
 
     const defaultSelectedRowKeys = data.map(record => record.key)
