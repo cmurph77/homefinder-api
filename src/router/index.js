@@ -16,7 +16,6 @@ import { Suspense, lazy } from 'react'
 
 const UserProfile = lazy(() => import('@/pages/User/components/UserProfile'))
 const LikedProperties = lazy(() => import('@/pages/User/components/LikedProperties'))
-// const Publish = lazy(() => import('@/pages/Publish'))
 
 // Configure the instance of router
 
@@ -47,11 +46,11 @@ const router = createBrowserRouter([
     children: [
         {
             index: true,
-            path: '/user/profile',
+            path: 'profile',
             element: <Suspense fallback={<div>Loading...</div>}><UserProfile /></Suspense>
         },
         {
-            path: '/user/liked-properties',
+            path: 'liked-properties',
             element: <Suspense fallback={<div>Loading...</div>}><LikedProperties /></Suspense>
         }
     ]

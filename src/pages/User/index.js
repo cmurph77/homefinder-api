@@ -1,23 +1,17 @@
 import { useNavigate, Outlet, useLocation } from "react-router-dom"
-import { Divider, Menu, Switch } from 'antd';
+import { Menu } from 'antd';
 import {
     HeartOutlined,
     UserOutlined,
   } from '@ant-design/icons';
-import { axios_instance } from '@/utils'
-import { useEffect, useState } from "react"
 import _Header from "@/components/header.js";
-// import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-
-import UserProfile from "./components/UserProfile";
-import LikedProperties from "./components/LikedProperties";
 
 import './index.scss'
 
 import { Layout  } from 'antd';
 const { Header, Content } = Layout;
 
-
+// items for the sider menu
 const items = [
     {
         label: 'Profile',
@@ -33,15 +27,15 @@ const items = [
 
 
 const App = () => {
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
+    // select the tab based on the current path
     const location = useLocation()
     console.log(location.pathname)
     const selectedkey = location.pathname
 
-
+    // handle the menu selection, navigate to the selected path
     const onSelect = (item) => {
-        console.log('菜单被点击了', item.key)
         const path = item.key
         navigate(path)
     }
