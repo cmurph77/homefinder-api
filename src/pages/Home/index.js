@@ -11,6 +11,8 @@ import _Header from "@/components/header.js";
 import ListingGrid from "./components/listingGrid.js";
 import ListingMap from "./components/listingMap.js";
 
+import Filter from "./components/filter.js";
+
 // import axios instance
 import { axios_instance } from "@/utils/request";
 
@@ -151,6 +153,13 @@ const Home = () => {
         fetchData()
     },[pageNo, pageSize])
   
+    //--------- Filter ------
+    const handleFilter = (rentVal, BedVal, BathVal) => 
+    {
+        //Have to make API call here and update listings/setlistings with the response
+        //Does not exist in backend currently
+        console.log("Filtered");
+    };
 
     const [mapView, setView] = useState(false);
 
@@ -176,6 +185,7 @@ const Home = () => {
             </Header>
 
             <Content className="home-content">
+                <Filter onFilter={handleFilter}/>
                 { loading ? <p>Loading...</p> : ( mapView ? <ListingMap properties={listings} status={loading}/> : <ListingGrid properties={listings}/>) }
             </Content>
 
