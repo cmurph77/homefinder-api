@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Divider, Checkbox } from 'antd';
+import { Divider, Checkbox, Cascader } from 'antd';
 import './UserProfile.scss'
-import { all } from 'axios';
-
 
 //TODO, user data exists in database but doesn't have a backend connection yet
 //so using dummy user data for now
@@ -61,6 +59,12 @@ const UserProfile = (props) =>
         }
     };
 
+    //Need special function for smoker as it can only have one tag
+    const onSmokerChange = (tag) => {
+        setsmoker([]);
+        setsmoker(tag);
+    };
+
     const handleSave = () => {
         data.name = name;
         data.phone_number = phoneNumber;
@@ -100,6 +104,10 @@ const UserProfile = (props) =>
                     <input type="text" value={phoneNumber} onChange={handlePhoneNumberChange} />
                 </div>
                 <div className="Tags">
+                    <label>Smoking Tags:   </label>
+                    <Cascader placement={'bottomLeft'} options={[{value:"Smoker", label:"Smoker"}, {value:"Non-Smoker", label:"Non-Smoker"}, {value:"Social-Smoker", label:"Social Smoker"}]} onChange={onSmokerChange} placeholder={smoker.length === 0 ? "Please Select" : data.smoker} />
+                </div>
+                <div className="Tags">
                     <label>Language Tags:   </label>
                     <Checkbox checked={languages.includes('English')} onChange={() => handleTagChange('English', setlanguages, languages)}>
                         English
@@ -109,18 +117,6 @@ const UserProfile = (props) =>
                     </Checkbox>
                     <Checkbox checked={languages.includes('French')} onChange={() => handleTagChange('French', setlanguages, languages)}>
                         French
-                    </Checkbox>
-                </div>
-                <div className="Tags">
-                    <label>Smoking Tags:   </label>
-                    <Checkbox checked={smoker.includes('Smoker')} onChange={() => handleTagChange('Smoker', setsmoker, smoker)}>
-                        Smoker
-                    </Checkbox>
-                    <Checkbox checked={smoker.includes('Non-Smoker')} onChange={() => handleTagChange('Non-Smoker', setsmoker, smoker)}>
-                        Non-Smoker
-                    </Checkbox>
-                    <Checkbox checked={smoker.includes('Social-Smoker')} onChange={() => handleTagChange('Social-Smoker', setsmoker, smoker)}>
-                        Social Smoker
                     </Checkbox>
                 </div>
                 <div className="Tags">
