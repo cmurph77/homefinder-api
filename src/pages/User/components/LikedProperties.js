@@ -70,7 +70,7 @@ const LikedProperties = (props) => {
         //     console.log(err)
         //     message.error('Failed to update Liked Properties');
         // })
-        props.setProfileUpdated(true)
+        props.toggleProfileUpdated()
     }
 
     const columns = [

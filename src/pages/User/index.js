@@ -42,6 +42,7 @@ const App = () => {
     const [loading, setLoading] = useState(true)
     // trigger the fetchUserInfo function when user updates the profile
     const [profileUpdated, setProfileUpdated] = useState(false)
+    const toggleProfileUpdated = () => setProfileUpdated(!profileUpdated)
 
     // handle the menu selection, navigate to the selected path
     const onSelect = (item) => {
@@ -94,9 +95,9 @@ const App = () => {
     const renderContent = () => {
         switch (selectedkey) {
             case 'profile':
-                return <UserProfile data={userInfo} setProfileUpdated={setProfileUpdated} />;
+                return <UserProfile data={userInfo} toggleProfileUpdated={toggleProfileUpdated} />;
             case 'liked-properties':
-                return <LikedProperties data={userInfo} setProfileUpdated={setProfileUpdated} />;
+                return <LikedProperties data={userInfo} toggleProfileUpdated={toggleProfileUpdated} />;
             default:
                 return null;
         }

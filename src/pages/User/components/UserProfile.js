@@ -62,6 +62,10 @@ const UserProfile = (props) =>
         // axios_instance.post('/update_user_info', {
         //     data
         // })
+
+        
+        // USER updates the profile, the profileUpdated state is toggled to trigger the useEffect hook in the parent component to fecth the updated user info
+        props.toggleProfileUpdated()
     };
 
     return (
