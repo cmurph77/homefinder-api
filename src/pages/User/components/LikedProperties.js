@@ -1,4 +1,4 @@
-import { Divider, Table } from 'antd';
+import { Button, Divider, Table } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import React, { useState } from 'react';
 
@@ -62,6 +62,11 @@ const LikedProperties = () => {
             );
         },
     };
+
+    const submitInfo = () => {
+        console.log("Liked Properties", selectedRowKeys)
+    }
+
     const columns = [
         {
             title: 'Name',
@@ -91,6 +96,8 @@ const LikedProperties = () => {
                     showSizeChanger: false,
                 }}
             />
+            <Divider />
+            <Button type='primary' onClick={submitInfo}>Save</Button>
         </div>
     )
 }

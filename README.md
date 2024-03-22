@@ -34,8 +34,8 @@ def like_property():
     try:
         user_id = request.args.get('user_id', None)
         property_id = request.args.get('property_id', None)
-		
         # xxxxxxxxxxxx
+        # update database
         # return a list of users who also like this property
         return jsonify({"sucess": True, "user_list": user_list}), 200
     except Exception as e:
@@ -51,6 +51,7 @@ def like_property():
         user_id = request.args.get('user_id', None)
         property_id = request.args.get('property_id', None)
         # xxxxxxxxxxxx
+        # update database
         return jsonify({"sucess": True}), 200
     except Exception as e:
         return jsonify({"success": False, "error": e"}), 400
@@ -58,11 +59,13 @@ def like_property():
 
 
 
-## user - liked properties page
+## user page
+
+### GET liked properties
 
 ```python
-@app.route('/user/liked_properties', methods=['GET']))
-def liked_properties():
+@app.route('/user/get_liked_properties', methods=['GET']))
+def get_liked_properties():
     try:
         user_id = request.args.get('user_id', None)
         # xxxxxxxxxxxx
@@ -76,4 +79,31 @@ def liked_properties():
     except Exception as e:
         return jsonify({"success": False, "error": e"}), 400
 ```
+
+### UPDATE liked properties
+
+```python
+@app.route('/user/update_liked_properties', methods=['POST']))
+def update_liked_properties():
+    try:
+        update_info = request.get_json()
+        user_id = update_info.get('user_id', None)
+        new_liked_property_ids = update_info.get('property_ids', None) # list
+        # update the database
+        return jsonify({"sucess": True}), 200
+    except Exception as e:
+        return jsonify({"success": False, "error": e"}), 400
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
