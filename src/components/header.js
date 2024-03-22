@@ -85,7 +85,7 @@ export default function Header() {
                 <span 
                     className="user-name" 
                     style={{ marginRight: '20px', cursor: 'pointer'}}
-                    onClick={() => navigate('/user/profile')}
+                    onClick={() => navigate('/user')}
                 >
                     <UserOutlined />
                     {userName}

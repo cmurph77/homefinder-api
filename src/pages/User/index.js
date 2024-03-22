@@ -1,26 +1,31 @@
-import { useNavigate, Outlet, useLocation } from "react-router-dom"
-import { Menu } from 'antd';
+import { useEffect, useState } from 'react'
+import { Menu, Skeleton, Layout } from 'antd';
+import { useSelector } from 'react-redux';
+
 import {
     HeartOutlined,
     UserOutlined,
   } from '@ant-design/icons';
 import _Header from "@/components/header.js";
+import { axios_instance } from '@/utils';
 
 import './index.scss'
+import UserProfile from './components/UserProfile';
+import LikedProperties from './components/LikedProperties';
 
-import { Layout  } from 'antd';
 const { Header, Content } = Layout;
+
 
 // items for the sider menu
 const items = [
     {
         label: 'Profile',
-        key: '/user/profile',
+        key: 'profile',
         icon: <UserOutlined />,
     },
     {
         label: 'Liked Properties',
-        key: '/user/liked-properties',
+        key: 'liked-properties',
         icon: <HeartOutlined />,
     },
 ];
@@ -28,18 +33,74 @@ const items = [
 
 const App = () => {
 
-    const navigate = useNavigate()
-    // select the tab based on the current path
-    const location = useLocation()
-    console.log(location.pathname)
-    const selectedkey = location.pathname
+    // selected key(tab) for the menu
+    const [selectedkey, setSelectedKey] = useState('profile')
+    // get user id from the store
+    const userId = useSelector( store => store.user.userId )
+    // user info
+    const [userInfo, setUserInfo] = useState({})
+    const [loading, setLoading] = useState(true)
+    // trigger the fetchUserInfo function when user updates the profile
+    const [profileUpdated, setProfileUpdated] = useState(false)
 
     // handle the menu selection, navigate to the selected path
     const onSelect = (item) => {
-        const path = item.key
-        navigate(path)
+        setSelectedKey(item.key)
     }
 
+    // make api calls to get user info, when user id changes or profile is updated
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            try {
+                console.log("Fetching user info", profileUpdated);
+                setLoading(true);
+                // const res = await axios_instance.get('/get-user-info', {
+                //     params: { user_id: userId }
+                // });
+                const res = {
+                    status: 200,
+                    data: {
+                        firebase_id : '0',
+                        name : "dummy",
+                        profile_pic : "null",
+                        selected_tags:{
+                            languages : [],
+                            smoker : [],
+                            pets : [],
+                            diet : [],
+                            allergies : [],
+                            habit : [],
+                            work : [],
+                        },
+                        phone_number : "12345678",
+                        bio : "Hi, I'm not a real person!",
+                        liked_properties : [],
+                        liked_users : [],
+                    }
+                }
+                if (res.status === 200) {
+                    setUserInfo(res.data);
+                }
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+                // setProfileUpdated(false)
+            }
+        };
+        fetchUserInfo();
+    }, [userId, profileUpdated]);
+
+    const renderContent = () => {
+        switch (selectedkey) {
+            case 'profile':
+                return <UserProfile data={userInfo} setProfileUpdated={setProfileUpdated} />;
+            case 'liked-properties':
+                return <LikedProperties data={userInfo} setProfileUpdated={setProfileUpdated} />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <div className="user-container">
@@ -52,14 +113,13 @@ const App = () => {
                         style={{
                             width: 200,
                         }}
-                        defaultSelectedKeys={['/user/profile']}
                         selectedKeys={selectedkey}
                         theme={'light'}
                         items={items}
                         onSelect={onSelect}
                         className="user-menu"
                     />
-                    <Outlet />
+                    { loading ? <Skeleton /> : renderContent()}
                 </Content>
             </Layout>
         </div>

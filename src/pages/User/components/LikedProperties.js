@@ -1,9 +1,7 @@
-import { Button, Divider, Table } from 'antd';
+import { Button, Divider, Table, message } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-import React, { useState } from 'react';
-
-
-
+import React, { useEffect, useState } from 'react';
+import { axios_instance } from '@/utils';
 import './LikedProperties.scss'
 
 const data = [
@@ -33,12 +31,10 @@ const data = [
     },
 ];
 
-const LikedProperties = () => {
+const LikedProperties = (props) => {
 
     const defaultSelectedRowKeys = data.map(record => record.key)
-
     const [selectedRowKeys, setSelectedRowKeys] = useState(defaultSelectedRowKeys);
-
     const onSelectChange = (newSelectedRowKeys) => {
         setSelectedRowKeys(newSelectedRowKeys);
     };
@@ -65,6 +61,16 @@ const LikedProperties = () => {
 
     const submitInfo = () => {
         console.log("Liked Properties", selectedRowKeys)
+        // axios_instance.post('/user/update_liked_properties', {
+        //     user_id: props.userInfo.firebase_id,
+        //     property_ids: selectedRowKeys
+        // }).then(res => {
+        //     message.success('Liked Properties Updated');
+        // }).catch(err => {
+        //     console.log(err)
+        //     message.error('Failed to update Liked Properties');
+        // })
+        props.setProfileUpdated(true)
     }
 
     const columns = [

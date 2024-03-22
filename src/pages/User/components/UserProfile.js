@@ -1,30 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Divider, Checkbox, Cascader } from 'antd';
 import './UserProfile.scss'
-
-//TODO, user data exists in database but doesn't have a backend connection yet
-//so using dummy user data for now
-const data = {
-    firebase_id : '0',
-    name : "dummy",
-    profile_pic : "null",
-    selected_tags:{
-        languages : [],
-        smoker : [],
-        pets : [],
-        diet : [],
-        allergies : [],
-        habit : [],
-        work : [],
-    },
-    phone_number : "12345678",
-    bio : "Hi, I'm not a real person!",
-    liked_properties : [],
-    liked_users : [],
-}
+import axios_instance from '@/utils';
 
 const UserProfile = (props) => 
 {
+
+    const data = props.data;
     const [name, setName] = useState(data.name);
     const [bio, setBio] = useState(data.bio);
     const [phoneNumber, setPhoneNumber] = useState(data.phone_number);
@@ -76,7 +58,10 @@ const UserProfile = (props) =>
         data.selected_tags.allergies = allergies;
         data.selected_tags.habit = habit;
         data.selected_tags.work = work;
-        props.updateUser(data);
+        console.log("Data Updated", data);
+        // axios_instance.post('/update_user_info', {
+        //     data
+        // })
     };
 
     return (
