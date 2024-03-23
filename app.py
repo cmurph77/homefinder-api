@@ -34,20 +34,20 @@ def get_propertys_pagesize(pagenum,numresults):
 
 # -------- BELOW HERE NOT CONNNECTED TO THE DATABASE -------------------------------------
 
-@app.route('/like-property/<int:user_id>/<int:property_id>',methods = ['POST'])
+@app.route('/like-property/<int:user_id>/<int:property_id>',methods = ['PUT'])
 def like_property(user_id,property_id):
     # logic to like property
     return {'message': 'Property liked'}, 200
 
-@app.route('/unlike-property/<int:user_id>/<int:property_id>',methods = ['POST'])
+@app.route('/unlike-property/<int:user_id>/<int:property_id>',methods = ['PUT'])
 def unlike_property(user_id,property_id):
     # logic to unlike property
     return {'message': 'Property un-liked'}, 200
 
 
 # this endpoint takes a user_id and retruns all the data associated with the user
-@app.route('/get-users-info/<int:user_id>', methods=['GET'])
-def get_users_liked_properties(user_id):
+@app.route('/get-user-info/<int:user_id>', methods=['GET'])
+def get_user_info(user_id):
     user_info = {
         'name' : 'cian',
         'mesasge' : 'this is an test, not how user object will be formatted'
@@ -55,18 +55,8 @@ def get_users_liked_properties(user_id):
     # set user info to the users_info retireved from database
     return user_info , 200
 
-# this endpoint takes a user_id and retruns all the data associated with the user
-@app.route('/update-users-info', methods=['POST'])
-def get_users_liked_properties(user_id):
-    request_data = request.get_json()
-    user_id = request_data['user_id']
-    user_data = request_data['user_data']
-
-    # logic to update the user data in database
-    return { 'message': 'successfully updated'}, 200
-
 # get a list of properties that are liked by a user
-@app.route('/get-users-liked-properties/<int:user_id>/<int:property_id>', methods=['GET'])
+@app.route('/get-users-liked-properties/<int:user_id>', methods=['GET'])
 def get_users_liked_properties(user_id,property_id):
     liked_properties = {}  
     # 1. get liked properties
@@ -91,6 +81,15 @@ def update_users_liked_properties():
     return jsonify({"message": "liked properties updated",
                     "updated_liked_properties" : updated_liked_properties })
   
+# this endpoint takes a user_id and retruns all the data associated with the user
+@app.route('/update-users-info', methods=['POST'])
+def update_user_info(user_id):
+    request_data = request.get_json()
+    user_id = request_data['user_id']
+    user_data = request_data['user_data']
+
+    # logic to update the user data in database
+    return { 'message': 'successfully updated'}, 200
 
         
 
