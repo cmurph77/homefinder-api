@@ -51,6 +51,7 @@ def get_liked_properties(user_id):
     else:
         return {'error': 'User liked properties not found'}, 404
 
+
 # this endpoint takes a user_id and updates user info
 # NEEDS VERIFICATION
 @app.route('/update-users-info', methods=['POST'])
@@ -151,4 +152,5 @@ def get_property_sample(property_id):
     else:
         # Return an error message if the file does not exist
         return {'error': 'json file not found'}, 404
+
 
