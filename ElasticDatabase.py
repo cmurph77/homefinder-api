@@ -6,7 +6,8 @@ import os
 
 ELASTIC_USERNAME = "elastic"
 ELASTIC_PASSWORD = "changeme"
-ELASTIC_ENDPOINT = "http://es01:9200/" #"http://localhost:9200/"
+ELASTIC_ENDPOINT = "http://es01:9200/" 
+#ELASTIC_ENDPOINT = "http://localhost:9200/"
 
 class ElasticDatabase:
     def __init__(self):
@@ -76,6 +77,45 @@ class ElasticDatabase:
             propertyData = searchResult["hits"]["hits"][0]["_source"]
         propertiesJSON = json.dumps(propertyData, indent=4)
         return propertiesJSON
+    
+    # Returns list of liked properties
+    def searchUserLikedProperties(identifier):
+        client = ElasticDatabase()
+        query = {
+            "query": {
+                "match": {
+                    "firebase_id": identifier
+                }
+            }
+        }
+        searchResult = client.elasticsearch.search(index="users-db", body=query)
+        userData = {}
+    
+        if searchResult["hits"]["hits"]:
+            userData = searchResult["hits"]["hits"][0]["_source"]
+        #userJSON = json.dumps(userData.get("liked_properties", []), indent=4)
+        return userData.get("liked_properties", []) #userJSON
+    
+    def searchPropertyList(properties):
+        client = ElasticDatabase()
+        query = {
+            "query": {
+                "ids": {
+                    "values": properties
+                }
+            }
+        }
+        searchResult = client.elasticsearch.search(index="property-listings", body=query)
+        propertyData = []
+        #if searchResult["hits"]["hits"]:
+            #propertyData = searchResult["hits"]["hits"][0]["_source"]
+
+        for hit in searchResult["hits"]["hits"]:
+            propertyData.append(hit["_source"])
+
+        propertyJSON = json.dumps(propertyData)
+        print(propertyJSON)
+        return propertyJSON
         
 
 # Test connection

@@ -1,6 +1,7 @@
 from flask import Flask, send_file,request,jsonify
 from flask_cors import CORS
 from datetime import datetime
+import json
 import os
 from ElasticDatabase import ElasticDatabase
 
@@ -32,12 +33,15 @@ def get_propertys_pagesize(pagenum,numresults):
     data = ElasticDatabase.search(numresults,pagenum)
     return data
 
+
 # -------- BELOW HERE NOT CONNNECTED TO THE DATABASE -------------------------------------
 
 @app.route('/like-property/<int:user_id>/<int:property_id>',methods = ['PUT'])
+
 def like_property(user_id,property_id):
     # logic to like property
     return {'message': 'Property liked'}, 200
+
 
 @app.route('/unlike-property/<int:user_id>/<int:property_id>',methods = ['PUT'])
 def unlike_property(user_id,property_id):
@@ -95,4 +99,39 @@ def update_user_info(user_id):
 
     
 
+
+
+# This is a sample call that just returns the example-data as it would acctually be rrturned from the database
+@app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
+def get_property_sample(property_id):
+    current_time = datetime.now()
+    print("GET REQ - /get-property-by-id-sample  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
+    
+    propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'searchByIDExample.json')
+
+    # Check if the file exists
+    if os.path.exists(propertyObjectPath):
+        # Return the JSON file
+        return send_file(propertyObjectPath, mimetype='application/json')
+    else:
+        # Return an error message if the file does not exist
+        return {'error': 'json file not found'}, 404
+    
+# Tries to return liked property values if found
+@app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
+def get_liked_properties(user_id):
+    liked_propertyIDs = ElasticDatabase.searchUserLikedProperties(user_id) #Try YSixicUz for debug
+    #liked_propertyIDs = []     DEBUG
+    if liked_propertyIDs: 
+        print(liked_propertyIDs)
+        liked_properties = ElasticDatabase.searchPropertyList(liked_propertyIDs)
+        if liked_properties:
+            return liked_properties, 200
+        else:
+            return {'error': 'Liked property IDs not found'}, 404
+    
+    elif liked_propertyIDs == []:
+        return json.dumps(liked_propertyIDs), 200
+    else:
+        return {'error': 'User liked properties not found'}, 404
 
