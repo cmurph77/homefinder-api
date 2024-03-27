@@ -1,0 +1,21 @@
+{
+    "firebase_id": "YSixicUz",
+    "name": "Logan Hanson Test",
+    "profile_pic": "https://i.pinimg.com/originals/2f/15/f2/2f15f2e8c688b3120d3d26467b06330c.jpg",
+    "selected_tags": {
+      "languages": [
+        "Spanish",
+        "English"
+      ],
+      "smoker": "Social smoker",
+      "pets": "No-pets",
+      "diet": "Vegetarian",
+      "allergies": "Peanuts",
+      "habit": "Morning-bird",
+      "work": "Night-worker"
+    },
+    "phone_number": "229-953-7086",
+    "bio": "This profile is for testing purposes",
+    "liked_properties": [],
+    "liked_users": []
+  }

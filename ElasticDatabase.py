@@ -95,7 +95,7 @@ class ElasticDatabase:
             userData = searchResult["hits"]["hits"][0]["_source"]
         #userJSON = json.dumps(userData.get("liked_properties", []), indent=4)
         return userData.get("liked_properties", []) #userJSON
-    
+
     def searchPropertyList(properties):
         client = ElasticDatabase()
         query = {
@@ -116,8 +116,66 @@ class ElasticDatabase:
         propertyJSON = json.dumps(propertyData)
         print(propertyJSON)
         return propertyJSON
-        
+    
+    def addNewUserToDatabase(userData):
+        client = ElasticDatabase()
+        indexName = 'users-db'
+        # JSON DATA
+        print('Indexing (please wait for confirmation)...')
+        client.indexUsersData(userData, indexName)
+        print(f'user indexing complete')
 
+# NEEDS TO BE TESTED
+    def updateDatabaseUser(userID, userData):
+        client = ElasticDatabase()
+        indexName = 'users-db'
+        update = {
+            'doc': {
+            'name' : userData['name'],
+            'profile_pic' : userData['profile_pic'],
+            'selected_tags':{
+                'languages' : userData['selected_tags']['languages'],
+                'smoker' : userData['selected_tags']['smoker'],
+                'pets' : userData['selected_tags']['pets'],
+                'diet' : userData['selected_tags']['diet'],
+                'allergies' : userData['selected_tags']['allergies'],
+                'habit' : userData['selected_tags']['habit'],
+                'work' : userData['selected_tags']['work']
+            },
+            'phone_number' : userData['phone_number'],
+            'bio' : userData['bio'],
+            'liked_properties' : userData['liked_properties'],
+            'liked_users' : userData['liked_users'],
+            }
+        }
+
+        response = client.elasticsearch.update(index=indexName, id=userID, body=update)
+        print(response)
+        print(f'user update complete')
+    
+
+    def searchUser(identifier):
+        client = ElasticDatabase()
+        try:
+            query = {
+                "query": {
+                    "match": {
+                        "firebase_id": identifier
+                    }
+                }
+            }
+            searchResult = client.elasticsearch.search(index="users-db", body=query)
+            userData = {}
+
+            if searchResult["hits"]["hits"]:
+                userData = searchResult["hits"]["hits"][0]["_source"]
+
+            userDataJSON = json.dumps(userData)
+            return userDataJSON
+        except:
+            return '{}'
+
+        
 # Test connection
 def main():
 
