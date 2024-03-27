@@ -51,7 +51,6 @@ def get_liked_properties(user_id):
     else:
         return {'error': 'User liked properties not found'}, 404
 
-
 # this endpoint takes a user_id and updates user info
 # NEEDS VERIFICATION
 @app.route('/update-users-info', methods=['POST'])
@@ -75,12 +74,18 @@ def update_user_info(user_id):
 # NEEDS VERIFICATION !
 @app.route('/add-user-to-database/', methods=['POST'])
 def create_user():
-    try:
+    print('-- RECEIEVED REQUEST TO ADD NEW USER\n')
+    try :
         user_data = request.get_json()
+        print(user_data)
+
+    except: 
+        return {'error': 'Could not read request user data'}, 404
+    try:
         ElasticDatabase.addNewUserToDatabase(user_data)
         return "Success", 200
     except:
-        return {'error': 'Could not create user'}, 404
+        return {'error': 'Could not add user to database'}, 404
     
 # this endpoint takes a user_id and retruns all the data associated with the user
 @app.route('/get-user-info/<string:user_id>', methods=['GET'])
