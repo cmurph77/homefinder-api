@@ -34,6 +34,25 @@ def get_propertys_pagesize(pagenum,numresults):
     return data
 
 
+# Tries to return liked property values if found
+@app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
+def get_liked_properties(user_id):
+    liked_propertyIDs = ElasticDatabase.searchUserLikedProperties(user_id) #Try YSixicUz for debug
+    #liked_propertyIDs = []     DEBUG
+    if liked_propertyIDs: 
+        print(liked_propertyIDs)
+        liked_properties = ElasticDatabase.searchPropertyList(liked_propertyIDs)
+        if liked_properties:
+            return liked_properties, 200
+        else:
+            return {'error': 'Liked property IDs not found'}, 404
+    
+    elif liked_propertyIDs == []:
+        return json.dumps(liked_propertyIDs), 200
+    else:
+        return {'error': 'User liked properties not found'}, 404
+    
+    
 # -------- BELOW HERE NOT CONNNECTED TO THE DATABASE -------------------------------------
 
 @app.route('/like-property/<int:user_id>/<int:property_id>',methods = ['PUT'])
@@ -117,21 +136,6 @@ def get_property_sample(property_id):
         # Return an error message if the file does not exist
         return {'error': 'json file not found'}, 404
     
-# Tries to return liked property values if found
-@app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
-def get_liked_properties(user_id):
-    liked_propertyIDs = ElasticDatabase.searchUserLikedProperties(user_id) #Try YSixicUz for debug
-    #liked_propertyIDs = []     DEBUG
-    if liked_propertyIDs: 
-        print(liked_propertyIDs)
-        liked_properties = ElasticDatabase.searchPropertyList(liked_propertyIDs)
-        if liked_properties:
-            return liked_properties, 200
-        else:
-            return {'error': 'Liked property IDs not found'}, 404
+#
     
-    elif liked_propertyIDs == []:
-        return json.dumps(liked_propertyIDs), 200
-    else:
-        return {'error': 'User liked properties not found'}, 404
 
