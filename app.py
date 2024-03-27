@@ -1,6 +1,7 @@
 from flask import Flask, send_file
 from flask_cors import CORS
 from datetime import datetime
+import json
 import os
 from ElasticDatabase import ElasticDatabase
 
@@ -112,12 +113,21 @@ def get_property_sample(property_id):
         # Return an error message if the file does not exist
         return {'error': 'json file not found'}, 404
     
+# Tries to return liked property values if found
 @app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
 def get_liked_properties(user_id):
-    liked_properties = ElasticDatabase.searchByUserID(user_id) #Try YSixicUz for debug
-    #print('properties')
-    if liked_properties: 
-        return liked_properties
+    liked_propertyIDs = ElasticDatabase.searchUserLikedProperties(user_id) #Try YSixicUz for debug
+    #liked_propertyIDs = []     DEBUG
+    if liked_propertyIDs: 
+        print(liked_propertyIDs)
+        liked_properties = ElasticDatabase.searchPropertyList(liked_propertyIDs)
+        if liked_properties:
+            return liked_properties, 200
+        else:
+            return {'error': 'Liked property IDs not found'}, 404
+    
+    elif liked_propertyIDs == []:
+        return json.dumps(liked_propertyIDs), 200
     else:
-        return {'error': 'Liked properties not found'}, 404
+        return {'error': 'User liked properties not found'}, 404
     
