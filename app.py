@@ -79,7 +79,7 @@ def like_property(user_id,property_id):
     except:
         return {'error': 'failed to like property'}, 404
     
-    
+
 @app.route('/unlike-property/<string:user_id>/<int:property_id>',methods = ['PUT'])
 def unlike_property(user_id,property_id):
     try:
@@ -92,7 +92,6 @@ def unlike_property(user_id,property_id):
         return {'message': 'Property unliked'}, 200
     except:
         return {'error': 'failed to unlike property'}, 404
-
 
 # -------------------------- NOT VERIFIED - STILL TESTING  -------------------------------------
 # this endpoint takes a user_id and updates user info
