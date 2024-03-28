@@ -55,7 +55,6 @@ def click_buttons_and_copy_link(url):
             # Close the browser
             driver.quit()
 
-# Example usage
 if __name__ == "__main__":
-    url = "https://www.leapchat.org/"  # Replace this with your specific URL
+    url = "https://www.leapchat.org/" 
     click_buttons_and_copy_link(url)
