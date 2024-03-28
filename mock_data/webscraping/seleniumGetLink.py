@@ -19,26 +19,23 @@ def click_buttons_and_copy_link(url):
         driver.get(url)
 
         # Find the first button by its XPath
-        #button1 = driver.find_element("xpath", '/html/body/div[3]/div/div/div[3]/button')
         button0 = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div/div/div[2]/div/button"))
         )
         
+        # Click the first button
         button0.click()
         
-        # Click the first button
         button1 = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div/div/div[3]/button"))
         )
         
         button1.click()
 
-        # Find the second button by its XPath
         button2 = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/header/div[3]/div/button"))
         )
         
-        # Click the second button
         button2.click()
         
         # Find the input element containing the generated link by its XPath
