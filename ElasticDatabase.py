@@ -1,6 +1,7 @@
 # This class is for general elastic search functions which can and should be used by backend and frontend developers
 
 from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Search, Q
 import json
 import os
 
@@ -175,9 +176,61 @@ class ElasticDatabase:
         except:
             return '{}'
 
+    # Search for a property with specified rent, bed and bath ranges
+    def searchPropertiesWithFilter(minRent, maxRent, minBed, maxBed, minBath, maxBath, numberOfResults=50, pageNumber=1):
+        client = ElasticDatabase()
+        index = 'property-listings'
+        search = Search(using = client.elasticsearch, index = index)
+
+        # Making search keywords
+        bedTerms = [f"{i} Bed" for i in range(minBed, maxBed + 1)]
+        bathTerms = [f"{i} Bath" for i in range(minBath, maxBath + 1)]
+
+        # making queries note:
+        # gte = greater than or equal to
+        # lte = less than or equal to
+        rentQuery = Q("range", **{"rent per month": {"gte": minRent, "lte": maxRent}})
+        bedQuery = Q("nested", path="property-type", query=Q("terms", **{"property-type.bed": bedTerms}))
+        bathQuery = Q("nested", path="property-type", query=Q("terms", **{"property-type.bath": bathTerms}))
+        query = rentQuery & bedQuery & bathQuery
+
+        # Setting pagination
+        from_ = numberOfResults * (pageNumber - 1)
+        size = numberOfResults
+        search = search.query(query)[from_:from_ + size]
+
+        # Search
+        searchResult = search.execute()
+
+        # Format data
+        propertiesData = []
+        all_hits = searchResult['hits']['hits']
+        for doc in all_hits:
+            propertiesData.append(doc['_source'].to_dict())
+        propertiesJSON = json.dumps(propertiesData, indent=4)
+        return propertiesJSON
+
         
 # Test connection
 def main():
+
+    # - - Search properties with filter - -
+
+    minRent = 1100
+    maxRent = 1750
+    minBed = 2
+    maxBed = 3
+    minBath = 1
+    maxBath = 2
+    propertyData = ElasticDatabase.searchPropertiesWithFilter(minRent, maxRent, minBed, maxBed, minBath, maxBath)
+    propertyList = json.loads(propertyData)
+    print(len(propertyList))
+    for prop in propertyList:
+        identifier = prop.get('identifier', 'N/A')
+        rent = prop.get('rent per month', 'N/A')
+        bed = prop['property-type'].get('bed', 'N/A')
+        bath = prop['property-type'].get('bath', 'N/A')
+        print(f"{identifier}, Rent: {rent}, Bed: {bed}, Bath: {bath}")
 
     # - - Search for first 50 properties - -
 
@@ -191,16 +244,16 @@ def main():
 
 
 
-    # - - Search using a field - -
+    # - - Search properties by field - -
 
-    numberOfResults = 50
-    pageNumber = 1
-    sortBy = 'rent per month'
-    propertyData = ElasticDatabase.searchWithField(numberOfResults, pageNumber, sortBy)
-    # Print propertyData
-    propertyList = json.loads(propertyData)
-    for prop in propertyList:
-        print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
+    # numberOfResults = 50
+    # pageNumber = 1
+    # sortBy = 'rent per month'
+    # propertyData = ElasticDatabase.searchWithField(numberOfResults, pageNumber, sortBy)
+    # # Print propertyData
+    # propertyList = json.loads(propertyData)
+    # for prop in propertyList:
+    #     print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
 
 
 
@@ -213,10 +266,10 @@ def main():
 
     # Store PropertyData in a json
 
-    fileName = 'FieldSearch50ByRentExample.json'
-    filePath = os.path.join('mock_data', 'ExampleJSONs', fileName)
-    with open(filePath, "w") as jsonFile:
-        jsonFile.write(propertyData)
+    # fileName = 'searchPropertiesWithFilter.json'
+    # filePath = os.path.join('mock_data', 'ExampleJSONs', fileName)
+    # with open(filePath, "w") as jsonFile:
+    #     jsonFile.write(propertyData)
 
 if __name__ == "__main__":
     main()
