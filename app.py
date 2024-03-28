@@ -26,12 +26,20 @@ def get_property(property_id):
         return {'error': 'Property not found'}, 404
 
 
-# This returns a list of propertys that should be ont he specified pagenum
+# This returns a list of propertys that should be on the specified pagenum
 @app.route('/get-propertys-by-pagenum-live/<int:pagenum>/<int:numresults>', methods=['GET'])
 def get_propertys_pagesize(pagenum,numresults):
     current_time = datetime.now()
     print("GET REQ - /get-propertys-by-pagenum  pagenum: " +str(pagenum) + ", pagesize:" +str(numresults)+" @ [" + str(current_time) + "]")
     data = ElasticDatabase.search(numresults,pagenum)
+    return data
+
+# This returns a list of filtered properties
+@app.route('/get-propertys-with-filter-live/<int:minRent>/<int:maxRent>/<int:minBed>/<int:maxBed>/<int:minBath>/<int:maxBath>/<int:pagenum>/<int:numresults>', methods=['GET'])
+def get_propertys_filtered(minRent,maxRent,minBed,maxBed,minBath,maxBath,pagenum,numresults):
+    current_time = datetime.now()
+    print("GET REQ - /get-propertys-with-filter  minRent: " +str(minRent) + ", maxRent:" +str(maxRent) + ", minBed:" +str(minBed) + ", maxBed:" +str(maxBed) + ", minBath:" +str(minBath) + ", maxBath:" +str(maxBath) + ", pagenum:" +str(pagenum) + ", numresults:" +str(numresults) +" @ [" + str(current_time) + "]")
+    data = ElasticDatabase.searchPropertiesWithFilter(minRent,maxRent,minBed,maxBed,minBath,maxBath,pagenum,numresults)
     return data
 
 

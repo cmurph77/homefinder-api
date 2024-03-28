@@ -1,0 +1,147 @@
+[
+    {
+        "identifier": "214250131",
+        "address": "Ballynakelly Lodge, Newcastle Boulevard, Newcastle, Co. Dublin",
+        "rent per month": 1342,
+        "daft.ie link": "http://www.daft.ie/for-rent/apartment-2-bed-apartment-ballynakelly-lodge-newcastle-boulevard-newcastle-co-dublin/4508436",
+        "latitude": 53.295350807428264,
+        "longitude": -6.491625815981365,
+        "property-type": {
+            "category": "Rent",
+            "type-info": [
+                "Property",
+                "Private Rental Sector",
+                "Apartments"
+            ],
+            "bed": "2 Bed",
+            "bath": "2 Bath",
+            "m2": "N/A"
+        },
+        "pic": []
+    },
+    {
+        "identifier": "219131303",
+        "address": "Apartment 38, Fort Ostman, Old County Road, Crumlin, Dublin 12",
+        "rent per month": 1534,
+        "daft.ie link": "http://www.daft.ie/for-rent/apartment-apartment-38-fort-ostman-old-county-road-crumlin-dublin-12/5617230",
+        "latitude": 53.326966,
+        "longitude": -6.301674,
+        "property-type": {
+            "category": "Rent",
+            "type-info": [
+                "Property",
+                "Residential",
+                "Apartment"
+            ],
+            "bed": "2 Bed",
+            "bath": "1 Bath",
+            "m2": "N/A"
+        },
+        "pic": [
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiOS8wLzkwMjgzYjc1ZjA1MmYzODY2MzMzNDkzOWM2NzJmZWIwLmpwZyJ9?signature=b91920b2b7477abe1e283d0a4c56e75213999fc3bdb2a21cf4bd72a6821abb7e",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiNS8wLzUwMGQ5ZDU3YTBiMjgwZWU0Y2M5ZGMwOTczYTlmMzFjLmpwZyJ9?signature=f64c5709bb80d92523c663547b93acdc0f135b3b3da24bfeba2c435df44b14c7",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMy82LzM2NjNlYzcyM2VhNGQyZWM2NTJiMjE3NTk4ZTU0ZTU0LmpwZyJ9?signature=f8f7e4962788bc851c764132ccb15971fd283912d3ebc37106f24bb15c45ed19",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMS8zLzEzNjg4YjkzZjMxMThkMTcyZDFlNzE4MWI1Njk2MDdkLmpwZyJ9?signature=b747c9bcd84bbd59e97828b9295e742e803c3e9623f097b58b8b2edec25d3ee8"
+        ]
+    },
+    {
+        "identifier": "219119016",
+        "address": "Apartment 12, Glebe Hall, Dun Laoghaire, Co. Dublin",
+        "rent per month": 1701,
+        "daft.ie link": "http://www.daft.ie/for-rent/apartment-apartment-12-glebe-hall-dun-laoghaire-co-dublin/5614008",
+        "latitude": 53.281496,
+        "longitude": -6.156182,
+        "property-type": {
+            "category": "Rent",
+            "type-info": [
+                "Property",
+                "Residential",
+                "Apartment"
+            ],
+            "bed": "2 Bed",
+            "bath": "2 Bath",
+            "m2": "N/A"
+        },
+        "pic": [
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMy9kLzNkN2ZiY2I0ZWQ1NjA2ODQ3OWZlNDY1ZDNkN2YwMjU1LmpwZyJ9?signature=37fb3629c572aafa2d220b46b2bf2cca4338e00f25b89c43ef067ad08cd9c45d",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMi80LzI0NGI1NWU2OWFkNjNlYjA3YzdkMDc0YWRmMTBkZGFkLmpwZyJ9?signature=0793ce21a43a59b1f06daca89b46a21a197e29f3380be5a303e5d28dd1589805",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiNi9jLzZjZjFiYWRiNTNhNjQyMjk2NzNkYWUzMDc5MzA4ZjVkLmpwZyJ9?signature=a996a9d6680ae7b5d70154fec18e679f0ff1bb9c08f12232de3361823977e5e2",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiYi9mL2JmZWI2NTYyNzMzYTc1YjNhMjZiY2JiZmRlZWM1MjBhLmpwZyJ9?signature=2d064c7befc65d2059dacff4acf2ec96dd5c75fc98852a29c02eb98ee699cfff"
+        ]
+    },
+    {
+        "identifier": "25618533",
+        "address": "26 Vernon Avenue,Dublin 3, Clontarf, Dublin 3",
+        "rent per month": 1750,
+        "daft.ie link": "http://www.daft.ie/for-rent/apartment-26-vernon-avenue-dublin-3-clontarf-dublin-3/5618533",
+        "latitude": 53.36057,
+        "longitude": -6.196103,
+        "property-type": {
+            "category": "Rent",
+            "type-info": [
+                "Property",
+                "Residential",
+                "Apartment"
+            ],
+            "bed": "2 Bed",
+            "bath": "1 Bath",
+            "m2": "N/A"
+        },
+        "pic": [
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMC8yLzAyZjdiZDkxLTQyOGYtNDlmOS04YmM3LWE4MzA4ODY1MWY2YS5qcGcifQ==?signature=08ff696c5cecb2f4a5f2495779de5503cae5ea0e7f369d5e69fac19f288af207",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiNS9mLzVmYmQ3YWY1LTY5ODMtNGFkOC1hYjJhLTRhNzc3NjM2OGU2Mi5qcGcifQ==?signature=8aa575964dca6a63d50b447639a643b839097f0de4b593395906f36d49adcbf2",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMC83LzA3MWJjYjIwLTk4NTItNGM4NC1hMWM2LTk0OTU0M2Y5OTE3Yy5qcGcifQ==?signature=284e462ba834b00f97f3869072d491e03640c826d8ce5001b39395dba4351673",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMC9lLzBlYjYyNGM4LWVjOWEtNGY4Yi1hMjAyLTUxN2I5NjE3YmI5Zi5qcGcifQ==?signature=7be599bc77061517d80a33354fd9035161a75044cead05673b4cc6ede76b58fc"
+        ]
+    },
+    {
+        "identifier": "219105136",
+        "address": "Apartment, Block 4, Finnstown Hall, Lucan, Co. Dublin",
+        "rent per month": 1581,
+        "daft.ie link": "http://www.daft.ie/for-rent/apartment-apartment-block-4-finnstown-hall-lucan-co-dublin/5610307",
+        "latitude": 53.344055,
+        "longitude": -6.445726,
+        "property-type": {
+            "category": "Rent",
+            "type-info": [
+                "Property",
+                "Residential",
+                "Apartment"
+            ],
+            "bed": "2 Bed",
+            "bath": "2 Bath",
+            "m2": "N/A"
+        },
+        "pic": [
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMy8yLzMyZmFmNzUwM2JkODEzYmYyOGIxNWFlYjNhNDQ5MTAxLmpwZyJ9?signature=e13e9b2d6083d6e1dcef58a12dae31a775e6c926d1397aa1b3792d505e6e080b",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiYy82L2M2NDYwYmM5MGQ0MDI3NzVhNWJlMGQ5NmIyOGQ2NDNkLmpwZyJ9?signature=223be289edc3c3e844d8a6b132cc607b197972a2f7664426cd4d45b6cf6e8116",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiNS8yLzUyMjI2YTM2Njc0OTk2NWJiM2M5NzljODA4M2JjMDNmLmpwZyJ9?signature=638c939d97fc359266f941c770a6945c1a813dc9b1d556b77496150ae734f974",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMC9hLzBhNDkyNmE2NjQxODk0OWVmZjg5MGM0NmRiMDU4ZDAwLmpwZyJ9?signature=79adb752e6e170d04eaa6d23b0088bac9c05dc5dad55be4804774dfb6de8bac4"
+        ]
+    },
+    {
+        "identifier": "219139120",
+        "address": "Belarmine Place, Stepaside, Dublin 18",
+        "rent per month": 1746,
+        "daft.ie link": "http://www.daft.ie/for-rent/apartment-belarmine-place-stepaside-stepaside-dublin-18/5619556",
+        "latitude": 53.258212,
+        "longitude": -6.218399,
+        "property-type": {
+            "category": "Rent",
+            "type-info": [
+                "Property",
+                "Residential",
+                "Apartment"
+            ],
+            "bed": "2 Bed",
+            "bath": "2 Bath",
+            "m2": "N/A"
+        },
+        "pic": [
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiZi9kL2ZkYmZmM2VjMzVmMTZlMjEzOTI5MWRiYTM2NTU5NTAzLmpwZyJ9?signature=0d18a75d4720948262bb1147cd55f31b4de0710a004ebc4cfab62f770eb6e91c",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMS9hLzFhZDdkNjQxNWExN2ZhNDU1ZDExOTMyYTk3OTZlNzc4LmpwZyJ9?signature=518deecbeb1cae4678d7c9affc706a2e5f8c9826daab681b79db1c332ba9bc25",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiMC9kLzBkNzE2NTdjNjliNjgyMDViYjA3MWZlNjRmNTI1ZmY3LmpwZyJ9?signature=555af486d1be3bcc3770e2374dd62e659e467daaa33512cc48fc497219d47ddd",
+            "https://media.daft.ie/eyJidWNrZXQiOiJtZWRpYW1hc3Rlci1zM2V1IiwiZWRpdHMiOnsib3ZlcmxheVdpdGgiOnsiYnVja2V0IjoibWVkaWFtYXN0ZXItczNldSIsIm9wdGlvbnMiOnsiZ3Jhdml0eSI6ImNlbnRyZSJ9LCJrZXkiOiJ3YXRlcm1hcmstZGFmdC1sb2dvLWxhcmdlLXYzLnBuZyJ9LCJyZXNpemUiOnsiZml0IjoiY292ZXIiLCJ3aWR0aCI6NzIwLCJoZWlnaHQiOjQ4MH19LCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwia2V5IjoiNS8xLzUxM2FhMzViMzVkNDZhMDQ3MDc1ZDMyOGNjOTg0ZDFkLmpwZyJ9?signature=08b92580a2c6cf88ac6e8992db3426c55082061060f1d1223eaa18f8c2d90ac1"
+        ]
+    }
+]
