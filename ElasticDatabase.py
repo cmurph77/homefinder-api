@@ -6,8 +6,8 @@ import os
 
 ELASTIC_USERNAME = "elastic"
 ELASTIC_PASSWORD = "changeme"
-ELASTIC_ENDPOINT = "http://es01:9200/" 
-#ELASTIC_ENDPOINT = "http://localhost:9200/"
+# ELASTIC_ENDPOINT = "http://es01:9200/" 
+ELASTIC_ENDPOINT = "http://localhost:9200/"
 
 class ElasticDatabase:
     def __init__(self):
@@ -122,7 +122,7 @@ class ElasticDatabase:
         indexName = 'users-db'
         # JSON DATA
         print('Indexing (please wait for confirmation)...')
-        client.indexUsersData(userData, indexName)
+        client.elasticsearch.indexUsersData(userData, indexName)
         print(f'user indexing complete')
 
 # NEEDS TO BE TESTED

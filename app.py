@@ -128,13 +128,15 @@ def create_user():
         print(user_data)
     except: 
         return {'error': 'Could not read request user data'}, 404
-    try:
-        ElasticDatabase.addNewUserToDatabase(user_data)
-        return "Success", 200
-    except:
-        return {'error': 'Could not add user to database'}, 404
-    # =================================================================================================
+    
+    ElasticDatabase.addNewUserToDatabase(user_data)
 
+    # try:
+    #     ElasticDatabase.addNewUserToDatabase(user_data)
+    #     return "Success", 200
+    # except:
+    #     return {'error': 'Could not add user to database'}, 404
+    # =================================================================================================
 
 # -------------------------- UNDER DEVELOPMENT -------------------------------------
 app.route('/update-users-liked-properties', methods=['POST'])
