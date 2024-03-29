@@ -93,9 +93,7 @@ def unlike_property(user_id,property_id):
     except:
         return {'error': 'failed to unlike property'}, 404
 
-# -------------------------- NOT VERIFIED - STILL TESTING  -------------------------------------
-# this endpoint takes a user_id and updates user info
-# NEEDS VERIFICATION
+# this endpoint updates user info
 @app.route('/update-users-info/', methods=['POST'])
 def update_user_info():
     print('RECIEVED REQUEST TO UPDATE USER DATA')
@@ -123,6 +121,7 @@ def update_user_info():
     except: 
         return {'error' : 'error adding to database'}, 404
 
+# -------------------------- NOT VERIFIED - STILL TESTING  -------------------------------------
 
 # Takes json data from frontend accompanied with request in same format as database index send json in body
 # NEEDS VERIFICATION !
