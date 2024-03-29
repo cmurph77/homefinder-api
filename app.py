@@ -96,14 +96,19 @@ def unlike_property(user_id,property_id):
 # -------------------------- NOT VERIFIED - STILL TESTING  -------------------------------------
 # this endpoint takes a user_id and updates user info
 # NEEDS VERIFICATION
-@app.route('/update-users-info', methods=['POST'])
-def update_user_info(user_id):
+@app.route('/update-users-info/', methods=['POST'])
+def update_user_info():
+    print('RECIEVED REQUEST TO UPDATE USER DATA')
     try:
         request_data = request.get_json()
-    except: return { 'error' : 'could not rease request data'}
+    except: 
+        return { 'error' : 'could not read request data'}
+    
     try:
-        user_id = request_data['firebase_id']
-    except: return { 'error' : 'could not rease user_id from data'}
+        user_id = request_data.get('firebase_id')
+        print('user_id: ' + user_id)
+    except: 
+        return { 'error' : 'could not read user_id from data'}
     # DEBUG 
     #user_id = "YSixicUz"
     #root_dir = os.path.dirname(os.path.abspath(__file__))
@@ -114,9 +119,10 @@ def update_user_info(user_id):
     # logic to update the user data in database
     try:
         ElasticDatabase.updateDatabaseUser(userID=user_id, userData=request_data)
-    except: return {'error' : 'error adding to database'}
+        return { 'message': 'successfully updated'}, 200
+    except: 
+        return {'error' : 'error adding to database'}, 404
 
-    return { 'message': 'successfully updated'}, 200
 
 # Takes json data from frontend accompanied with request in same format as database index send json in body
 # NEEDS VERIFICATION !
@@ -125,7 +131,7 @@ def create_user():
     print('-- RECEIEVED REQUEST TO ADD NEW USER\n')
     try :
         user_data = request.get_json()
-        print(user_data)
+        print(json.dumps(user_data,indent=4))
     except: 
         return {'error': 'Could not read request user data'}, 404
     
@@ -139,37 +145,37 @@ def create_user():
     # =================================================================================================
 
 # -------------------------- UNDER DEVELOPMENT -------------------------------------
-app.route('/update-users-liked-properties', methods=['POST'])
-def update_users_liked_properties():
-    # Extract JSON data from the request
-    request_data = request.get_json()
+# app.route('/update-users-liked-properties', methods=['POST'])
+# def update_users_liked_properties():
+#     # Extract JSON data from the request
+#     request_data = request.get_json()
 
-    if 'user_id' not in request_data or 'property_id' not in request_data:
-        return jsonify({"error": "Missing user_id or property_id in JSON"}), 400
+#     if 'user_id' not in request_data or 'property_id' not in request_data:
+#         return jsonify({"error": "Missing user_id or property_id in JSON"}), 400
 
-    user_id = request_data['user_id']
-    updated_liked_properties = request_data['updated_liked properties']
+#     user_id = request_data['user_id']
+#     updated_liked_properties = request_data['updated_liked properties']
 
-    # Your logic to update liked based on user_id and property_id
+#     # Your logic to update liked based on user_id and property_id
 
-    # Return properties as a JSON object
-    return jsonify({"message": "liked properties updated",
-                    "updated_liked_properties" : updated_liked_properties })
+#     # Return properties as a JSON object
+#     return jsonify({"message": "liked properties updated",
+#                     "updated_liked_properties" : updated_liked_properties })
   
-# This is a sample call that just returns the example-data as it would acctually be rrturned from the database
-@app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
-def get_property_sample(property_id):
-    current_time = datetime.now()
-    print("GET REQ - /get-property-by-id-sample  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
+# # This is a sample call that just returns the example-data as it would acctually be rrturned from the database
+# @app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
+# def get_property_sample(property_id):
+#     current_time = datetime.now()
+#     print("GET REQ - /get-property-by-id-sample  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
     
-    propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'searchByIDExample.json')
+#     propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'searchByIDExample.json')
 
-    # Check if the file exists
-    if os.path.exists(propertyObjectPath):
-        # Return the JSON file
-        return send_file(propertyObjectPath, mimetype='application/json')
-    else:
-        # Return an error message if the file does not exist
-        return {'error': 'json file not found'}, 404
+#     # Check if the file exists
+#     if os.path.exists(propertyObjectPath):
+#         # Return the JSON file
+#         return send_file(propertyObjectPath, mimetype='application/json')
+#     else:
+#         # Return an error message if the file does not exist
+#         return {'error': 'json file not found'}, 404
 
 
