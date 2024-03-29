@@ -123,8 +123,31 @@ class ElasticDatabase:
         indexName = 'users-db'
         # JSON DATA
         print('Indexing (please wait for confirmation)...')
-        client.elasticsearch.indexUsersData(userData, indexName)
+        client.indexUsersData(userData, indexName)
         print(f'user indexing complete')
+
+    def indexUsersData(self, data, indexName):
+        client = ElasticDatabase()
+        doc = {
+            'firebase_id' : data['firebase_id'],
+            'name' : data['name'],
+            'profile_pic' : data['profile_pic'],
+            'selected_tags':{
+                'languages' : data['selected_tags']['languages'],
+                'smoker' : data['selected_tags']['smoker'],
+                'pets' : data['selected_tags']['pets'],
+                'diet' : data['selected_tags']['diet'],
+                'allergies' : data['selected_tags']['allergies'],
+                'habit' : data['selected_tags']['habit'],
+                'work' : data['selected_tags']['work']
+            },
+            'phone_number' : data['phone_number'],
+            'bio' : data['bio'],
+            'liked_properties' : data['liked_properties'],
+            'liked_users' : data['liked_users'],
+        }
+        client.elasticsearch.index(index=indexName, id=data['firebase_id'], document=doc)
+
 
 # NEEDS TO BE TESTED
     def updateDatabaseUser(userID, userData):
