@@ -121,28 +121,23 @@ def update_user_info():
     except: 
         return {'error' : 'error adding to database'}, 404
 
-# -------------------------- NOT VERIFIED - STILL TESTING  -------------------------------------
 
 # Takes json data from frontend accompanied with request in same format as database index send json in body
-# NEEDS VERIFICATION !
 @app.route('/add-user-to-database/', methods=['POST'])
 def create_user():
     print('-- RECEIEVED REQUEST TO ADD NEW USER\n')
     try :
         user_data = request.get_json()
-        print(json.dumps(user_data,indent=4))
-        ElasticDatabase.addNewUserToDatabase(user_data)
-        return "Success", 200
     except: 
         return {'error': 'Could not read request user data'}, 404
     
-    ElasticDatabase.addNewUserToDatabase(user_data)
+    print(json.dumps(user_data,indent=4))
 
-    # try:
-    #     ElasticDatabase.addNewUserToDatabase(user_data)
-    #     return "Success", 200
-    # except:
-    #     return {'error': 'Could not add user to database'}, 404
+    try:
+        ElasticDatabase.addNewUserToDatabase(user_data)
+        return "Success", 200
+    except:
+        return {'error': 'Could not add user to database'}, 404
     # =================================================================================================
 
 # -------------------------- UNDER DEVELOPMENT -------------------------------------
