@@ -131,6 +131,8 @@ def create_user():
     try :
         user_data = request.get_json()
         print(json.dumps(user_data,indent=4))
+        ElasticDatabase.addNewUserToDatabase(user_data)
+        return "Success", 200
     except: 
         return {'error': 'Could not read request user data'}, 404
     
