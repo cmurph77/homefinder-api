@@ -28,7 +28,7 @@ export default function Filter(props) {
     };
 
     return(
-        <form className="Filter" onSubmit={handleSubmit}>
+        <form className="Filter">
             <div>
                 <label> Rent Price: </label>
                 <Slider className = "Range"
@@ -65,7 +65,7 @@ export default function Filter(props) {
                 />
             </div>
             <Divider style={{ height: "auto", borderRadius: "5px", borderLeft: '2px solid white' }} type="vertical" />
-            <Button className="SubmitButton" type="primary" size='large'>Apply Filters</Button>
+            <Button className="SubmitButton" type="primary" onClick={handleSubmit} size='large'>Apply Filters</Button>
         </form>
     );
 }
