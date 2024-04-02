@@ -183,6 +183,16 @@ const Home = () => {
 
     const handleToggle = () => {
         setView((current) => !current);
+        //Change page size to be very large to include all properties on map
+        if(!mapView)
+        {
+            setPageNo(1)
+            setPageSize(10000)
+        }
+        else
+        {
+            setPageSize(10)
+        }
     };
 
 
