@@ -195,16 +195,6 @@ const Home = () => {
         }
     };
 
-
-    // const ListingType = useMemo(() => {
-    //     if (mapView) {
-    //         return(<ListingMap properties={listings}/>);
-    //     }
-    //     else {
-    //         return(<ListingGrid properties={listings}/>);
-    //     }
-    // }, [mapView]);
-
     return (
         <Layout className="home-layout">
             <Header className="home-header">
@@ -218,7 +208,7 @@ const Home = () => {
             </Content>
 
             <Footer className="home-footer">
-                <Pagination defaultCurrent={1} onChange={onChange} total={500}/>
+                {mapView ? null : <Pagination defaultCurrent={1} onChange={onChange} total={500}/>}
             </Footer>
         </Layout>
     )
