@@ -183,17 +183,17 @@ const Home = () => {
 
     const handleToggle = () => {
         setView((current) => !current);
+        //Change page size to be very large to include all properties on map
+        if(!mapView)
+        {
+            setPageNo(1)
+            setPageSize(10000)
+        }
+        else
+        {
+            setPageSize(10)
+        }
     };
-
-
-    // const ListingType = useMemo(() => {
-    //     if (mapView) {
-    //         return(<ListingMap properties={listings}/>);
-    //     }
-    //     else {
-    //         return(<ListingGrid properties={listings}/>);
-    //     }
-    // }, [mapView]);
 
     return (
         <Layout className="home-layout">
@@ -208,7 +208,7 @@ const Home = () => {
             </Content>
 
             <Footer className="home-footer">
-                <Pagination defaultCurrent={1} onChange={onChange} total={500}/>
+                {mapView ? null : <Pagination defaultCurrent={1} onChange={onChange} total={500}/>}
             </Footer>
         </Layout>
     )
