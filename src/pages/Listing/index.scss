@@ -1,19 +1,21 @@
-body{
-    height: 100vh;
-    width: 100%;
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 #root{
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
 }
 
 .listing-container{
     height: 100%;
     .listing-layout{
         height: 100%;
-        
-
         .listing-header{
             background-color: #fffcfc;
             padding: 0;
@@ -24,7 +26,8 @@ body{
         }
 
         .listing-content{
-            min-height: 120px;
+            min-height: 100vh;
+            height: 100%;
             width: 800px;
             margin: 0 auto;
             background-color: #fff;
