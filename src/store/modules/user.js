@@ -9,7 +9,8 @@ const userStore = createSlice({
     initialState:{
         remember: false,
         loading: 'idle',
-        error: ""
+        error: "",
+        userId: "",
     },
     reducers: {
         setRemember (state, action)  {
@@ -27,6 +28,7 @@ const userStore = createSlice({
             console.log("fulfilled",action.payload)
             state.token = action.payload
             state.loading = 'succeeded'
+            state.userId = action.payload.userId
             if(state.remember) {
                 setPersistence(auth, browserLocalPersistence)
             }

@@ -1,0 +1,42 @@
+body{
+    height: 100vh;
+    width: 100%;
+}
+
+#root{
+    height: 100%;
+    width: 100%;
+}
+
+.user-container{
+    height: 100%;
+    .user-layout{
+        height: 100%;
+        .user-header{
+            background-color: #ffffff;
+            padding: 0;
+            line-height: 0px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-content{
+            min-height: 120px;
+            width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            @media screen and (max-width: 1000px) {
+                width: 100%;
+            }
+        }
+
+        .user-footer{
+            text-align: center;
+            color: white;
+            background-color: #4096ff;
+        }
+    }
+}
+
