@@ -13,7 +13,7 @@ CORS(app)  # Enable CORS for all routes
 def hello_world():
     return 'Hello, Welcome to the homefinder Server!'
 
-# ---------------- CONNNECTED TO DATABASE -------------------------------------
+# ---------------- CONNNECTED TO DATABASE + OPERATIONAL -------------------------------------
 # This returns a property object of the given 'id'
 @app.route('/get-property-by-id-live/<int:property_id>', methods=['GET'])
 def get_property(property_id):
@@ -25,7 +25,8 @@ def get_property(property_id):
     else:
         return {'error': 'Property not found'}, 404
 
-# This returns a list of propertys that should be ont he specified pagenum
+
+# This returns a list of propertys that should be on the specified pagenum
 @app.route('/get-propertys-by-pagenum-live/<int:pagenum>/<int:numresults>', methods=['GET'])
 def get_propertys_pagesize(pagenum,numresults):
     current_time = datetime.now()
@@ -33,90 +34,29 @@ def get_propertys_pagesize(pagenum,numresults):
     data = ElasticDatabase.search(numresults,pagenum)
     return data
 
-
-# -------- BELOW HERE NOT CONNNECTED TO THE DATABASE -------------------------------------
-
-@app.route('/like-property/<int:user_id>/<int:property_id>',methods = ['PUT'])
-
-def like_property(user_id,property_id):
-    # logic to like property
-    return {'message': 'Property liked'}, 200
-
-
-@app.route('/unlike-property/<int:user_id>/<int:property_id>',methods = ['PUT'])
-def unlike_property(user_id,property_id):
-    # logic to unlike property
-    return {'message': 'Property un-liked'}, 200
-
-
-# this endpoint takes a user_id and retruns all the data associated with the user
-@app.route('/get-user-info/<int:user_id>', methods=['GET'])
-def get_user_info(user_id):
-    user_info = {
-        'name' : 'cian',
-        'mesasge' : 'this is an test, not how user object will be formatted'
-    }  
-    # set user info to the users_info retireved from database
-    return user_info , 200
-
-# get a list of properties that are liked by a user
-@app.route('/get-users-liked-properties/<int:user_id>', methods=['GET'])
-def get_users_liked_properties(user_id,property_id):
-    liked_properties = {}  
-    # 1. get liked properties
-    # 2. return properties as a json object
-    return liked_properties , 200
-
-# -------------------------- under development -------------------------------------
-app.route('/update-users-liked-properties', methods=['POST'])
-def update_users_liked_properties():
-    # Extract JSON data from the request
-    request_data = request.get_json()
-
-    if 'user_id' not in request_data or 'property_id' not in request_data:
-        return jsonify({"error": "Missing user_id or property_id in JSON"}), 400
-
-    user_id = request_data['user_id']
-    updated_liked_properties = request_data['updated_liked properties']
-
-    # Your logic to update liked based on user_id and property_id
-
-    # Return properties as a JSON object
-    return jsonify({"message": "liked properties updated",
-                    "updated_liked_properties" : updated_liked_properties })
-  
-# this endpoint takes a user_id and retruns all the data associated with the user
-@app.route('/update-users-info', methods=['POST'])
-def update_user_info(user_id):
-    request_data = request.get_json()
-    user_id = request_data['user_id']
-    user_data = request_data['user_data']
-
-    # logic to update the user data in database
-    return { 'message': 'successfully updated'}, 200
-
-        
-
-    
-
-
-
-# This is a sample call that just returns the example-data as it would acctually be rrturned from the database
-@app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
-def get_property_sample(property_id):
+# This returns a list of filtered properties
+@app.route('/get-propertys-with-filter-live/', methods=['POST'])
+def get_propertys_filtered():
+    print('Filter requst recieved')
+    try:
+        request_data = request.get_json()
+    except:
+        return {'error:' : 'coudl not reade request body'}
+    print(request_data)
+    minRent = int(request_data.get('min_rent'))
+    maxRent = int(request_data.get('max_rent'))
+    minBath = int(request_data.get('min_bath'))
+    maxBath = int(request_data.get('max_bath'))
+    minBed = int(request_data.get('min_bed'))
+    maxBed = int(request_data.get('max_bed'))
+    pagenum = int(request_data.get('page_num'))
+    numresults = int(request_data.get('num_results'))
     current_time = datetime.now()
-    print("GET REQ - /get-property-by-id-sample  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
-    
-    propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'searchByIDExample.json')
+    print("GET REQ - /get-propertys-with-filter  minRent: " +str(minRent) + ", maxRent:" +str(maxRent) + ", minBed:" +str(minBed) + ", maxBed:" +str(maxBed) + ", minBath:" +str(minBath) + ", maxBath:" +str(maxBath) + ", pagenum:" +str(pagenum) + ", numresults:" +str(numresults) +" @ [" + str(current_time) + "]")
+    data = ElasticDatabase.searchPropertiesWithFilter(minRent,maxRent,minBed,maxBed,minBath,maxBath,pagenum,numresults)
+    return data
 
-    # Check if the file exists
-    if os.path.exists(propertyObjectPath):
-        # Return the JSON file
-        return send_file(propertyObjectPath, mimetype='application/json')
-    else:
-        # Return an error message if the file does not exist
-        return {'error': 'json file not found'}, 404
-    
+
 # Tries to return liked property values if found
 @app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
 def get_liked_properties(user_id):
@@ -134,4 +74,126 @@ def get_liked_properties(user_id):
         return json.dumps(liked_propertyIDs), 200
     else:
         return {'error': 'User liked properties not found'}, 404
+
+
+# this endpoint takes a user_id and retruns all the data associated with the user
+@app.route('/get-user-info/<string:user_id>', methods=['GET'])
+def get_user_info(user_id):
+    user_info = ElasticDatabase.searchUser(user_id)
+    # set user info to the users_info retireved from database
+    if user_info == '{}':
+        return {'error': 'user info not found'}, 404
+    else:
+        return user_info , 200
+
+
+@app.route('/like-property/<string:user_id>/<int:property_id>',methods=['PUT'])
+def like_property(user_id,property_id):
+    try:
+        user_data = ElasticDatabase.searchUser(user_id)
+        user_data_dict = json.loads(user_data)
+        user_data_dict['liked_properties'].append(property_id)
+        #user_data_JSON = json.dumps(user_data_dict)
+
+        ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict)    
+
+        return {'message': 'Property liked'}, 200
+    except:
+        return {'error': 'failed to like property'}, 404
+    
+
+@app.route('/unlike-property/<string:user_id>/<int:property_id>',methods = ['PUT'])
+def unlike_property(user_id,property_id):
+    try:
+        user_data = ElasticDatabase.searchUser(user_id)
+        user_data_dict = json.loads(user_data)
+        user_data_dict['liked_properties'].remove(property_id)
+
+        ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict)    
+
+        return {'message': 'Property unliked'}, 200
+    except:
+        return {'error': 'failed to unlike property'}, 404
+
+# this endpoint updates user info
+@app.route('/update-users-info/', methods=['POST'])
+def update_user_info():
+    print('RECIEVED REQUEST TO UPDATE USER DATA')
+    try:
+        request_data = request.get_json()
+    except: 
+        return { 'error' : 'could not read request data'}
+    
+    try:
+        user_id = request_data.get('firebase_id')
+        print('user_id: ' + user_id)
+    except: 
+        return { 'error' : 'could not read user_id from data'}
+    # DEBUG 
+    #user_id = "YSixicUz"
+    #root_dir = os.path.dirname(os.path.abspath(__file__))
+    #file_path = os.path.join(root_dir, 'sample.JSON')
+    #with open(file_path, 'r')as file:
+    #    user_data = json.load(file)
+
+    # logic to update the user data in database
+    try:
+        ElasticDatabase.updateDatabaseUser(userID=user_id, userData=request_data)
+        return { 'message': 'successfully updated'}, 200
+    except: 
+        return {'error' : 'error adding to database'}, 404
+
+
+# Takes json data from frontend accompanied with request in same format as database index send json in body
+@app.route('/add-user-to-database/', methods=['POST'])
+def create_user():
+    print('-- RECEIEVED REQUEST TO ADD NEW USER\n')
+    try :
+        user_data = request.get_json()
+    except: 
+        return {'error': 'Could not read request user data'}, 404
+    
+    print(json.dumps(user_data,indent=4))
+
+    try:
+        ElasticDatabase.addNewUserToDatabase(user_data)
+        return "Success", 200
+    except:
+        return {'error': 'Could not add user to database'}, 404
+    # =================================================================================================
+
+# -------------------------- UNDER DEVELOPMENT -------------------------------------
+# app.route('/update-users-liked-properties', methods=['POST'])
+# def update_users_liked_properties():
+#     # Extract JSON data from the request
+#     request_data = request.get_json()
+
+#     if 'user_id' not in request_data or 'property_id' not in request_data:
+#         return jsonify({"error": "Missing user_id or property_id in JSON"}), 400
+
+#     user_id = request_data['user_id']
+#     updated_liked_properties = request_data['updated_liked properties']
+
+#     # Your logic to update liked based on user_id and property_id
+
+#     # Return properties as a JSON object
+#     return jsonify({"message": "liked properties updated",
+#                     "updated_liked_properties" : updated_liked_properties })
+  
+# # This is a sample call that just returns the example-data as it would acctually be rrturned from the database
+# @app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
+# def get_property_sample(property_id):
+#     current_time = datetime.now()
+#     print("GET REQ - /get-property-by-id-sample  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
+    
+#     propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'searchByIDExample.json')
+
+#     # Check if the file exists
+#     if os.path.exists(propertyObjectPath):
+#         # Return the JSON file
+#         return send_file(propertyObjectPath, mimetype='application/json')
+#     else:
+#         # Return an error message if the file does not exist
+#         return {'error': 'json file not found'}, 404
+
 
