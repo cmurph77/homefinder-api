@@ -62,7 +62,6 @@ const Home = () => {
             setLoading(true)
             const res = await axios_instance.get(`/get-propertys-by-pagenum-live/${pageNo}/${pageSize}`)
                 .catch((error)=>{
-                        setListing(empty_listings.properties)
                     if (error.response) {
                         console.log(error.response.data);
                         console.log(error.response.status);
@@ -77,7 +76,6 @@ const Home = () => {
             await setListing(res)
             await setLoading(false)
             await console.log("fetch data success",res)
-            // await ListingType
         }
         fetchData()
     },[pageNo, pageSize, rentVal, bedVal, bathVal])
