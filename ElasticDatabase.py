@@ -116,7 +116,22 @@ class ElasticDatabase:
         propertyJSON = json.dumps(propertyData)
         print(propertyJSON)
         return propertyJSON
-        
+
+    def searchPropertyLikedUsers(identifier):
+        client = ElasticDatabase()
+        query = {
+            "query": {
+                "match": {
+                    "identifier": identifier
+                }
+            }
+        }
+        searchResult = client.elasticsearch.search(index="property-likes", body=query)
+        propertyLikesData = []
+        if searchResult["hits"]["hits"]:
+            propertyLikesData = searchResult["hits"]["hits"][0]["_source"]
+        likedUsersJSON = json.dumps(propertyLikesData, indent=4)
+        return likedUsersJSON 
 
 # Test connection
 def main():
