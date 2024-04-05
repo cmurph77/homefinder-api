@@ -76,6 +76,26 @@ def get_liked_properties(user_id):
         return {'error': 'User liked properties not found'}, 404
 
 
+@app.route('/get-propertys-liked-users/<string:user_id>', methods=['GET'])
+def get_propertys_liked_users(user_id):
+    print('GET - properties likes users with user_id: ' + str(user_id))
+    # liked_users_ids = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debug
+    return { 'message' : 'success' }
+    #liked_propertyIDs = []     DEBUG
+    # if liked_propertyIDs: 
+    #     print(liked_propertyIDs)
+    #     liked_properties = ElasticDatabase.searchPropertyList(liked_propertyIDs)
+    #     if liked_properties:
+    #         return liked_properties, 200
+    #     else:
+    #         return {'error': 'Liked property IDs not found'}, 404
+    
+    # elif liked_propertyIDs == []:
+    #     return json.dumps(liked_propertyIDs), 200
+    # else:
+    #     return {'error': 'User liked properties not found'}, 404
+
+
 # this endpoint takes a user_id and retruns all the data associated with the user
 @app.route('/get-user-info/<string:user_id>', methods=['GET'])
 def get_user_info(user_id):
@@ -161,39 +181,3 @@ def create_user():
     except:
         return {'error': 'Could not add user to database'}, 404
     # =================================================================================================
-
-# -------------------------- UNDER DEVELOPMENT -------------------------------------
-# app.route('/update-users-liked-properties', methods=['POST'])
-# def update_users_liked_properties():
-#     # Extract JSON data from the request
-#     request_data = request.get_json()
-
-#     if 'user_id' not in request_data or 'property_id' not in request_data:
-#         return jsonify({"error": "Missing user_id or property_id in JSON"}), 400
-
-#     user_id = request_data['user_id']
-#     updated_liked_properties = request_data['updated_liked properties']
-
-#     # Your logic to update liked based on user_id and property_id
-
-#     # Return properties as a JSON object
-#     return jsonify({"message": "liked properties updated",
-#                     "updated_liked_properties" : updated_liked_properties })
-  
-# # This is a sample call that just returns the example-data as it would acctually be rrturned from the database
-# @app.route('/get-property-by-id-sample/<int:property_id>', methods=['GET'])
-# def get_property_sample(property_id):
-#     current_time = datetime.now()
-#     print("GET REQ - /get-property-by-id-sample  id:"+ str(property_id)+"   @ [" + str(current_time) + "]")
-    
-#     propertyObjectPath = os.path.join(os.getcwd(), 'mock_data','ExampleJSONs', 'searchByIDExample.json')
-
-#     # Check if the file exists
-#     if os.path.exists(propertyObjectPath):
-#         # Return the JSON file
-#         return send_file(propertyObjectPath, mimetype='application/json')
-#     else:
-#         # Return an error message if the file does not exist
-#         return {'error': 'json file not found'}, 404
-
-
