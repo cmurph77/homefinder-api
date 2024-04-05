@@ -7,8 +7,8 @@ import os
 
 ELASTIC_USERNAME = "elastic"
 ELASTIC_PASSWORD = "changeme"
-# ELASTIC_ENDPOINT = "http://es01:9200/" 
-ELASTIC_ENDPOINT = "http://localhost:9200/"
+ELASTIC_ENDPOINT = "http://es01:9200/" 
+# ELASTIC_ENDPOINT = "http://localhost:9200/"
 
 
 class ElasticDatabase:
@@ -251,7 +251,7 @@ class ElasticDatabase:
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
 
-        
+
 # Test connection
 def main():
 
