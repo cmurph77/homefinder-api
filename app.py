@@ -79,21 +79,12 @@ def get_liked_properties(user_id):
 @app.route('/get-propertys-liked-users/<string:user_id>', methods=['GET'])
 def get_propertys_liked_users(user_id):
     print('GET - properties likes users with user_id: ' + str(user_id))
-    # liked_users_ids = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debug
-    return { 'message' : 'success' }
-    #liked_propertyIDs = []     DEBUG
-    # if liked_propertyIDs: 
-    #     print(liked_propertyIDs)
-    #     liked_properties = ElasticDatabase.searchPropertyList(liked_propertyIDs)
-    #     if liked_properties:
-    #         return liked_properties, 200
-    #     else:
-    #         return {'error': 'Liked property IDs not found'}, 404
-    
-    # elif liked_propertyIDs == []:
-    #     return json.dumps(liked_propertyIDs), 200
-    # else:
-    #     return {'error': 'User liked properties not found'}, 404
+    try : 
+        liked_users_ids = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debu
+        print(liked_users_ids)
+        return liked_users_ids, 200
+    except:
+        return { 'message' : 'could not add to database' },404
 
 
 # this endpoint takes a user_id and retruns all the data associated with the user
