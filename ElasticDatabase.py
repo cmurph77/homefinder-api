@@ -197,7 +197,7 @@ class ElasticDatabase:
         except:
             return '{}'
 
-    
+    # 
     def searchPropertyLikedUsers(identifier):
         client = ElasticDatabase()
         query = {
@@ -211,7 +211,10 @@ class ElasticDatabase:
         propertyLikesData = []
         if searchResult["hits"]["hits"]:
             propertyLikesData = searchResult["hits"]["hits"][0]["_source"]
-        likedUsersJSON = json.dumps(propertyLikesData, indent=4)
+
+        liked_by = propertyLikesData.get("liked_by", [])
+
+        likedUsersJSON = json.dumps({"liked_by": liked_by}, indent=4)
         return likedUsersJSON 
       
     # Search for a property with specified rent, bed and bath ranges
