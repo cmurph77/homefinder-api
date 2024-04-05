@@ -10,6 +10,7 @@ ELASTIC_PASSWORD = "changeme"
 ELASTIC_ENDPOINT = "http://es01:9200/" 
 # ELASTIC_ENDPOINT = "http://localhost:9200/"
 
+
 class ElasticDatabase:
     def __init__(self):
         self.endpoint = ELASTIC_ENDPOINT
@@ -39,8 +40,6 @@ class ElasticDatabase:
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
 
-
-
     def searchWithField(numberOfResults, pageNumber, field):
         client = ElasticDatabase()
         startIndex = (pageNumber - 1) * numberOfResults
@@ -61,7 +60,6 @@ class ElasticDatabase:
                     propertiesData.append(value)
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
-
 
     def searchByPropertyID(identifier):
         client = ElasticDatabase()
@@ -199,13 +197,13 @@ class ElasticDatabase:
         except:
             return '{}'
 
-    
+    # 
     def searchPropertyLikedUsers(identifier):
         client = ElasticDatabase()
         query = {
             "query": {
                 "match": {
-                    "identifier": identifier
+                    "property_id": identifier
                 }
             }
         }
@@ -213,7 +211,10 @@ class ElasticDatabase:
         propertyLikesData = []
         if searchResult["hits"]["hits"]:
             propertyLikesData = searchResult["hits"]["hits"][0]["_source"]
-        likedUsersJSON = json.dumps(propertyLikesData, indent=4)
+
+        liked_by = propertyLikesData.get("liked_by", [])
+
+        likedUsersJSON = json.dumps({"liked_by": liked_by}, indent=4)
         return likedUsersJSON 
       
     # Search for a property with specified rent, bed and bath ranges
@@ -250,27 +251,29 @@ class ElasticDatabase:
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
 
-        
+
 # Test connection
 def main():
 
+    user_ids = ElasticDatabase.searchPropertyLikedUsers(216696046)
+    print(user_ids)
     # - - Search properties with filter - -
 
-    minRent = 1100
-    maxRent = 1750
-    minBed = 2
-    maxBed = 3
-    minBath = 1
-    maxBath = 2
-    propertyData = ElasticDatabase.searchPropertiesWithFilter(minRent, maxRent, minBed, maxBed, minBath, maxBath)
-    propertyList = json.loads(propertyData)
-    print(len(propertyList))
-    for prop in propertyList:
-        identifier = prop.get('identifier', 'N/A')
-        rent = prop.get('rent per month', 'N/A')
-        bed = prop['property-type'].get('bed', 'N/A')
-        bath = prop['property-type'].get('bath', 'N/A')
-        print(f"{identifier}, Rent: {rent}, Bed: {bed}, Bath: {bath}")
+    # minRent = 1100
+    # maxRent = 1750
+    # minBed = 2
+    # maxBed = 3
+    # minBath = 1
+    # maxBath = 2
+    # propertyData = ElasticDatabase.searchPropertiesWithFilter(minRent, maxRent, minBed, maxBed, minBath, maxBath)
+    # propertyList = json.loads(propertyData)
+    # print(len(propertyList))
+    # for prop in propertyList:
+    #     identifier = prop.get('identifier', 'N/A')
+    #     rent = prop.get('rent per month', 'N/A')
+    #     bed = prop['property-type'].get('bed', 'N/A')
+    #     bath = prop['property-type'].get('bath', 'N/A')
+    #     print(f"{identifier}, Rent: {rent}, Bed: {bed}, Bath: {bath}")
 
     # - - Search for first 50 properties - -
 
