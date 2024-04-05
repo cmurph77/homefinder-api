@@ -60,7 +60,9 @@ const Home = () => {
 
         const fetchData = async () => {
             setLoading(true)
-            const res = await axios_instance.get(`/get-propertys-by-pagenum-live/${pageNo}/${pageSize}`)
+            const res = await axios_instance.post('/get-propertys-with-filter-live/', requestParams, 
+                { headers: { 'Content-Type': 'application/json'}}
+            )
                 .catch((error)=>{
                     if (error.response) {
                         console.log(error.response.data);
