@@ -14,9 +14,12 @@ file_path = os.path.join(current_dir, 'daftData.json')
 # Construct the file path to property_ids.json
 file_path2 = os.path.join(current_dir, 'property_ids.json')
 
+# Construct the absolute file path to seleniumGetLink.py
+selenium_script_path = os.path.join(current_dir, 'seleniumGetLink.py')
+
 # Function to execute seleniumGetLink.py and capture its output
 def execute_selenium_get_link():
-    result = subprocess.run(["python", "seleniumGetLink.py"], capture_output=True, text=True)
+    result = subprocess.run(["python", selenium_script_path], capture_output=True, text=True)
     chat_link = result.stdout.strip()
     return chat_link
 
