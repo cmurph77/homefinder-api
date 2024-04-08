@@ -123,7 +123,7 @@ class ElasticDatabaseOperations:
                 'profile_pic' : jsonData['profile_pic'],
                 'selected_tags':{
                     'languages' : jsonData['selected_tags']['language'],
-                    'smoker' : [jsonData['selected_tags']['smoker']],
+                    'smoker' : jsonData['selected_tags']['smoker'],
                     'pets' : [jsonData['selected_tags']['pets']],
                     'diet' : [jsonData['selected_tags']['diet']],
                     'allergies' : [jsonData['selected_tags']['allergies']],
