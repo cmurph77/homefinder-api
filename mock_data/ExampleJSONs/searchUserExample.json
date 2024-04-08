@@ -6,9 +6,7 @@
         "languages": [
             "Spanish"
         ],
-        "smoker": [
-            "Social smoker"
-        ],
+        "smoker": "Social smoker",
         "pets": [
             "No-pets"
         ],
