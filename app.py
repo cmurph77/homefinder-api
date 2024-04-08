@@ -25,7 +25,6 @@ def get_property(property_id):
     else:
         return {'error': 'Property not found'}, 404
 
-
 # This returns a list of propertys that should be on the specified pagenum
 @app.route('/get-propertys-by-pagenum-live/<int:pagenum>/<int:numresults>', methods=['GET'])
 def get_propertys_pagesize(pagenum,numresults):
@@ -56,7 +55,6 @@ def get_propertys_filtered():
     data = ElasticDatabase.searchPropertiesWithFilter(minRent,maxRent,minBed,maxBed,minBath,maxBath,pagenum,numresults)
     return data
 
-
 # Tries to return liked property values if found
 @app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
 def get_liked_properties(user_id):
@@ -75,16 +73,30 @@ def get_liked_properties(user_id):
     else:
         return {'error': 'User liked properties not found'}, 404
 
-
 @app.route('/get-propertys-liked-users/<string:user_id>', methods=['GET'])
 def get_propertys_liked_users(user_id):
+    
     print('GET - properties likes users with user_id: ' + str(user_id))
     try : 
-        liked_users_ids = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debu
-        print(liked_users_ids)
-        return liked_users_ids, 200
+        liked_users_ids_json = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debug
     except:
-        return { 'message' : 'could not add to database' },404
+        return { 'message' : 'could not read to database' },404
+    # Parse the JSON string into a dictionary
+    liked_users_ids = json.loads(liked_users_ids_json)
+    user_info_list = []
+    for user_id in liked_users_ids["liked_by"] :
+        print("user_id: " + str(user_id))
+        user_info = ElasticDatabase.searchUser(user_id)
+        user_info_json = json.loads(user_info)
+        # var_type = type(user_info_json)
+        # print(var_type)
+        # print(user_info_json)
+        user_info_list.append(user_info_json)
+
+
+    # processed_data = [user_info.replace("\\", "") for s in user_info_list]
+    # print(processed_data)
+    return json.dumps(user_info_list)
 
 
 # this endpoint takes a user_id and retruns all the data associated with the user
@@ -96,7 +108,6 @@ def get_user_info(user_id):
         return {'error': 'user info not found'}, 404
     else:
         return user_info , 200
-
 
 @app.route('/like-property/<string:user_id>/<int:property_id>',methods=['PUT'])
 def like_property(user_id,property_id):
@@ -112,7 +123,6 @@ def like_property(user_id,property_id):
     except:
         return {'error': 'failed to like property'}, 404
     
-
 @app.route('/unlike-property/<string:user_id>/<int:property_id>',methods = ['PUT'])
 def unlike_property(user_id,property_id):
     try:
@@ -153,7 +163,6 @@ def update_user_info():
         return { 'message': 'successfully updated'}, 200
     except: 
         return {'error' : 'error adding to database'}, 404
-
 
 # Takes json data from frontend accompanied with request in same format as database index send json in body
 @app.route('/add-user-to-database/', methods=['POST'])
