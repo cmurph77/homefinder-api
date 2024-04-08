@@ -5,20 +5,29 @@
 .Header {
     max-height: 40px;
     width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    position: relative
 }
 
-.HF-Logo {
+.Header .HF-Logo {
     max-height: inherit;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
     img {
         max-height: 100%;
         width: auto;
         object-fit: contain;
     };
     cursor: pointer;
+}
+
+.user-btn{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0, -50%);
 }
 
 .ChatContainer {
@@ -29,14 +38,4 @@
 .ProfileContainer {
     max-height: 36px;
     padding: 4px 10px
-}
-
-.ChatButton {
-    background-color:rgb(25, 72, 114);
-    border-color: rgb(62, 131, 158);
-}
-
-.SignInButton {
-    background-color:rgb(66, 25, 114);
-    border-color: rgb(107, 62, 158);
 }

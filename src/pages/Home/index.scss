@@ -1,11 +1,24 @@
-.viewButton {
-    margin-top: 5px;
-    margin-left: 5px;
+
+html {
+    min-height: 100%;
 }
 
-.home-layout{
-    // height: 100%;
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 
+.loading-container{
+    margin: 20px auto 20px;
+    padding: 30px 50px;
+    width: 80%;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+.home-layout{
+    min-height: 100vh;
     .home-header{
         line-height: 0px;
         padding: 0;

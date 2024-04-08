@@ -24,8 +24,8 @@ export default function Header() {
         });
     }
     
-    const isLoggedIn = true; //Will update later when login is implemented ToDo
-    const hasNewChat = true; //ToDo add logic
+    // const isLoggedIn = true; //Will update later when login is implemented ToDo
+    // const hasNewChat = true; //ToDo add logic
 
     const user = auth.currentUser;
     // const uid = user.uid
@@ -41,35 +41,35 @@ export default function Header() {
 
     //Logged out users do not see the chat button on the header bar
     //Logged in users can and will be able to see if they have unread chat notifications
-    const chatButton = useMemo(() => {
-        if (isLoggedIn && hasNewChat) {
-            return(
-                <PrimaryButton
-                    className={"ChatButton"}
-                    onClick={() => null} //ToDo add functionality
-                >
-                    Chat (New)
-                </PrimaryButton>
-            );
-        }
-        else if(isLoggedIn) {
-            return(
-                <PrimaryButton
-                    className={"ChatButton"}
-                    onClick={() => null} //ToDo add functionality
-                >
-                    Chat
-                </PrimaryButton>
-            );
-        }
-        else {
-            return(null);
-        }
-    }, [isLoggedIn, hasNewChat]);
+    // const chatButton = useMemo(() => {
+    //     if (isLoggedIn && hasNewChat) {
+    //         return(
+    //             <PrimaryButton
+    //                 className={"ChatButton"}
+    //                 onClick={() => null} //ToDo add functionality
+    //             >
+    //                 Chat (New)
+    //             </PrimaryButton>
+    //         );
+    //     }
+    //     else if(isLoggedIn) {
+    //         return(
+    //             <PrimaryButton
+    //                 className={"ChatButton"}
+    //                 onClick={() => null} //ToDo add functionality
+    //             >
+    //                 Chat
+    //             </PrimaryButton>
+    //         );
+    //     }
+    //     else {
+    //         return(null);
+    //     }
+    // }, [isLoggedIn, hasNewChat]);
 
     const UserButton = () => {
         return (
-            <div className="user-info">
+            <div className="user-btn">
                 <span 
                     className="user-name" 
                     style={{ marginRight: '20px', cursor: 'pointer'}}
@@ -97,7 +97,6 @@ export default function Header() {
     return (
         <section className="Header">
             <img src={logo} className="HF-Logo" alt="logo" onClick={()=>{navigate('/')}} />
-            <div className={"ChatContainer"}>{chatButton}</div>
             <UserButton style={{
                 marginRight: '20px',
             }}/>

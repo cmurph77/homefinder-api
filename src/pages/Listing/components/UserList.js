@@ -123,7 +123,7 @@ const UserList = () => {
                             <List.Item key={item.email}>
                                 <List.Item.Meta
                                     avatar={<Avatar src={item.picture.large} />}
-                                    title={<a onClick={() => showModal(item)}>{item.name.last}</a>}
+                                    title={<a onClick={() => showModal(item)}>{item.name.first} {item.name.last}</a>}
                                     description={Object.entries(dummy_user.selected_tags).map(([key, value]) => {
                                         if (key === 'languages') {
                                             return value.map((lang) => <Tag color='#108ee9'>{lang}</Tag>);

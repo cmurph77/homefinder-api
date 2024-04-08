@@ -75,15 +75,9 @@ const LikedProperties = (props) => {
     }
 
     const columns = [
-        // {
-        //     title: 'Name',
-        //     dataIndex: 'name',
-        // },
         {
             title: 'Rent',
             dataIndex: 'rent per month',
-            // defaultSortOrder: 'descend',
-            // sorter: (a, b) => a['rent per month'] - b['rent per month'],
         },
         {
             title: 'Address',
@@ -138,7 +132,7 @@ const LikedProperties = (props) => {
                     rowExpandable: (record) => record.name !== 'Not Expandable',
                   }}
             />
-            <Divider />
+            {/* <Divider style={{margin: '5px 0'}} /> */}
             <Button type='primary' onClick={submitInfo}>Save</Button>
         </div>
     )

@@ -16,7 +16,7 @@ const Login = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 navigate('/')
-                message.success('------------Login---------');
+                // message.success('------------Login---------');
             }
         });
         return () => unsubscribe()

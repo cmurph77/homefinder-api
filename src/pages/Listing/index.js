@@ -13,6 +13,13 @@ import './index.scss'
 import { Layout  } from 'antd';
 const { Header, Content } = Layout;
 
+const formatRent = (rent) => {
+    const parts = rent.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+};
+
+
 const Listing = () => {
     const user_id = 'YSixicUz'
 
@@ -70,7 +77,7 @@ const Listing = () => {
             <div className="listing-info">
                 <h1 className="listing-address">{data["property-type"]["bed"]} Bedroom {data["property-type"]["type-info"][2]}, {data.address}</h1>
                 <div className="listing-price">
-                    <h2>€{data["rent per month"] } per month</h2>
+                    <h2>€ {formatRent(data["rent per month"]) } per month</h2>
                 </div>
                 <div className="listing-cardInfo">
                     <p className="cardInfo-bed">{data["property-type"]["bed"]}</p>
