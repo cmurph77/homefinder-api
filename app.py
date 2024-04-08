@@ -75,33 +75,28 @@ def get_liked_properties(user_id):
 
 @app.route('/get-propertys-liked-users/<string:user_id>', methods=['GET'])
 def get_propertys_liked_users(user_id):
-    # liked_users = {}
     
     print('GET - properties likes users with user_id: ' + str(user_id))
     try : 
-        liked_users_ids_json = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debu
-        # print(json.loads(liked_users_ids_json))
+        liked_users_ids_json = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debug
     except:
-        return { 'message' : 'could not add to database' },404
-
+        return { 'message' : 'could not read to database' },404
     # Parse the JSON string into a dictionary
     liked_users_ids = json.loads(liked_users_ids_json)
-    
     user_info_list = []
-    i = 0
     for user_id in liked_users_ids["liked_by"] :
         print("user_id: " + str(user_id))
         user_info = ElasticDatabase.searchUser(user_id)
-        print(user_info)
-        # user_info = json.loads(ElasticDatabase.searchUser(user_id))
-        # user_json = json.dumps(user_info)
-        user_info_list.append(user_info)
-        # i = i+1
+        user_info_json = json.loads(user_info)
+        # var_type = type(user_info_json)
+        # print(var_type)
+        # print(user_info_json)
+        user_info_list.append(user_info_json)
 
-    # data_json = json.dump(combined_data,indent=4)
-    # print(user_info_list)
 
-    return jsonify(user_info_list)
+    # processed_data = [user_info.replace("\\", "") for s in user_info_list]
+    # print(processed_data)
+    return json.dumps(user_info_list)
 
 
 # this endpoint takes a user_id and retruns all the data associated with the user
