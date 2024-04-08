@@ -5,7 +5,6 @@ import axios_instance from '@/utils';
 
 const UserProfile = (props) => 
 {
-
     const data = props.data;
     const [name, setName] = useState(data.name);
     const [bio, setBio] = useState(data.bio);
@@ -58,14 +57,8 @@ const UserProfile = (props) =>
         data.selected_tags.allergies = allergies;
         data.selected_tags.habit = habit;
         data.selected_tags.work = work;
-        console.log("Data Updated", data);
-        // axios_instance.post('/update_user_info', {
-        //     data
-        // })
 
-        
-        // USER updates the profile, the profileUpdated state is toggled to trigger the useEffect hook in the parent component to fecth the updated user info
-        props.toggleProfileUpdated()
+        props.handleProfileUpdate(data)
     };
 
     return (
