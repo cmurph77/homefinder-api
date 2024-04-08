@@ -1,18 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Button, message, Pagination, Layout, FloatButton   } from 'antd'
+import { EnvironmentOutlined } from '@ant-design/icons'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
 import { useNavigate } from 'react-router-dom'
-
-// import empty_listings from "@/server/empty-property-object.json";
-
 import _Header from "@/components/header.js";
-
 import ListingGrid from "./components/listingGrid.js";
 import ListingMap from "./components/listingMap.js";
-
 import Filter from "./components/filter.js";
-
 import { axios_instance } from "@/utils";
 
 import './index.scss'
@@ -102,7 +97,7 @@ const Home = () => {
         <Layout className="home-layout">
             <Header className="home-header">
                 <_Header/>
-                <Button className = "viewButton" type="primary" onClick={handleToggle}>Change View</Button>
+                {/* <Button className = "viewButton" type="primary" onClick={handleToggle}>Change View</Button> */}
             </Header>
 
             <Content className="home-content">
@@ -113,6 +108,20 @@ const Home = () => {
             <Footer className="home-footer">
                 {mapView ? null : <Pagination defaultCurrent={1} onChange={onChange} total={500}/>}
             </Footer>
+            <FloatButton.BackTop 
+                style={{
+                    right: 84,
+                }}
+            />
+            <FloatButton
+                icon={<EnvironmentOutlined />}
+                type="primary"
+                onClick={handleToggle}
+                // style={{
+                //     right: 94,
+                // }}
+            />
+            
         </Layout>
     )
 }

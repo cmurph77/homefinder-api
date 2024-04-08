@@ -4,6 +4,7 @@ import logo from '@/assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/firebase'
+import { axios_instance } from "@/utils";
 
 
 const Signup = () => {
@@ -16,6 +17,14 @@ const Signup = () => {
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user)
+            const uid = user.uid
+            axios_instance.post('/add-user-to-database/', {
+                user_data: values,
+                user_id: uid
+            }).catch((error) => {
+                console.log(error)
+                message.error('------------Sign Up Failed---------')
+            })
             navigate('/login')
             message.success('------------Sign Up success---------')
         })
@@ -83,6 +92,10 @@ const Signup = () => {
                             {
                                 required: true,
                                 message: "Please input your password!"
+                            },
+                            {
+                                min: 6,
+                                message: "Password must be at least 6 characters"
                             }
                         ]}
                         hasFeedback

@@ -1,6 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { PrimaryButton } from "@fluentui/react";
-import { Dropdown } from 'flowbite-react';
 import logo from '@/images/logo.png';
 import './header.css';
 import { useNavigate } from "react-router-dom"
@@ -9,8 +8,10 @@ import {  message, Popconfirm } from 'antd'
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
+import { axios_instance } from "@/utils";
 
 export default function Header() {
+    const [userName, setUserName] = useState(null)
 
     // Logout Function
     const navigate = useNavigate()
@@ -23,9 +24,20 @@ export default function Header() {
         });
     }
     
-    const username = "username"; // Will be an imported prop later ToDo
     const isLoggedIn = true; //Will update later when login is implemented ToDo
     const hasNewChat = true; //ToDo add logic
+
+    const user = auth.currentUser;
+    // const uid = user.uid
+    const uid =  "ykaiawrX"
+    useEffect(() => {
+        axios_instance.get(`/get-user-info/${uid}`).then((res) => {
+            console.log(res.data)
+            setUserName(res.data.name)
+        }).catch((error) => {
+            console.log(error)
+        })
+    },[])
 
     //Logged out users do not see the chat button on the header bar
     //Logged in users can and will be able to see if they have unread chat notifications
@@ -55,31 +67,7 @@ export default function Header() {
         }
     }, [isLoggedIn, hasNewChat]);
 
-    //ToDo change click handlers to move between links
-    // const profileButton = useMemo(() => {
-    //     if (isLoggedIn) {
-    //         return(
-    //             <Dropdown className={"ProfileButton"} label={username} dismissOnClick={false}>
-    //                 <Dropdown.Item onClick={() => alert('Settings')}> Settings</Dropdown.Item>
-    //                 <Dropdown.Item onClick={() => alert('Liked')}> Liked Properties </Dropdown.Item>
-    //                 <Dropdown.Item onClick={() => signout()}> Sign out </Dropdown.Item>
-    //             </Dropdown>
-    //         );
-    //     }
-    //     else {
-    //         return(
-    //             <PrimaryButton
-    //                 className={"SignInButton"}
-    //                 onClick={() => null} //ToDo add functionality
-    //             >
-    //                 Sign In
-    //             </PrimaryButton>
-    //         );
-    //     }
-    // }, [isLoggedIn]);
-
     const UserButton = () => {
-        const userName = 'User Name Here'
         return (
             <div className="user-info">
                 <span 
@@ -87,10 +75,12 @@ export default function Header() {
                     style={{ marginRight: '20px', cursor: 'pointer'}}
                     onClick={() => navigate('/user')}
                 >
-                    <UserOutlined />
+                    <UserOutlined 
+                        style={{ marginRight: '5px'}}
+                    />
                     {userName}
                 </span>
-                <span className="user-logout"  style={{ cursor: 'pointer'}}>
+                <span className="user-logout"  style={{ marginRight: '20px',cursor: 'pointer'}}>
                     <Popconfirm 
                         title="Sign Out？" 
                         okText="Sign Out" 
@@ -108,7 +98,9 @@ export default function Header() {
         <section className="Header">
             <img src={logo} className="HF-Logo" alt="logo" onClick={()=>{navigate('/')}} />
             <div className={"ChatContainer"}>{chatButton}</div>
-            <UserButton/>
+            <UserButton style={{
+                marginRight: '20px',
+            }}/>
         </section>
     );
 }

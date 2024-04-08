@@ -6,6 +6,7 @@ import _Header from "@/components/header.js";
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import Carousel from "./components/Carousel"
 import UserList from "./components/UserList";
+// import { auth } from "../@/firebase";
 
 import './index.scss'
 
@@ -13,18 +14,24 @@ import { Layout  } from 'antd';
 const { Header, Content } = Layout;
 
 const Listing = () => {
+    const user_id = 'YSixicUz'
+
     const [ data, setData ] = useState('')
     const [ loading, setLoading ] = useState(true)
 
     const [liked, setLiked] = useState(false)
     
     const params = useParams()
-    const id = params.id
+    const property_id = params.id
+    // const user = auth.currentUser
 
     useEffect(()=>{
         const fetchData = async () => {
             setLoading(true)
-            const res = await axios_instance.get(`/get-property-by-id-live/${id}`).catch((error)=>{
+            const res = await axios_instance.get(`/get-property-by-id-live/${property_id}`)
+            // .then((response)=>{
+            // })
+            .catch((error)=>{
                 if (error.response) {
                     console.log(error.response.data);
                     console.log(error.response.status);
@@ -38,25 +45,22 @@ const Listing = () => {
             })
             await setData(res.data)
             await setLoading(false)
-            await console.log("fetch data success",data)
         }
         fetchData()
     },[])
 
     const toggleLike = async () => {
+        if(liked) {
+            const res_unliked = await axios_instance.put(`/unlike-property/${user_id}/${property_id}`)
+            console.log(res_unliked)
+        }else{
+            const res_liked = await axios_instance.put(`/like-property/${user_id}/${property_id}`)
+            console.log(res_liked)
+        }
         await setLiked(!liked)
-        // const res_liked = await axios_instance.post(`/liked-property`,{
-        //     params: {
-        //         property_id: id,
-        //         liked: liked
-        //     }
-        // })
     }
 
-
-
     const Info = () => {
-        console.log(data)
         return (
         <Content className="listing-content">
             <Carousel
@@ -69,8 +73,8 @@ const Listing = () => {
                     <h2>€{data["rent per month"] } per month</h2>
                 </div>
                 <div className="listing-cardInfo">
-                    <p className="cardInfo-bed">{data["property-type"]["bed"]} Bed</p>
-                    <p className="cardInfo-bath">{data["property-type"]["bath"]} Bath</p>
+                    <p className="cardInfo-bed">{data["property-type"]["bed"]}</p>
+                    <p className="cardInfo-bath">{data["property-type"]["bath"]}</p>
                     <p className="cardInfo-type">{data["property-type"]["type-info"][2]}</p>
                 </div>
                 <Button
@@ -97,7 +101,7 @@ const Listing = () => {
                 </div>
             </div>
             <Divider/>
-            { liked ? <UserList/> : <p>Like to see more</p>}
+            { liked ? <UserList/> : null}
         </Content>)
     }
 

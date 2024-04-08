@@ -1,7 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Avatar, Divider, List, Skeleton, Modal, Descriptions } from 'antd';
+import { Avatar, Divider, List, Skeleton, Modal, Descriptions, Tag } from 'antd';
 import { axios_instance } from '@/utils';
+import './UserList.scss'
+
+const dummy_user = {
+    "firebase_id": "ykaiawrX",
+    "name": "James Silva",
+    "profile_pic": "https://i.pinimg.com/originals/2f/15/f2/2f15f2e8c688b3120d3d26467b06330c.jpg",
+    "selected_tags": {
+      "languages": [
+        "English",
+        "Chinese",
+        "French"
+      ],
+      "smoker": "Social smoker",
+      "pets": "Dog-friendly",
+      "diet": "Vegan",
+      "allergies": "Peanuts",
+      "habit": "Morning-bird",
+      "work": "Work-from-home"
+    },
+    "phone_number": "797.746.4928x455",
+    "bio": "Together place reduce themselves want environment heavy. Teacher expert that.\nField establish where attention role on defense memory. Baby manager international trade."
+}
 
 const UserList = () => {
     const [loading, setLoading] = useState(false);
@@ -14,8 +36,7 @@ const UserList = () => {
             return;
         }
         setLoading(true);
-
-        fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
+        fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,phone,picture&noinfo')
         .then((res) => res.json())
         .then((body) => {
             setData([...data, ...body.results]);
@@ -24,6 +45,7 @@ const UserList = () => {
         .catch(() => {
             setLoading(false);
         });
+        // axios_instance.post
     };
 
     useEffect(() => {
@@ -31,7 +53,27 @@ const UserList = () => {
     }, []);
 
     const showModal = (user) => {
-        setCurrentUser(user);
+        // const dummy_user = {
+        //     "firebase_id": "ykaiawrX",
+        //     "name": "James Silva",
+        //     "profile_pic": "https://i.pinimg.com/originals/2f/15/f2/2f15f2e8c688b3120d3d26467b06330c.jpg",
+        //     "selected_tags": {
+        //       "languages": [
+        //         "English",
+        //         "Chinese",
+        //         "French"
+        //       ],
+        //       "smoker": "Social smoker",
+        //       "pets": "Dog-friendly",
+        //       "diet": "Vegan",
+        //       "allergies": "Peanuts",
+        //       "habit": "Morning-bird",
+        //       "work": "Work-from-home"
+        //     },
+        //     "phone_number": "797.746.4928x455",
+        //     "bio": "Together place reduce themselves want environment heavy. Teacher expert that.\nField establish where attention role on defense memory. Baby manager international trade."
+        // }
+        setCurrentUser(dummy_user);
         setModalVisible(true);
     };
 
@@ -48,21 +90,16 @@ const UserList = () => {
                 footer={null}
             >
                 <Descriptions bordered column={1}>
-                    <Descriptions.Item label="Avatar" span={1} rowspan={2} ><Avatar src={currentUser?.picture?.large} /></Descriptions.Item>  
-                    <Descriptions.Item label="Name">{currentUser?.name?.first} {currentUser?.name?.last}</Descriptions.Item>
-                    <Descriptions.Item label="Gender">{currentUser?.gender}</Descriptions.Item>
-                    <Descriptions.Item label="Phone Number">{currentUser?.email}</Descriptions.Item>
-                    <Descriptions.Item label="Nationality">{currentUser?.nat}</Descriptions.Item>
+                    <Descriptions.Item label="Avatar" span={1} rowspan={2} ><Avatar src={currentUser?.profile_pic} /></Descriptions.Item>  
+                    <Descriptions.Item label="Name">{currentUser?.name}</Descriptions.Item>
+                    <Descriptions.Item label="Phone Number">
+                        <a href={`https://wa.me/${currentUser?.phone_number}`}>{currentUser?.phone_number}</a>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Biograph">{currentUser?.bio}</Descriptions.Item>
                 </Descriptions>
             </Modal>
             <div
                 id="scrollableDiv"
-                style={{
-                    height: 400,
-                    overflow: 'auto',
-                    padding: '0 16px',
-                    border: '1px solid rgba(140, 140, 140, 0.35)',
-                }}
             >
                 <InfiniteScroll
                     dataLength={data.length}
@@ -87,7 +124,29 @@ const UserList = () => {
                                 <List.Item.Meta
                                     avatar={<Avatar src={item.picture.large} />}
                                     title={<a onClick={() => showModal(item)}>{item.name.last}</a>}
-                                    description={item.email}
+                                    description={Object.entries(dummy_user.selected_tags).map(([key, value]) => {
+                                        if (key === 'languages') {
+                                            return value.map((lang) => <Tag color='#108ee9'>{lang}</Tag>);
+                                        }
+                                        else if (key === 'smoker') {
+                                            return <Tag color='geekblue'>{`${key}: ${value}`}</Tag>;
+                                        }
+                                        else if (key === 'pets') {
+                                            return <Tag color='cyan'>{`${key}: ${value}`}</Tag>;
+                                        }
+                                        else if (key === 'diet') {
+                                            return <Tag color='green'>{`${key}: ${value}`}</Tag>;
+                                        }
+                                        else if (key === 'allergies') {
+                                            return <Tag color='#2db7f5'>{`${key}: ${value}`}</Tag>;
+                                        }
+                                        else if (key === 'habit') {
+                                            return <Tag color='#90d6f7' style={{color: '#333'}}>{`${key}: ${value}`}</Tag>;
+                                        }
+                                        else if (key === 'work') {
+                                            return <Tag color='#76a9ef' style={{color: '#333'}}>{`${key}: ${value}`}</Tag>;
+                                        }
+                                    })}
                                 />
                             </List.Item>
                         )}
