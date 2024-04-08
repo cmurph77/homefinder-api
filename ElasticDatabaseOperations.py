@@ -123,12 +123,12 @@ class ElasticDatabaseOperations:
                 'profile_pic' : jsonData['profile_pic'],
                 'selected_tags':{
                     'languages' : jsonData['selected_tags']['language'],
-                    'smoker' : jsonData['selected_tags']['smoker'],
-                    'pets' : jsonData['selected_tags']['pets'],
-                    'diet' : jsonData['selected_tags']['diet'],
-                    'allergies' : jsonData['selected_tags']['allergies'],
-                    'habit' : jsonData['selected_tags']['habit'],
-                    'work' : jsonData['selected_tags']['work']
+                    'smoker' : [jsonData['selected_tags']['smoker']],
+                    'pets' : [jsonData['selected_tags']['pets']],
+                    'diet' : [jsonData['selected_tags']['diet']],
+                    'allergies' : [jsonData['selected_tags']['allergies']],
+                    'habit' : [jsonData['selected_tags']['habit']],
+                    'work' : [jsonData['selected_tags']['work']]
                 },
                 'phone_number' : jsonData['phone_number'],
                 'bio' : jsonData['bio'],
@@ -189,7 +189,7 @@ class ElasticDatabaseOperations:
                         }
                     },
                     "pic": {
-                        "type": "text"  # Change the type to "text" to accommodate URLs
+                        "type": "text"
                     }
                 }
             }
@@ -231,22 +231,40 @@ class ElasticDatabaseOperations:
                                 }
                             },
                             "smoker": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "fields": {
+                                    "text": { "type": "keyword" }
+                                }
                             },
                             "pets": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "fields": {
+                                    "text": { "type": "keyword" }
+                                }
                             },
                             "diet": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "fields": {
+                                    "text": { "type": "keyword" }
+                                }
                             },
                             "allergies": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "fields": {
+                                    "text": { "type": "keyword" }
+                                }
                             },
                             "habit": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "fields": {
+                                    "text": { "type": "keyword" }
+                                }
                             },
                             "work": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "fields": {
+                                    "text": { "type": "keyword" }
+                                }
                             }
                         }
                     },

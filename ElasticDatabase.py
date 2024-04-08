@@ -192,7 +192,7 @@ class ElasticDatabase:
             if searchResult["hits"]["hits"]:
                 userData = searchResult["hits"]["hits"][0]["_source"]
 
-            userDataJSON = json.dumps(userData)
+            userDataJSON = json.dumps(userData, indent=4)
             return userDataJSON
         except:
             return '{}'
@@ -255,8 +255,10 @@ class ElasticDatabase:
 # Test connection
 def main():
 
-    user_ids = ElasticDatabase.searchPropertyLikedUsers(216696046)
-    print(user_ids)
+    pass
+
+    # user_ids = ElasticDatabase.searchPropertyLikedUsers(216696046)
+    # print(user_ids)
     # - - Search properties with filter - -
 
     # minRent = 1100
@@ -307,12 +309,17 @@ def main():
     # print(propertyData)
 
 
+    # - - Search for a user - -
+    userData = ElasticDatabase.searchUser("YSixicUz")
+    print(userData)
+
+
     # Store PropertyData in a json
 
-    # fileName = 'searchPropertiesWithFilter.json'
-    # filePath = os.path.join('mock_data', 'ExampleJSONs', fileName)
-    # with open(filePath, "w") as jsonFile:
-    #     jsonFile.write(propertyData)
+    fileName = 'searchUserExample.json'
+    filePath = os.path.join('mock_data', 'ExampleJSONs', fileName)
+    with open(filePath, "w") as jsonFile:
+        jsonFile.write(userData)
 
 if __name__ == "__main__":
     main()
