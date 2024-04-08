@@ -1,17 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { PrimaryButton } from "@fluentui/react";
 import logo from '@/images/logo.png';
 import './header.css';
 import { useNavigate } from "react-router-dom"
+// import { useHistory } from "react-router-dom";
 
 import {  message, Popconfirm } from 'antd'
-import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
+import { LogoutOutlined, UserOutlined, LeftOutlined } from '@ant-design/icons'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase'
 import { axios_instance } from "@/utils";
 
-export default function Header() {
+export default function Header( props ) {
     const [userName, setUserName] = useState(null)
+    console.log(props)
 
     // Logout Function
     const navigate = useNavigate()
@@ -23,9 +24,6 @@ export default function Header() {
             message.success("Logout Failed, please try again later")
         });
     }
-    
-    // const isLoggedIn = true; //Will update later when login is implemented ToDo
-    // const hasNewChat = true; //ToDo add logic
 
     const user = auth.currentUser;
     // const uid = user.uid
@@ -39,44 +37,16 @@ export default function Header() {
         })
     },[])
 
-    //Logged out users do not see the chat button on the header bar
-    //Logged in users can and will be able to see if they have unread chat notifications
-    // const chatButton = useMemo(() => {
-    //     if (isLoggedIn && hasNewChat) {
-    //         return(
-    //             <PrimaryButton
-    //                 className={"ChatButton"}
-    //                 onClick={() => null} //ToDo add functionality
-    //             >
-    //                 Chat (New)
-    //             </PrimaryButton>
-    //         );
-    //     }
-    //     else if(isLoggedIn) {
-    //         return(
-    //             <PrimaryButton
-    //                 className={"ChatButton"}
-    //                 onClick={() => null} //ToDo add functionality
-    //             >
-    //                 Chat
-    //             </PrimaryButton>
-    //         );
-    //     }
-    //     else {
-    //         return(null);
-    //     }
-    // }, [isLoggedIn, hasNewChat]);
-
     const UserButton = () => {
         return (
-            <div className="user-btn">
+            <div className="header-user-btn">
                 <span 
                     className="user-name" 
                     style={{ marginRight: '20px', cursor: 'pointer'}}
                     onClick={() => navigate('/user')}
                 >
                     <UserOutlined 
-                        style={{ marginRight: '5px'}}
+                        style={{ marginRight: '10px'}}
                     />
                     {userName}
                 </span>
@@ -87,9 +57,28 @@ export default function Header() {
                         cancelText="Cancel" 
                         onConfirm={signout}
                     >
-                        <LogoutOutlined /> Sign Out
+                        <LogoutOutlined style={{ marginRight: '10px'}}/>Sign Out
                     </Popconfirm>
                 </span>
+            </div>
+        )
+    }
+
+    const handleNavigate = (path) => {
+        if (props.property) {
+            if(props.property === 'user page') {
+                navigate(-1)
+            }
+            else {
+                navigate('/')
+            }
+        }
+    }
+
+    const BackButton = () => {
+        return (
+            <div className="header-back-btn" onClick={handleNavigate}>
+                <LeftOutlined style={{marginRight: '5px'}}/>Back
             </div>
         )
     }
@@ -100,6 +89,7 @@ export default function Header() {
             <UserButton style={{
                 marginRight: '20px',
             }}/>
+            { props.property ? <BackButton /> : null}
         </section>
     );
 }

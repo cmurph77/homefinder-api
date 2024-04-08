@@ -23,19 +23,19 @@
     cursor: pointer;
 }
 
-.user-btn{
+.header-user-btn{
     position: absolute;
     top: 50%;
     right: 20px;
     transform: translate(0, -50%);
+    font-size: 16px;
 }
 
-.ChatContainer {
-    max-height: 36px;
-    padding: 4px 10px
-}
-
-.ProfileContainer {
-    max-height: 36px;
-    padding: 4px 10px
+.header-back-btn{
+    position: absolute;
+    cursor: pointer;
+    font-size: 16px;
+    top: 50%;
+    left: 20px;
+    transform: translate(0, -50%);
 }

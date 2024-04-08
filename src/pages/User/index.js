@@ -107,7 +107,7 @@ const App = () => {
         <div className="user-container">
             <Layout className="user-layout">
                 <Header className="user-header">
-                    <_Header/>
+                    <_Header property={'user page'}/>
                 </Header>
                 <Content className="user-content">
                     <Menu

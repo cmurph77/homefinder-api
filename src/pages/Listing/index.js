@@ -116,8 +116,7 @@ const Listing = () => {
         <div className="listing-container">
             <Layout className="listing-layout">
                 <Header className="listing-header">
-                    {/* this is property {id} */}
-                    <_Header/>
+                    <_Header property={'property page'}/>
                 </Header>
                 { loading ? <p>Loading</p> : <Info/> }
             </Layout>
