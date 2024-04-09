@@ -4,8 +4,10 @@ import './listingMap.css';
 
 export default function ListingMap(props) {
   console.log("listing map",props.properties.data)
+  var map;
+
   const linkList = props.properties.data.map(
-    property =>  "listing/" + props.id
+    property =>  "listing/" + property.identifier
   )
 
   const latlngList =props.properties.data.map(
@@ -14,7 +16,8 @@ export default function ListingMap(props) {
 
   useEffect(() => {
     // create map
-    var map = L.map('map', {
+
+    map = L.map('map', {
       center: [53.3302, -6.2106],
       zoom: 11,
       layers: [
@@ -27,6 +30,11 @@ export default function ListingMap(props) {
     for (let i = 0; i < latlngList.length; i++) {
       var marker = L.marker(latlngList[i]).addTo(map).bindPopup('<a href="' + linkList[i].toString() + '">Go to Property Page</a>').openPopup();
     }
+
+    // Clean up
+    return () => {
+      map.remove(); // Remove the map instance when the component unmounts
+    };
   }, [linkList, latlngList]);
 
 

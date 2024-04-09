@@ -49,36 +49,38 @@ const App = () => {
         setSelectedKey(item.key)
     }
 
+    const handleProfileUpdate = (data) => 
+    {
+        const updateUserInfo = async () => {
+            try {
+                setLoading(true);
+                const res = await axios_instance.post('/update-users-info/', data, 
+                    { headers: { 'Content-Type': 'application/json'}}
+                )
+                console.log(res);
+                if (res.status === 200) {
+                    setUserInfo(data);
+                }
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        updateUserInfo();
+        console.log("Profile Updated");
+    };
+
     // make api calls to get user info, when user id changes or profile is updated
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
                 console.log("Fetching user info", profileUpdated);
                 setLoading(true);
-                // const res = await axios_instance.get('/get-user-info', {
-                //     params: { user_id: userId }
-                // });
-                const res = {
-                    status: 200,
-                    data: {
-                        firebase_id : '0',
-                        name : "dummy",
-                        profile_pic : "null",
-                        selected_tags:{
-                            languages : [],
-                            smoker : [],
-                            pets : [],
-                            diet : [],
-                            allergies : [],
-                            habit : [],
-                            work : [],
-                        },
-                        phone_number : "12345678",
-                        bio : "Hi, I'm not a real person!",
-                        liked_properties : [],
-                        liked_users : [],
-                    }
-                }
+                //If you want to easily test if user works, swap which following line is used
+                //const res = await axios_instance.get(`/get-user-info/${userId}`); 
+                const res = await axios_instance.get(`/get-user-info/YSixicUz`);
+                console.log(res);
                 if (res.status === 200) {
                     setUserInfo(res.data);
                 }
@@ -86,7 +88,7 @@ const App = () => {
                 console.error(error);
             } finally {
                 setLoading(false);
-                // setProfileUpdated(false)
+                setProfileUpdated(false);
             }
         };
         fetchUserInfo();
@@ -95,7 +97,7 @@ const App = () => {
     const renderContent = () => {
         switch (selectedkey) {
             case 'profile':
-                return <UserProfile data={userInfo} toggleProfileUpdated={toggleProfileUpdated} />;
+                return <UserProfile data={userInfo} handleProfileUpdate={handleProfileUpdate} />;
             case 'liked-properties':
                 return <LikedProperties data={userInfo} toggleProfileUpdated={toggleProfileUpdated} />;
             default:
