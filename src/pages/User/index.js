@@ -75,11 +75,11 @@ const App = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                console.log("Fetching user info", profileUpdated);
+                // console.log("Fetching user info", profileUpdated);
                 setLoading(true);
                 //If you want to easily test if user works, swap which following line is used
                 //const res = await axios_instance.get(`/get-user-info/${userId}`); 
-                const res = await axios_instance.get(`/get-user-info/YSixicUz`);
+                const res = await axios_instance.get(`/get-user-info/${userId}`);
                 console.log(res);
                 if (res.status === 200) {
                     setUserInfo(res.data);
@@ -109,7 +109,7 @@ const App = () => {
         <div className="user-container">
             <Layout className="user-layout">
                 <Header className="user-header">
-                    <_Header/>
+                    <_Header property={'user page'}/>
                 </Header>
                 <Content className="user-content">
                     <Menu

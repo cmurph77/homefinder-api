@@ -1,18 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Button, message, Pagination, Layout, FloatButton   } from 'antd'
-import { signOut } from 'firebase/auth'
-import { auth } from '@/firebase'
-import { useNavigate } from 'react-router-dom'
-
-// import empty_listings from "@/server/empty-property-object.json";
-
+import { Button, message, Pagination, Layout, FloatButton, Spin   } from 'antd'
+import { EnvironmentOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _Header from "@/components/header.js";
-
 import ListingGrid from "./components/listingGrid.js";
 import ListingMap from "./components/listingMap.js";
-
 import Filter from "./components/filter.js";
-
 import { axios_instance } from "@/utils";
 
 import './index.scss'
@@ -23,7 +15,7 @@ const Home = () => {
 
     // --------- Page Number ------
     const [pageNo, setPageNo] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(20);
     const [loading, setLoading] = useState(true);
 
     const onChange = (page, pageSize) => {
@@ -77,16 +69,21 @@ const Home = () => {
                 })
             await setListing(res)
             await setLoading(false)
-            await console.log("fetch data success",res)
         }
         fetchData()
     },[pageNo, pageSize, rentVal, bedVal, bathVal])
 
+    const LoadingComponent = () => {
+        return(
+            <Spin tip="Loading" size="large">
+                <div className="loading-container" />
+            </Spin>
+        )
+    }
     const [mapView, setView] = useState(false);
 
     const handleToggle = () => {
         setView((current) => !current);
-        //Change page size to be very large to include all properties on map
         if(!mapView)
         {
             setPageNo(1)
@@ -98,21 +95,33 @@ const Home = () => {
         }
     };
 
+    
+
     return (
         <Layout className="home-layout">
             <Header className="home-header">
                 <_Header/>
-                <Button className = "viewButton" type="primary" onClick={handleToggle}>Change View</Button>
             </Header>
 
             <Content className="home-content">
                 <Filter onFilter={handleFilter}/>
-                { loading ? <p>Loading...</p> : ( mapView ? <ListingMap properties={listings} status={loading}/> : <ListingGrid properties={listings}/>) }
+                { loading ? <LoadingComponent/> : ( mapView ? <ListingMap properties={listings} status={loading}/> : <ListingGrid properties={listings}/>) }
             </Content>
 
             <Footer className="home-footer">
-                {mapView ? null : <Pagination defaultCurrent={1} onChange={onChange} total={500}/>}
+                {mapView ? null : <Pagination defaultCurrent={1} onChange={onChange} total={500} defaultPageSize={20} pageSizeOptions={[ 20, 40, 100]}/> }
             </Footer>
+            <FloatButton.BackTop 
+                style={{
+                    right: 84,
+                }}
+            />
+            <FloatButton
+                icon={mapView ? <AppstoreOutlined /> : <EnvironmentOutlined /> }
+                type="primary"
+                onClick={handleToggle}
+            />
+            
         </Layout>
     )
 }

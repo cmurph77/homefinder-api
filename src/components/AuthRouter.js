@@ -7,21 +7,33 @@ import { useNavigate } from 'react-router-dom'
 
 
 const NoAccess = () => {
-  const navigate = useNavigate();
-  return (
-    <Result
-    status="403"
-    title="Sorry, you have not logged in"
-    subTitle={
-      <>
-        Sorry, you are not authorized to access this page.
-        <br />
-        Back to login page in 5s
-      </>
-    }
-    extra={<Button type="primary" onClick={()=>navigate('/login', { replace: true })}>Back Login</Button>}
-  />
-  )
+  const navigate = useNavigate()
+    const [countDown, setCountDown] = useState(3)
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCountDown(countDown-1)
+          }, 1000);
+        setTimeout(() => {
+            navigate('/login', { replace: true });
+            clearInterval(timer)
+        }, 3000);
+    });
+
+    return (
+      <Result
+          status="403"
+          title="Sorry, you have not logged in"
+          subTitle={
+              <>
+                Sorry, you are not authorized to access this page.
+                <br />
+                Back to the home page in <span style={{fontWeight:600, color:'black'}}>{countDown}s</span>
+              </>
+          }
+          extra={<Button type="primary" onClick={()=>navigate('/login', { replace: true })}>Back Login</Button>}
+      />
+    )
 }
   
 ;
@@ -35,10 +47,8 @@ export function AuthRoute({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserExists(true);
-        // message.success('------------Login---------');
       } else {
         setUserExists(false);
-        message.error('You haven\'t logged in');
         setTimeout(() => {
           navigate('/login', { replace: true });
         }, 5000);

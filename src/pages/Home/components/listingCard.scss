@@ -1,0 +1,75 @@
+.home-listingcard{
+    .ant-card-body{
+        padding: 0px !important;
+        p{
+            margin: 0px;
+        }
+        .cardbody-address{
+            margin: 10px 15px 10px;
+            font-weight: 600;
+            font-size: 15px;
+            min-height: 70px;
+        }
+        .cardbody-divider{
+            margin: 5px auto;
+        }
+        .cardbody-info{
+            position: relative;
+            .cardbody-icon{
+                position: absolute;
+                right: 14px;
+                top: 12px;
+                font-size: 12px;
+            }
+            .cardbody-rent{
+                padding: 0 0 0 15px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            .cardbody-details{
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                .cardbody-bed{
+                    padding-left: 15px;
+                    padding-right: 9px;
+                    font-size: 14px;
+                    color: #333;
+                }
+                .cardbody-bath{
+                    font-size: 14px;
+                    padding-right: 9px;
+    
+                    color: #333;
+                    position: relative;
+                    &:before{
+                        position: absolute;
+                        font-size: 15px;
+                        content: "|";
+                        bottom: 0px;
+                        color: grey;
+                        display: block;
+                        left: -6px;
+                    }
+                }
+                .cardbody-type{
+                    font-size: 14px;
+                    color: #333;
+                    position: relative;
+                    &:before{
+                        position: absolute;
+                        font-size: 15px;
+                        content: "|";
+                        bottom: 0px;
+                        color: grey;
+                        display: block;
+                        left: -6px;
+                    }
+                }
+            }
+        }
+        
+        
+    }
+}

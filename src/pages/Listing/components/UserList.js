@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Avatar, Divider, List, Skeleton, Modal, Descriptions } from 'antd';
+import { Avatar, Divider, List, Skeleton, Modal, Descriptions, Tag } from 'antd';
 import { axios_instance } from '@/utils';
+import './UserList.scss'
 
-const UserList = () => {
+const UserList = ({property_id}) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
@@ -14,16 +15,14 @@ const UserList = () => {
             return;
         }
         setLoading(true);
-
-        fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
-        .then((res) => res.json())
-        .then((body) => {
-            setData([...data, ...body.results]);
-            setLoading(false);
+        axios_instance.get(`/get-propertys-liked-users/${property_id}`)
+        .then((response) => {
+            setData([...data, ...response.data])
+            setLoading(false)
         })
         .catch(() => {
             setLoading(false);
-        });
+        })
     };
 
     useEffect(() => {
@@ -48,46 +47,54 @@ const UserList = () => {
                 footer={null}
             >
                 <Descriptions bordered column={1}>
-                    <Descriptions.Item label="Avatar" span={1} rowspan={2} ><Avatar src={currentUser?.picture?.large} /></Descriptions.Item>  
-                    <Descriptions.Item label="Name">{currentUser?.name?.first} {currentUser?.name?.last}</Descriptions.Item>
-                    <Descriptions.Item label="Gender">{currentUser?.gender}</Descriptions.Item>
-                    <Descriptions.Item label="Phone Number">{currentUser?.email}</Descriptions.Item>
-                    <Descriptions.Item label="Nationality">{currentUser?.nat}</Descriptions.Item>
+                    <Descriptions.Item label="Avatar" span={1} rowspan={2} ><Avatar src={currentUser?.profile_pic} /></Descriptions.Item>  
+                    <Descriptions.Item label="Name">{currentUser?.name}</Descriptions.Item>
+                    <Descriptions.Item label="Phone Number">
+                        <a href={`https://wa.me/${currentUser?.phone_number}`}>{currentUser?.phone_number}</a>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Biograph">{currentUser?.bio}</Descriptions.Item>
                 </Descriptions>
             </Modal>
             <div
                 id="scrollableDiv"
-                style={{
-                    height: 400,
-                    overflow: 'auto',
-                    padding: '0 16px',
-                    border: '1px solid rgba(140, 140, 140, 0.35)',
-                }}
             >
                 <InfiniteScroll
                     dataLength={data.length}
                     next={loadMoreData}
                     hasMore={data.length < 50}
-                    loader={
-                        <Skeleton
-                            avatar
-                            paragraph={{
-                                rows: 1,
-                            }}
-                            active
-                        />
-                    }
-                    endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+                    endMessage={<Divider plain>It is all, nothing more</Divider>}
                     scrollableTarget="scrollableDiv"
                 >
                     <List
                         dataSource={data}
                         renderItem={(item) => (
-                            <List.Item key={item.email}>
+                            <List.Item key={item.firebaseid}>
                                 <List.Item.Meta
-                                    avatar={<Avatar src={item.picture.large} />}
-                                    title={<a onClick={() => showModal(item)}>{item.name.last}</a>}
-                                    description={item.email}
+                                    avatar={<Avatar src={item.profile_pic} />}
+                                    title={<a onClick={() => showModal(item)}>{item.name}</a>}
+                                    description={Object.entries(item.selected_tags).map(([key, value]) => {
+                                        if (key === 'languages') {
+                                            return value.map((lang) => <Tag color='#108ee9'>{lang}</Tag>);
+                                        }
+                                        else if (key === 'smoker') {
+                                            return <Tag color='geekblue'>{`${key}: ${value}`}</Tag>;
+                                        }
+                                        else if (key === 'pets') {
+                                            return <Tag color='cyan'>{`${key}: ${value[0]}`}</Tag>;
+                                        }
+                                        else if (key === 'diet') {
+                                            return <Tag color='green'>{`${key}: ${value[0]}`}</Tag>;
+                                        }
+                                        else if (key === 'allergies') {
+                                            return <Tag color='#2db7f5'>{`${key}: ${value[0]}`}</Tag>;
+                                        }
+                                        else if (key === 'habit') {
+                                            return <Tag color='#90d6f7' style={{color: '#333'}}>{`${key}: ${value[0]}`}</Tag>;
+                                        }
+                                        else if (key === 'work') {
+                                            return <Tag color='#76a9ef' style={{color: '#333'}}>{`${key}: ${value[0]}`}</Tag>;
+                                        }
+                                    })}
                                 />
                             </List.Item>
                         )}

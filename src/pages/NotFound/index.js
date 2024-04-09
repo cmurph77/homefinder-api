@@ -1,21 +1,35 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Result } from 'antd';
 import { useNavigate } from 'react-router-dom'
 
 
 const NotFound = () => {
     const navigate = useNavigate()
-    const onClick = () => {
-        navigate('/')
-    }
+    const [countDown, setCountDown] = useState(3)
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCountDown(countDown-1)
+          }, 1000);
+        setTimeout(() => {
+            navigate('/', { replace: true });
+            clearInterval(timer)
+        }, 3000);
+    });
 
     return (
         <>
         <Result
             status="404"
             title="404"
-            subTitle="Sorry, the page you visited does not exist."
-            extra={<Button type="primary" onClick={onClick}>Back Home</Button>}
+            subTitle={
+                <>
+                Sorry, this page could not be found..
+                <br />
+                Back to the home page in <span style={{fontWeight:600, color:'black'}}>{countDown}s</span>
+                </>
+            }
+            extra={<Button type="primary" onClick={()=>navigate('/', { replace: true })}>Back to Homepage</Button>}
         />
         </>
     )

@@ -4,6 +4,8 @@ import logo from '@/assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/firebase'
+import { signOut } from 'firebase/auth'
+import { axios_instance } from "@/utils";
 
 
 const Signup = () => {
@@ -11,13 +13,47 @@ const Signup = () => {
     const navigate = useNavigate()
     
     const onFinish = async (values) => {
-        console.log(values)
         await createUserWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user)
-            navigate('/login')
-            message.success('------------Sign Up success---------')
+            const uid = user.uid
+            // setUId(uid)
+            const data_to_backend = {
+                firebase_id: uid,
+                name: values.username,
+                profile_pic: "",
+                selected_tags: {
+                    languages: [],
+                    smoker: "",
+                    pets: [],
+                    diet: [],
+                    allergies: [],
+                    habit: [],
+                    work: []
+                },
+                phone_number: "",
+                bio:"",
+                liked_properties: [],
+                liked_users: []
+            }
+            // console.log("SIGN UP", data_to_backend)
+            axios_instance.post('/add-user-to-database/', data_to_backend, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                signOut(auth).then(() => {
+                    message.success('------------Sign Up success---------')
+                    navigate('/login')
+                }).catch((error) => {
+                    message.success("Logout Failed, please try again later")
+                });
+            })
+            .catch((error) => {
+                console.log(error)
+                message.error('------------Sign Up Failed---------')
+            })
         })
         .catch((error) => {
             message.error(error.code)
@@ -83,6 +119,10 @@ const Signup = () => {
                             {
                                 required: true,
                                 message: "Please input your password!"
+                            },
+                            {
+                                min: 6,
+                                message: "Password must be at least 6 characters"
                             }
                         ]}
                         hasFeedback
@@ -116,7 +156,7 @@ const Signup = () => {
                         <Input.Password size='large' placeholder='confirm password'/>
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                         className='signup-item'
                         name="gender"
                         label="Gender"
@@ -133,7 +173,7 @@ const Signup = () => {
                             <Option value="female">Female</Option>
                             <Option value="other">Other</Option>
                         </Select>
-                    </Form.Item>
+                    </Form.Item> */}
                 
                     <Form.Item
                         name="agreement"
