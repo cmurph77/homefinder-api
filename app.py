@@ -194,10 +194,10 @@ def check_liked_property(user_id, property_id):
                 id = int(id)
                 #print(id)
                 if id == property_id:
-                    return "Success", 200
-            return 0
+                    return "Liked", 200
+            return "Unliked", 200
         else:
-            return 0
+            return "User not found", 404
     except: 
         return {'error': 'Invalid User ID'}, 404
     
