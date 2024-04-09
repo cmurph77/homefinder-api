@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { clearUId, clearUId_Session } from "@/utils";
 import { useSelector } from 'react-redux';
 import logo from '@/images/logo.png';
 import './header.css';
@@ -19,14 +20,14 @@ export default function Header( props ) {
     const signout = () => {
         signOut(auth).then(() => {
             navigate('/login')
-            message.success("Logout successful")
+            clearUId()
+            clearUId_Session()
         }).catch((error) => {
             message.success("Logout Failed, please try again later")
         });
     }
 
     useEffect(()=>{
-        console.log(uid)
         if (uid) {
             axios_instance.get(`/get-user-info/${uid}`).then((res) => {
                 setUserName(res.data.name)

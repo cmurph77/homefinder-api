@@ -13,11 +13,11 @@ const formatRent = (rent) => {
 
 const LikedProperties = (props) => {
     const [data_liked_properties, setData] = useState([])
+    const [reload, setReload] = useState(0)
     const user_id = useSelector(state => state.user.userId)
 
     useEffect(() => {
         const fetchData = async () => {
-            // const user_id = 'YSixicUz'
             const res = await axios_instance.get(`/get-liked-properties/${user_id}`)
             let data = res.data
             data.map((record) => { 
@@ -27,12 +27,11 @@ const LikedProperties = (props) => {
                 record['property-type'].bed = parseInt(record['property-type'].bed.match(/\d+/g)[0], 10) 
             })
             const defaultSelectedRowKeys = data.map(record => record.key)
-            console.log(data)
             setSelectedRowKeys(defaultSelectedRowKeys)
             setData(data)
         }
         fetchData()
-    }, [])
+    }, [reload, user_id])
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
@@ -61,19 +60,24 @@ const LikedProperties = (props) => {
     };
 
     const submitInfo = () => {
-        // const user_id = 'YSixicUz'
 
         console.log("Liked Properties", selectedRowKeys)
-        // axios_instance.post('/get-liked-properties/${user_id}', {
-        //     user_id: props.userInfo.firebase_id,
-        //     property_ids: selectedRowKeys
-        // }).then(res => {
-        //     message.success('Liked Properties Updated');
-        // }).catch(err => {
-        //     console.log(err)
-        //     message.error('Failed to update Liked Properties');
-        // })
-        // props.toggleProfileUpdated()
+        axios_instance.post('/user/update-liked-properties/', {
+            user_id: user_id,
+            property_ids: selectedRowKeys
+        },{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            setTimeout(() => {
+                setReload(reload + 1)
+            }, 1000);
+            message.success('Liked Properties Updated');
+        }).catch(err => {
+            console.log(err)
+            message.error('Failed to update Liked Properties');
+        })
     }
 
     const columns = [

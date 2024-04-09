@@ -75,7 +75,7 @@ const App = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                console.log("Fetching user info", profileUpdated);
+                // console.log("Fetching user info", profileUpdated);
                 setLoading(true);
                 //If you want to easily test if user works, swap which following line is used
                 //const res = await axios_instance.get(`/get-user-info/${userId}`); 

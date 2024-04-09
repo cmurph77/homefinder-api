@@ -17,7 +17,6 @@ const UserList = ({property_id}) => {
         setLoading(true);
         axios_instance.get(`/get-propertys-liked-users/${property_id}`)
         .then((response) => {
-            console.log(response.data)
             setData([...data, ...response.data])
             setLoading(false)
         })
@@ -73,12 +72,12 @@ const UserList = ({property_id}) => {
                                 <List.Item.Meta
                                     avatar={<Avatar src={item.profile_pic} />}
                                     title={<a onClick={() => showModal(item)}>{item.name}</a>}
-                                    description={Object.entries(data.selected_tags).map(([key, value]) => {
+                                    description={Object.entries(item.selected_tags).map(([key, value]) => {
                                         if (key === 'languages') {
                                             return value.map((lang) => <Tag color='#108ee9'>{lang}</Tag>);
                                         }
                                         else if (key === 'smoker') {
-                                            return <Tag color='geekblue'>{`${key}: ${value[0]}`}</Tag>;
+                                            return <Tag color='geekblue'>{`${key}: ${value}`}</Tag>;
                                         }
                                         else if (key === 'pets') {
                                             return <Tag color='cyan'>{`${key}: ${value[0]}`}</Tag>;

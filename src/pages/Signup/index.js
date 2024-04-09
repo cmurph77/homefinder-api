@@ -4,6 +4,7 @@ import logo from '@/assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/firebase'
+import { signOut } from 'firebase/auth'
 import { axios_instance } from "@/utils";
 
 
@@ -16,6 +17,7 @@ const Signup = () => {
         .then((userCredential) => {
             const user = userCredential.user;
             const uid = user.uid
+            // setUId(uid)
             const data_to_backend = {
                 firebase_id: uid,
                 name: values.username,
@@ -41,8 +43,12 @@ const Signup = () => {
                 }
             })
             .then((response) => {
-                navigate('/login')
-                message.success('------------Sign Up success---------')
+                signOut(auth).then(() => {
+                    message.success('------------Sign Up success---------')
+                    navigate('/login')
+                }).catch((error) => {
+                    message.success("Logout Failed, please try again later")
+                });
             })
             .catch((error) => {
                 console.log(error)

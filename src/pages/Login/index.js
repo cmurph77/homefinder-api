@@ -22,10 +22,8 @@ const Login = () => {
     },[])
     
     const onFinish = async (values) => {
-        console.log(values)
         const resultAction = await dispatch(fetchLogin(values))
         if (fetchLogin.fulfilled.match(resultAction)) {
-            console.log("Login successful");
             await navigate('/');
             await message.success('------------Login---------');
         } else if (fetchLogin.rejected.match(resultAction)) {

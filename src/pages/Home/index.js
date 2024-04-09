@@ -1,9 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Button, message, Pagination, Layout, FloatButton, Spin   } from 'antd'
 import { EnvironmentOutlined, AppstoreOutlined } from '@ant-design/icons'
-// import { signOut } from 'firebase/auth'
-// import { auth } from '@/firebase'
-// import { useNavigate } from 'react-router-dom'
 import _Header from "@/components/header.js";
 import ListingGrid from "./components/listingGrid.js";
 import ListingMap from "./components/listingMap.js";

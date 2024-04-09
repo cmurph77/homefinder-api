@@ -2,7 +2,6 @@
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Signup from '@/pages/Signup'
-import Test from '@/pages/Test'
 import Listing from '@/pages/Listing'
 import NotFound from '@/pages/NotFound'
 import User from '@/pages/User'
@@ -25,10 +24,6 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />
-  },
-  {
-    path: '/test',
-    element: <Test />
   },
   {
     path: '/listing/:id',

@@ -31,7 +31,6 @@ const Listing = () => {
     
     const params = useParams()
     const property_id = params.id
-    // const user = auth.currentUser
 
     useEffect(()=>{
         const fetchData = async () => {
@@ -40,13 +39,13 @@ const Listing = () => {
             .then((response)=>{
                 axios_instance.get(`/check-user-liked-property/${user_id}/${property_id}`)
                 .then((resaaa) => {
-                    console.log(resaaa)
-                    if(resaaa.data === "Success"){
+                    if(resaaa.data === "Liked"){
                         setLiked(true)
                     }
                     else{
                         setLiked(false)
                     }
+                    console.log(response.data)
                     setData(response.data)
                     setLoading(false)
                 }).catch((error) => {
@@ -94,6 +93,7 @@ const Listing = () => {
                     <p className="cardInfo-bed">{data["property-type"]["bed"]}</p>
                     <p className="cardInfo-bath">{data["property-type"]["bath"]}</p>
                     <p className="cardInfo-type">{data["property-type"]["type-info"][2]}</p>
+                    
                 </div>
                 <Button
                     type="text"
@@ -114,6 +114,9 @@ const Listing = () => {
                         </li>
                         <li>
                             <span>Lease: </span> Minimum 6 Months
+                        </li>
+                        <li>
+                            <span>Group Chat: </span>  <a href={data["chat_link"]}> JOIN</a>
                         </li>
                     </ul>
                 </div>
