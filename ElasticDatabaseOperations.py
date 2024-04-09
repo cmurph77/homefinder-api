@@ -91,7 +91,8 @@ class ElasticDatabaseOperations:
                         'bath': jsonData['property-type']['bath'],
                         'm2': jsonData['property-type']['m2']
                     },
-                    'pic': jsonData['pic']
+                    'pic': jsonData['pic'],
+                    'chat_link': jsonData['chat_link']
                 }
                 self.client.elasticsearch.index(index=indexName, id=jsonData['id'], document=doc)
 
@@ -189,6 +190,9 @@ class ElasticDatabaseOperations:
                         }
                     },
                     "pic": {
+                        "type": "text"
+                    },
+                    "chat_link": {
                         "type": "text"
                     }
                 }
