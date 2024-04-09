@@ -8,7 +8,7 @@ import os
 ELASTIC_USERNAME = "elastic"
 ELASTIC_PASSWORD = "changeme"
 ELASTIC_ENDPOINT = "http://es01:9200/" 
-# ELASTIC_ENDPOINT = "http://localhost:9200/"
+#ELASTIC_ENDPOINT = "http://localhost:9200/"
 
 
 class ElasticDatabase:
@@ -250,6 +250,21 @@ class ElasticDatabase:
             propertiesData.append(doc['_source'].to_dict())
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
+
+
+    def updateDatabasePropertyLikes(propertyID, likes):
+        client = ElasticDatabase()
+        indexName = 'property-likes'
+        update = {
+            'doc': {
+            'liked_by' : likes
+            }
+        }
+        response = client.elasticsearch.update(index=indexName, id=propertyID, body=update)
+        print(response)
+        print(f'property update complete')
+
+
 
 
 # Test connection

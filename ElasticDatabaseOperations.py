@@ -46,7 +46,7 @@ class ElasticDatabaseOperations:
         print(f'Reading json \"{propertyIdJson}\"')
         propertyIdData = self.readJSON(propertyIdJson)
 
-        mockUserJson = os.path.join('mock_data', 'mock_users', 'mock_users.json')
+        mockUserJson = os.path.join('mock_data', 'mockUsers', 'mock_users.json')
         print(f'Reading json \"{mockUserJson}\"')
         mockUserData = self.readJSON(mockUserJson)
 
@@ -91,7 +91,8 @@ class ElasticDatabaseOperations:
                         'bath': jsonData['property-type']['bath'],
                         'm2': jsonData['property-type']['m2']
                     },
-                    'pic': jsonData['pic']
+                    'pic': jsonData['pic'],
+                    'chat_link': jsonData['chat_link']
                 }
                 self.client.elasticsearch.index(index=indexName, id=jsonData['id'], document=doc)
 
@@ -189,6 +190,9 @@ class ElasticDatabaseOperations:
                         }
                     },
                     "pic": {
+                        "type": "text"
+                    },
+                    "chat_link": {
                         "type": "text"
                     }
                 }
