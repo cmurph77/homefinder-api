@@ -46,7 +46,7 @@ class ElasticDatabaseOperations:
         print(f'Reading json \"{propertyIdJson}\"')
         propertyIdData = self.readJSON(propertyIdJson)
 
-        mockUserJson = os.path.join('mock_data', 'mock_users', 'mock_users.json')
+        mockUserJson = os.path.join('mock_data', 'mockUsers', 'mock_users.json')
         print(f'Reading json \"{mockUserJson}\"')
         mockUserData = self.readJSON(mockUserJson)
 

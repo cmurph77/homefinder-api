@@ -58,7 +58,7 @@ def get_propertys_filtered():
 # Tries to return liked property values if found
 @app.route('/get-liked-properties/<string:user_id>', methods=['GET'])
 def get_liked_properties(user_id):
-    liked_propertyIDs = ElasticDatabase.searchUserLikedProperties(user_id) #Try YSixicUz for debug
+    liked_propertyIDs = ElasticDatabase.searchUserLikedProperties(user_id) #Try yXbHXGB1 for debug
     #liked_propertyIDs = []     DEBUG
     if liked_propertyIDs: 
         print(liked_propertyIDs)
@@ -78,7 +78,7 @@ def get_propertys_liked_users(user_id):
     
     print('GET - properties likes users with user_id: ' + str(user_id))
     try : 
-        liked_users_ids_json = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try YSixicUz for debug
+        liked_users_ids_json = ElasticDatabase.searchPropertyLikedUsers(user_id) #Try yXbHXGB1 for debug
     except:
         return { 'message' : 'could not read to database' },404
     # Parse the JSON string into a dictionary
@@ -200,4 +200,58 @@ def check_liked_property(user_id, property_id):
             return 0
     except: 
         return {'error': 'Invalid User ID'}, 404
+    
+
+
+# Takes a list of liked properties and updates user likes along with removing users on liked properties
+@app.route('/user/update-liked-properties/', methods=['POST'])
+def update_liked_properties():
+    print('-- RECEIEVED REQUEST TO UPDATE LIKED PROPERTIES\n')
+    try :
+        update_info = request.get_json()
+        user_id = update_info.get('user_id', None)
+        list_data = update_info.get('property_ids', None)
+        # user_id = "yXbHXGB1"      #DEBUG 
+        # list_data = []      #DEBUG 
+        user_data = ElasticDatabase.searchUser(user_id)  # Debug ID
+        user_data_dict = json.loads(user_data)
+        # Record old liked property values
+        liked_properties_list = user_data_dict['liked_properties']
+        # Update user data with new liked property values
+        user_data_dict['liked_properties'] = list_data
+        
+    except: 
+        return {'error': 'Could not read request or pull user data'}, 404
+    
+    passed_list = set(list_data)
+    database_list = set(liked_properties_list)
+
+    difference_list = database_list - passed_list
+    difference_list = list(difference_list)
+    print(difference_list)
+
+    try:
+        ElasticDatabase.updateDatabaseUser(user_id, user_data_dict)
+    except:
+        return {'error': 'Could not update user in database'}, 404
+    
+    # remove user ids from properties
+    try:
+        removed_properties = difference_list
+        for property_id in removed_properties:
+            property_liked_users = ElasticDatabase.searchPropertyLikedUsers(property_id)
+            property_liked_users_dict = json.loads(property_liked_users)
+            property_liked_users_list = property_liked_users_dict['liked_by']
+
+            if user_id in property_liked_users_list:
+                property_liked_users_list.remove(user_id)
+            try:
+                ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=property_liked_users_list)
+            except:
+                return {'error': 'Cannot update database properties'}, 404
+        return 'Success', 200
+                
+    except Exception as e:
+        print(e)
+        return {'error': 'Could not update property likes database'}, 404
     # =================================================================================================
