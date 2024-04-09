@@ -79,7 +79,7 @@ const App = () => {
                 setLoading(true);
                 //If you want to easily test if user works, swap which following line is used
                 //const res = await axios_instance.get(`/get-user-info/${userId}`); 
-                const res = await axios_instance.get(`/get-user-info/YSixicUz`);
+                const res = await axios_instance.get(`/get-user-info/${userId}`);
                 console.log(res);
                 if (res.status === 200) {
                     setUserInfo(res.data);
