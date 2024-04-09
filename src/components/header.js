@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useSelector } from 'react-redux';
 import logo from '@/images/logo.png';
 import './header.css';
 import { useNavigate } from "react-router-dom"
-// import { useHistory } from "react-router-dom";
-
 import {  message, Popconfirm } from 'antd'
 import { LogoutOutlined, UserOutlined, LeftOutlined } from '@ant-design/icons'
 import { signOut } from 'firebase/auth'
@@ -11,9 +10,10 @@ import { auth } from '@/firebase'
 import { axios_instance } from "@/utils";
 
 export default function Header( props ) {
-    const [userName, setUserName] = useState(null)
-    console.log(props)
 
+    const uid = useSelector(state => state.user.userId)
+
+    const [userName, setUserName] = useState(null)
     // Logout Function
     const navigate = useNavigate()
     const signout = () => {
@@ -25,16 +25,15 @@ export default function Header( props ) {
         });
     }
 
-    const user = auth.currentUser;
-    // const uid = user.uid
-    const uid =  "ykaiawrX"
-    useEffect(() => {
-        axios_instance.get(`/get-user-info/${uid}`).then((res) => {
-            console.log(res.data)
-            setUserName(res.data.name)
-        }).catch((error) => {
-            console.log(error)
-        })
+    useEffect(()=>{
+        console.log(uid)
+        if (uid) {
+            axios_instance.get(`/get-user-info/${uid}`).then((res) => {
+                setUserName(res.data.name)
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
     },[])
 
     const UserButton = () => {

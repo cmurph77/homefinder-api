@@ -7,13 +7,13 @@ export default function ListingGrid(props) {
         return <p>Loading...</p>;
     }
     else{
-
         const cardList = props.properties.data.map(
             property => <ListingCard 
                     rentPerMonth={property['rent per month']} 
                     img={property['pic'][0]} 
                     address={property.address} 
                     id={property.identifier} 
+                    key={property.identifier}
                     bed={property["property-type"]['bed']} 
                     bath={property["property-type"]['bath']} 
                 />

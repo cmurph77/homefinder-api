@@ -72,7 +72,6 @@ const Home = () => {
                 })
             await setListing(res)
             await setLoading(false)
-            await console.log("fetch data success",res)
         }
         fetchData()
     },[pageNo, pageSize, rentVal, bedVal, bathVal])

@@ -1,4 +1,5 @@
 import { Button, Divider, Table, message } from 'antd';
+import { useSelector } from 'react-redux';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { axios_instance } from '@/utils';
@@ -12,10 +13,11 @@ const formatRent = (rent) => {
 
 const LikedProperties = (props) => {
     const [data_liked_properties, setData] = useState([])
+    const user_id = useSelector(state => state.user.userId)
 
     useEffect(() => {
         const fetchData = async () => {
-            const user_id = 'YSixicUz'
+            // const user_id = 'YSixicUz'
             const res = await axios_instance.get(`/get-liked-properties/${user_id}`)
             let data = res.data
             data.map((record) => { 
@@ -59,7 +61,7 @@ const LikedProperties = (props) => {
     };
 
     const submitInfo = () => {
-        const user_id = 'YSixicUz'
+        // const user_id = 'YSixicUz'
 
         console.log("Liked Properties", selectedRowKeys)
         // axios_instance.post('/get-liked-properties/${user_id}', {
@@ -71,7 +73,7 @@ const LikedProperties = (props) => {
         //     console.log(err)
         //     message.error('Failed to update Liked Properties');
         // })
-        props.toggleProfileUpdated()
+        // props.toggleProfileUpdated()
     }
 
     const columns = [
@@ -132,7 +134,6 @@ const LikedProperties = (props) => {
                     rowExpandable: (record) => record.name !== 'Not Expandable',
                   }}
             />
-            {/* <Divider style={{margin: '5px 0'}} /> */}
             <Button type='primary' onClick={submitInfo}>Save</Button>
         </div>
     )

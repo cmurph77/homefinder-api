@@ -1,4 +1,3 @@
-// State Management - user related
 import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
 
 import { signInWithEmailAndPassword,setPersistence,browserLocalPersistence,browserSessionPersistence } from "firebase/auth";
@@ -28,7 +27,8 @@ const userStore = createSlice({
             console.log("fulfilled",action.payload)
             state.token = action.payload
             state.loading = 'succeeded'
-            state.userId = action.payload.userId
+            state.userId = action.payload
+            console.log("User ID is: ",state.userId)
             if(state.remember) {
                 setPersistence(auth, browserLocalPersistence)
             }
@@ -52,6 +52,7 @@ export const fetchLogin = createAsyncThunk(
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const userId = userCredential.user.uid;
+            console.log("User ID is: ",userId)
             return userId
         } catch (error) {
             console.log(error)
