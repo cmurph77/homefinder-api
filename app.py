@@ -180,4 +180,24 @@ def create_user():
         return "Success", 200
     except:
         return {'error': 'Could not add user to database'}, 404
+    
+        # this endpoint takes a user_id and property id and returns a string boolean if a user has liked the propeerty
+@app.route('/check-user-liked-property/<string:user_id>/<int:property_id>', methods=['GET'])
+def check_liked_property(user_id, property_id):
+    try:
+        user_info = ElasticDatabase.searchUser(user_id)
+        # set user info to the users_info retireved from database
+        if user_info != '{}':
+            user_info_dict = json.loads(user_info)
+            property_ids = user_info_dict.get("liked_properties")
+            for id in property_ids:
+                id = int(id)
+                #print(id)
+                if id == property_id:
+                    return "Success", 200
+            return 0
+        else:
+            return 0
+    except: 
+        return {'error': 'Invalid User ID'}, 404
     # =================================================================================================
