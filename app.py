@@ -33,6 +33,7 @@ def get_propertys_pagesize(pagenum,numresults):
     data = ElasticDatabase.search(numresults,pagenum)
     return data
 
+
 # This returns a list of filtered properties
 @app.route('/get-propertys-with-filter-live/', methods=['POST'])
 def get_propertys_filtered():
@@ -92,7 +93,6 @@ def get_propertys_liked_users(user_id):
         # print(var_type)
         # print(user_info_json)
         user_info_list.append(user_info_json)
-
 
     # processed_data = [user_info.replace("\\", "") for s in user_info_list]
     # print(processed_data)
