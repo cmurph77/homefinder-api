@@ -5,9 +5,9 @@ Pre-requisite
 - Ensure docker desktop is running before continuing.
 
 
------------- Step-by-Step Instructions For Setting Up the homefinder Applicaiton ----------------------------------------
+------------ Step-by-Step Instructions For Setting Up the homefinder Application ----------------------------------------
 
-In order to run this applicaiton in development mode you must clone the code for the backend and frontend into 2 seperate directories
+In order to run this application in development mode you must clone the code for the backend and frontend into 2 seperate directories
 
 1. Clone the 'production-back-end' and follow the instructions below to set up the backend infrastructure
 2. Open a terminal in the same folder as the 'docker-compose.yaml' file.
@@ -32,21 +32,11 @@ In order to run this applicaiton in development mode you must clone the code for
 
 Next you must set up the frontend
 
-11. Into another directory clode the 'production-front-end'
+11. Into another directory clone the 'production-front-end' repository
 12. Now in this directory, run 'npm install' to install all node dependencies
 13. Finaly run 'npm start' to start up the front end in development mode
-14. You wil be presented with the login screen - You can create your own account or use the test account details below
-    
-    email: test@test.com
-    password: 123456
-
+14. You wil be presented with the login screen where you can create your own account.
 15. Enjoy our Application
-
-
-
-
-* If you have any trouble setting up the elastic database, ask Cian O'Gorman.
-
 
 
 # Testing 
@@ -54,7 +44,6 @@ Next you must set up the frontend
 First you must install dependencies with -> 'pip install -r requirements.txt'
 
 To manually run the server run the command -> 'gunicorn app:app'
-
 
 The server should run in the docker container labelled api which will be created when running docker-compose for elasticsearch
 
@@ -71,14 +60,12 @@ When making changes to the api container run -> 'docker-compose build' to apply 
 3. /get-propertys-by-pagenum-sample/<int:pagenum>/<int:numresults> => returns a list of propertys - it is not connected to the database but will be noon (note sample keyword at the end)
 
 
-
 ## elasticsearch database set up.
 
 - Pre-requisite
 1. Download and install *Docker Desktop*: https://www.docker.com/products/docker-desktop/
 2. Ensure docker desktop is running before continuing.
 
-Run the batch file titled *elastic-setup.bat* and skip to *step 3*, to manually set up the database continue to *step 1*.
 1. Open a terminal in the same folder as the 'docker-compose.yaml' file.
 2. In the terminal type the following line: *docker compose up*
 3. Wait for the following line to display: *setup-1 exited with code 0*.
@@ -121,6 +108,3 @@ Run the batch file titled *elastic-setup.bat* and skip to *step 3*, to manually 
 11. Run the ElasticDatabaseOperations.py file within vscode to populate the database.
 
 12. Run the ElasticDatabase.py file within vscode, check the terminal and you should see search results
-
-
-* If you have any trouble setting up the elastic database, ask Cian O'Gorman.
