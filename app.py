@@ -109,7 +109,7 @@ def get_user_info(user_id):
     else:
         return user_info , 200
 
-@app.route('/like-property/<string:user_id>/<int:property_id>',methods=['GET'])
+@app.route('/like-property/<string:user_id>/<int:property_id>',methods=['PUT'])
 def like_property(user_id,property_id):
     try:
         user_data = ElasticDatabase.searchUser(user_id)
