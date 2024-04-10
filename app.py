@@ -117,7 +117,15 @@ def like_property(user_id,property_id):
         user_data_dict['liked_properties'].append(property_id)
         #user_data_JSON = json.dumps(user_data_dict)
 
-        ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict)    
+        ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict) 
+
+        # TESTING
+        try:
+            ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=property_liked_users_list)
+        except:
+            return {'error': 'Cannot update database properties'}, 404 
+
+
 
         return {'message': 'Property liked'}, 200
     except:
@@ -130,7 +138,19 @@ def unlike_property(user_id,property_id):
         user_data_dict = json.loads(user_data)
         user_data_dict['liked_properties'].remove(property_id)
 
-        ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict)    
+        ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict)   
+
+        # TESTING
+        property_liked_users = ElasticDatabase.searchPropertyLikedUsers(property_id)
+        property_liked_users_dict = json.loads(property_liked_users)
+        property_liked_users_list = property_liked_users_dict['liked_by']
+
+        if user_id in property_liked_users_list:
+            property_liked_users_list.remove(user_id)
+        try:
+            ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=property_liked_users_list)
+        except:
+            return {'error': 'Cannot update database properties'}, 404 
 
         return {'message': 'Property unliked'}, 200
     except:
