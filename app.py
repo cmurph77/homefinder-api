@@ -151,7 +151,8 @@ def unlike_property(user_id,property_id):
     #try:
         user_data = ElasticDatabase.searchUser(user_id)
         user_data_dict = json.loads(user_data)
-        user_data_dict['liked_properties'].remove(property_id)
+        if property_id in user_data_dict['liked_properties']:
+            user_data_dict['liked_properties'].remove(property_id)
 
         ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict)   
 
