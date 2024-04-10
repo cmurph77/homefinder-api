@@ -42,8 +42,9 @@ const UserProfile = (props) =>
 
     //Need special function for smoker as it can only have one tag
     const onSmokerChange = (tag) => {
-        setsmoker([]);
-        setsmoker(tag);
+        setsmoker("");
+        setsmoker(tag[0]);
+        console.log(smoker.length);
     };
 
     const handleSave = () => {
@@ -87,7 +88,7 @@ const UserProfile = (props) =>
                 </div>
                 <div className="Tags">
                     <label>Smoking Tags:   </label>
-                    <Cascader placement={'bottomLeft'} options={[{value:"Smoker", label:"Smoker"}, {value:"Non-Smoker", label:"Non-Smoker"}, {value:"Social-Smoker", label:"Social Smoker"}]} onChange={onSmokerChange} placeholder={smoker.length === 0 ? "Please Select" : data.smoker} />
+                    <Cascader placement={'bottomLeft'} options={[{value:"Smoker", label:"Smoker"}, {value:"Non-Smoker", label:"Non-Smoker"}, {value:"Social-Smoker", label:"Social Smoker"}]} onChange={onSmokerChange} placeholder={smoker.length > 0? smoker : "Please Select"} />
                 </div>
                 <div className="Tags">
                     <label>Language Tags:   </label>
