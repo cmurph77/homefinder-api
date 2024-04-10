@@ -236,9 +236,6 @@ class ElasticDatabaseOperations:
                             },
                             "smoker": {
                                 "type": "keyword",
-                                "fields": {
-                                    "text": { "type": "keyword" }
-                                }
                             },
                             "pets": {
                                 "type": "keyword",
