@@ -111,29 +111,44 @@ def get_user_info(user_id):
 
 @app.route('/like-property/<string:user_id>/<int:property_id>',methods=['PUT'])
 def like_property(user_id,property_id):
-    try:
+    #try:
         user_data = ElasticDatabase.searchUser(user_id)
         user_data_dict = json.loads(user_data)
         user_data_dict['liked_properties'].append(property_id)
+        print(user_data_dict)
         #user_data_JSON = json.dumps(user_data_dict)
+
+
 
         ElasticDatabase.updateDatabaseUser(userID=user_id, userData=user_data_dict) 
 
         # TESTING
+        property_liked_users = ElasticDatabase.searchPropertyLikedUsers(property_id)
+        property_liked_users_dict = json.loads(property_liked_users)
+        print(property_liked_users_dict)
+        property_liked_users_list = property_liked_users_dict['liked_by']
+        print(property_liked_users_list)
+        if user_id not in property_liked_users_list:
+            property_liked_users_list.append(user_id)
+        print(property_liked_users)
+        print(property_liked_users_list)
+
+        
         try:
-            ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=[property_id])
+            print("TEST")
+            ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=property_liked_users_list)
         except:
             return {'error': 'Cannot update database properties'}, 404 
 
 
 
         return {'message': 'Property liked'}, 200
-    except:
-        return {'error': 'failed to like property'}, 404
+   #except:
+    #    return {'error': 'failed to like property'}, 404
     
 @app.route('/unlike-property/<string:user_id>/<int:property_id>',methods = ['PUT'])
 def unlike_property(user_id,property_id):
-    try:
+    #try:
         user_data = ElasticDatabase.searchUser(user_id)
         user_data_dict = json.loads(user_data)
         user_data_dict['liked_properties'].remove(property_id)
@@ -146,15 +161,17 @@ def unlike_property(user_id,property_id):
         property_liked_users_list = property_liked_users_dict['liked_by']
 
         if user_id in property_liked_users_list:
+            print(property_liked_users_list)
             property_liked_users_list.remove(user_id)
+            print(property_liked_users_list)
         try:
             ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=property_liked_users_list)
         except:
             return {'error': 'Cannot update database properties'}, 404 
 
         return {'message': 'Property unliked'}, 200
-    except:
-        return {'error': 'failed to unlike property'}, 404
+    #except:
+        #return {'error': 'failed to unlike property'}, 404
 
 # this endpoint updates user info
 @app.route('/update-users-info/', methods=['POST'])
