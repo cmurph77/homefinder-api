@@ -21,7 +21,7 @@ const Signup = () => {
             const data_to_backend = {
                 firebase_id: uid,
                 name: values.username,
-                profile_pic: "",
+                profile_pic: "https://i.pinimg.com/originals/2f/15/f2/2f15f2e8c688b3120d3d26467b06330c.jpg",
                 selected_tags: {
                     languages: [],
                     smoker: "",
