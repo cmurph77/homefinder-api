@@ -3,11 +3,7 @@ import { Carousel as _Carousel, Image } from 'antd';
 import './Carousel.scss'
 
 const Carousel = ( props ) => {
-
-  // const onChange = (currentSlide) => {
-  //   // console.log(currentSlide);
-  // };
-  console.log(props)
+  // console.log(props)
 
   const pic_width = 440
 

@@ -2,14 +2,13 @@
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Signup from '@/pages/Signup'
-import Test from '@/pages/Test'
 import Listing from '@/pages/Listing'
 import NotFound from '@/pages/NotFound'
+import User from '@/pages/User'
 import { AuthRoute } from '@/components/AuthRouter'
 
 
 import { createBrowserRouter } from 'react-router-dom'
-const api_url = 'http://127.0.0.1:8000'
 
 // Configure the instance of router
 
@@ -27,12 +26,12 @@ const router = createBrowserRouter([
     element: <Signup />
   },
   {
-    path: '/test',
-    element: <Test />
-  },
-  {
     path: '/listing/:id',
     element: <AuthRoute><Listing/></AuthRoute>
+  },
+  {
+    path: '/user',
+    element: <AuthRoute><User /></AuthRoute>
   },
   {
     path: '*',

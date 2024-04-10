@@ -1,6 +1,5 @@
-// State Management - user related
 import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
-
+import { getUId, setUId, setUId_Session, getUId_Session } from '@/utils'
 import { signInWithEmailAndPassword,setPersistence,browserLocalPersistence,browserSessionPersistence } from "firebase/auth";
 import { auth } from '@/firebase'
 
@@ -9,7 +8,8 @@ const userStore = createSlice({
     initialState:{
         remember: false,
         loading: 'idle',
-        error: ""
+        error: "",
+        userId: getUId() || getUId_Session() || '',
     },
     reducers: {
         setRemember (state, action)  {
@@ -20,18 +20,19 @@ const userStore = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(fetchLogin.pending,(state,action) =>{
-            console.log("pending")
             state.loading = 'pending'
         })
         .addCase(fetchLogin.fulfilled,(state,action) =>{
-            console.log("fulfilled",action.payload)
             state.token = action.payload
             state.loading = 'succeeded'
+            state.userId = action.payload
             if(state.remember) {
                 setPersistence(auth, browserLocalPersistence)
+                setUId(action.payload)
             }
             else{
                 setPersistence(auth, browserSessionPersistence)
+                setUId_Session(action.payload)
             }
         })
         .addCase(fetchLogin.rejected, (state, action) => {

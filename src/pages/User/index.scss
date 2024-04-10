@@ -1,0 +1,45 @@
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#root{
+    min-height: 100%;
+}
+
+.user-container{
+    .user-layout{
+        min-height: 100vh;
+        .user-header{
+            background-color: #ffffff;
+            padding: 0;
+            line-height: 0px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-content{
+            min-height: 120px;
+            width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            @media screen and (max-width: 1000px) {
+                width: 100%;
+            }
+        }
+
+        .user-footer{
+            text-align: center;
+            color: white;
+            background-color: #4096ff;
+        }
+    }
+}
+
