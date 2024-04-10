@@ -109,7 +109,7 @@ def get_user_info(user_id):
     else:
         return user_info , 200
 
-@app.route('/like-property/<string:user_id>/<int:property_id>',methods=['PUT'])
+@app.route('/like-property/<string:user_id>/<int:property_id>',methods=['GET'])
 def like_property(user_id,property_id):
     try:
         user_data = ElasticDatabase.searchUser(user_id)
@@ -121,7 +121,7 @@ def like_property(user_id,property_id):
 
         # TESTING
         try:
-            ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=property_liked_users_list)
+            ElasticDatabase.updateDatabasePropertyLikes(propertyID=property_id, likes=[property_id])
         except:
             return {'error': 'Cannot update database properties'}, 404 
 
