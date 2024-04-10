@@ -20,6 +20,7 @@ class ElasticDatabase:
         client = ElasticDatabase()
         return client.elasticsearch.info()
 
+    # Perform a property search by specifying a desired number of results and a page number
     def search(numberOfResults, pageNumber):
         client = ElasticDatabase()
         startIndex = (pageNumber - 1) * numberOfResults
@@ -40,6 +41,7 @@ class ElasticDatabase:
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
 
+    # Perform a property search using a desired number of results, page number and a field to sort by
     def searchWithField(numberOfResults, pageNumber, field):
         client = ElasticDatabase()
         startIndex = (pageNumber - 1) * numberOfResults
@@ -61,6 +63,7 @@ class ElasticDatabase:
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
 
+    # Search for a property using an property ID
     def searchByPropertyID(identifier):
         client = ElasticDatabase()
         query = {
@@ -77,7 +80,7 @@ class ElasticDatabase:
         propertiesJSON = json.dumps(propertyData, indent=4)
         return propertiesJSON
     
-    # Returns list of liked properties
+    # Search for the properties a user has liked using a user ID
     def searchUserLikedProperties(identifier):
         client = ElasticDatabase()
         query = {
@@ -89,12 +92,11 @@ class ElasticDatabase:
         }
         searchResult = client.elasticsearch.search(index="users-db", body=query)
         userData = {}
-    
         if searchResult["hits"]["hits"]:
             userData = searchResult["hits"]["hits"][0]["_source"]
-        #userJSON = json.dumps(userData.get("liked_properties", []), indent=4)
-        return userData.get("liked_properties", []) #userJSON
+        return userData.get("liked_properties", [])
 
+    # 
     def searchPropertyList(properties):
         client = ElasticDatabase()
         query = {
@@ -106,24 +108,21 @@ class ElasticDatabase:
         }
         searchResult = client.elasticsearch.search(index="property-listings", body=query)
         propertyData = []
-        #if searchResult["hits"]["hits"]:
-            #propertyData = searchResult["hits"]["hits"][0]["_source"]
 
         for hit in searchResult["hits"]["hits"]:
             propertyData.append(hit["_source"])
 
         propertyJSON = json.dumps(propertyData)
-        print(propertyJSON)
         return propertyJSON
     
+    # Add a new user to the database with a user JSON
     def addNewUserToDatabase(userData):
         client = ElasticDatabase()
         indexName = 'users-db'
-        # JSON DATA
-        print('Indexing (please wait for confirmation)...')
         client.indexUsersData(userData, indexName)
         print(f'user indexing complete')
 
+    # (private) Index user
     def indexUsersData(self, data, indexName):
         client = ElasticDatabase()
         doc = {
@@ -147,7 +146,7 @@ class ElasticDatabase:
         client.elasticsearch.index(index=indexName, id=data['firebase_id'], document=doc)
 
 
-# NEEDS TO BE TESTED
+    # Update the data for a given user specifying user ID and new data
     def updateDatabaseUser(userID, userData):
         client = ElasticDatabase()
         indexName = 'users-db'
@@ -172,10 +171,9 @@ class ElasticDatabase:
         }
 
         response = client.elasticsearch.update(index=indexName, id=userID, body=update)
-        print(response)
         print(f'user update complete')
     
-
+    # Search for a user with an identifier
     def searchUser(identifier):
         client = ElasticDatabase()
         try:
@@ -197,7 +195,7 @@ class ElasticDatabase:
         except:
             return '{}'
 
-    # 
+    # Get a list of users that have liked a property using a property ID
     def searchPropertyLikedUsers(identifier):
         client = ElasticDatabase()
         query = {
@@ -223,27 +221,20 @@ class ElasticDatabase:
         index = 'property-listings'
         search = Search(using = client.elasticsearch, index = index)
 
-        # Making search keywords
         bedTerms = [f"{i} Bed" for i in range(minBed, maxBed + 1)]
         bathTerms = [f"{i} Bath" for i in range(minBath, maxBath + 1)]
 
-        # making queries note:
-        # gte = greater than or equal to
-        # lte = less than or equal to
         rentQuery = Q("range", **{"rent per month": {"gte": minRent, "lte": maxRent}})
         bedQuery = Q("nested", path="property-type", query=Q("terms", **{"property-type.bed": bedTerms}))
         bathQuery = Q("nested", path="property-type", query=Q("terms", **{"property-type.bath": bathTerms}))
         query = rentQuery & bedQuery & bathQuery
 
-        # Setting pagination
         from_ = numberOfResults * (pageNumber - 1)
         size = numberOfResults
         search = search.query(query)[from_:from_ + size]
 
-        # Search
         searchResult = search.execute()
 
-        # Format data
         propertiesData = []
         all_hits = searchResult['hits']['hits']
         for doc in all_hits:
@@ -251,7 +242,7 @@ class ElasticDatabase:
         propertiesJSON = json.dumps(propertiesData, indent=4)
         return propertiesJSON
 
-
+    # update the property likes for a given property using a property ID and a list of user IDs
     def updateDatabasePropertyLikes(propertyID, likes):
         client = ElasticDatabase()
         indexName = 'property-likes'
@@ -261,98 +252,4 @@ class ElasticDatabase:
             }
         }
         response = client.elasticsearch.update(index=indexName, id=propertyID, body=update)
-        print(response)
         print(f'property update complete')
-
-
-
-
-# Test connection
-def main():
-
-    pass
-
-    # user_ids = ElasticDatabase.searchPropertyLikedUsers(216696046)
-    # print(user_ids)
-    # - - Search properties with filter - -
-
-    # minRent = 1100
-    # maxRent = 1750
-    # minBed = 2
-    # maxBed = 3
-    # minBath = 1
-    # maxBath = 2
-    # propertyData = ElasticDatabase.searchPropertiesWithFilter(minRent, maxRent, minBed, maxBed, minBath, maxBath)
-    # propertyList = json.loads(propertyData)
-    # print(len(propertyList))
-    # for prop in propertyList:
-    #     identifier = prop.get('identifier', 'N/A')
-    #     rent = prop.get('rent per month', 'N/A')
-    #     bed = prop['property-type'].get('bed', 'N/A')
-    #     bath = prop['property-type'].get('bath', 'N/A')
-    #     print(f"{identifier}, Rent: {rent}, Bed: {bed}, Bath: {bath}")
-
-    # - - Search for first 50 properties - -
-
-    # numberOfResults = 10
-    # pageNumber = 1
-    # propertyData = ElasticDatabase.search(numberOfResults, pageNumber)
-    # # Print propertyData
-    # propertyList = json.loads(propertyData)
-    # for prop in propertyList:
-    #     print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
-
-
-
-    # - - Search properties by field - -
-
-    # numberOfResults = 50
-    # pageNumber = 1
-    # sortBy = 'rent per month'
-    # propertyData = ElasticDatabase.searchWithField(numberOfResults, pageNumber, sortBy)
-    # # Print propertyData
-    # propertyList = json.loads(propertyData)
-    # for prop in propertyList:
-    #     print(f"{prop['identifier']}, {prop['address']}, {prop['rent per month']}")
-
-
-
-    # - - Search for a property by identifier - -
-
-    # propertyData = ElasticDatabase.searchByPropertyID(218980691)
-    # # Print propertyData
-    # print(propertyData)
-
-
-    # - - Search for a user - -
-    userData = ElasticDatabase.searchUser("YSixicUz")
-    print(userData)
-
-
-    # Store PropertyData in a json
-
-    fileName = 'searchUserExample.json'
-    filePath = os.path.join('mock_data', 'ExampleJSONs', fileName)
-    with open(filePath, "w") as jsonFile:
-        jsonFile.write(userData)
-
-if __name__ == "__main__":
-    main()
-
-
-# ---------------------------------------------------------------------------------------------------------
-# Example:
-
-# Create instance, name it whatever you want
-# client = ElasticDatabase()
-
-# Return the 50 properties for page 1
-# properties = client.search(50, 1)
-
-# Return the next 50 properties for page 2
-# properties = client.search(50, 2)
-
-# Return the 50 properties for page 4 sorted by rent (low to high)
-# properties = client.searchWithField(50, 4, 'rent per month')
-
-# ---------------------------------------------------------------------------------------------------------
